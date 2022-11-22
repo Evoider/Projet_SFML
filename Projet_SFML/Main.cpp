@@ -1,24 +1,20 @@
 #include <SFML/Graphics.hpp>
+#include <stdio.h>
+#include <iostream>
+#include "App.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
+    App::init(1920,1080,"Pokémon Cynthia");
+   
+
+    bool quit = false;
+    while (!quit)
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        
+        App::event();
 
-        window.clear();
-        window.draw(shape);
-        window.display();
     }
-
     return 0;
 }
