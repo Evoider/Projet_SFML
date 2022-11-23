@@ -20,13 +20,14 @@ private:
 
 protected:
 	sf::RectangleShape shape;
-
+	float movementSpeed;
 public:
 	Entity();
 	~Entity();
 
 	//Functions
-	virtual void update(const float& dt) = 0;
-	virtual void render(sf::RenderTarget& target) = 0;
+	virtual void move(const float& dt,const float x, const float y);
+	virtual void update(const float& dt);
+	virtual void render(sf::RenderTarget* target);
 };
 
