@@ -1,12 +1,19 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Entity.h"
+#include "Character.h"
+
+bool up = false;
+bool down = false;
+bool left = false;
+bool right = false;
+
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(500,500), "SFML works!", sf::Style::Default);
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/pika_pika.png");
     sf::Sprite sprite;
@@ -32,22 +39,69 @@ int main()
             {
                 if (event.key.code == sf::Keyboard::Z)
                 {
-                    sprite.move(0.f, -6.f);
+                    up = true;
+
+                    down = false;
+                    left = false;
+                    right = false;
                 }
                 if (event.key.code == sf::Keyboard::S)
                 {
-                    sprite.move(0.f, 6.f);
+                    down = true;
+
+                    up = false;
+                    left = false;
+                    right = false;
                 }
                 if (event.key.code == sf::Keyboard::Q)
                 {
-                    sprite.move(-6.f, 0.f);
+                    left = true;
+
+                    up = false;
+                    down = false;
+                    right = false;
                 }
                 if (event.key.code == sf::Keyboard::D)
                 {
-                    sprite.move(6.f, 0.f);
+
+                    right = true;
+
+                    up = false;
+                    down = false;
+                    left = false;
                 }
             }
+            if (event.type == sf::Event::KeyReleased)
+            {
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+            }
+            
         }
+        //Action
+        if (up == true)
+        {
+            sprite.move(0.f, -0.1f);
+        }
+            
+        if (down == true)
+        {
+            sprite.move(0.f, 0.1f);
+        }
+            
+        if (left == true)
+        {
+            sprite.move(-0.1f, 0.f);
+        }
+
+        if (right == true)
+        {
+            sprite.move(0.1f, 0.f);
+        }
+
+
         window.clear();
         window.draw(character);
         window.draw(sprite);
