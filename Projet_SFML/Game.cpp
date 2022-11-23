@@ -7,9 +7,28 @@
 
 void Game::initWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "Pokémon Cynthia", sf::Style::Default);
-	this->window->setFramerateLimit(60);
-	this->window->setVerticalSyncEnabled(false);
+	/*Create a window using option from a window.ini file*/
+
+	std::ifstream ifs("Config/window.ini");
+
+	std::string title = "None";
+	sf::VideoMode window_bounds(800,600);
+	unsigned framerate_limit = 60;
+	bool vertical_sync_enabled = false;
+
+	if (ifs.is_open())
+	{
+		std::getline(ifs, title);
+		ifs >> window_bounds.width >> window_bounds.height;
+		ifs >> framerate_limit;
+		ifs >> vertical_sync_enabled; 
+	}
+
+	ifs.close();
+
+	this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Default);
+	this->window->setFramerateLimit(framerate_limit);
+	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
 //Constructor/Destructor

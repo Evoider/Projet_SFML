@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <iostream>
-#include "Pokemon.h"
 #include "Game.h"
 
 int main()
