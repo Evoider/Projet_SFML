@@ -20,20 +20,21 @@ int main()
 
     // on crée une vue
     sf::View view;
-    view.reset(sf::FloatRect(0.f, 0.f, 1000.f, 600.f));
+    view.reset(sf::FloatRect(0, 0, 1000, 600));
 
     // on l'active
     window.setView(view);
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/pika_pika.png");
     sf::Sprite sprite;
-    sprite.scale(sf::Vector2f(1.f, 1.f)); // facters d'échelle relatifs à l'échelle actuelle
+    sprite.scale(sf::Vector2f(1, 1)); // facters d'échelle relatifs à l'échelle actuelle
     sprite.setTexture(texture);
+    sprite.setPosition(500, 300);
 
     sf::Texture texture2;
-    texture2.loadFromFile("ressources/sprites/gravity_falls.png");
+    texture2.loadFromFile("ressources/sprites/maps_test.png");
     sf::Sprite character;
-    character.scale(sf::Vector2f(1.f, 1.f)); // facters d'échelle relatifs à l'échelle actuelle
+    character.scale(sf::Vector2f(2.f, 2.f)); // facters d'échelle relatifs à l'échelle actuelle²²²
     character.setTexture(texture2);
 
     while (window.isOpen())
@@ -128,3 +129,7 @@ int main()
     }
     return 0;
 }
+
+//Hit-box (colision)
+// Combat tour-par-tour
+//Architecture
