@@ -1,6 +1,7 @@
 #include "GameState.h"
 
-GameState::GameState()
+GameState::GameState(sf::RenderWindow* window)
+	:State(window)
 {
 }
 
@@ -9,11 +10,18 @@ GameState::~GameState()
 }
 
 
+
+
 //Functions
-void GameState::update()
+void GameState::endState()
 {
 }
 
-void GameState::render()
+void GameState::update(const float& dt)
+{
+	std::cout << "Hello from GameStat" << std::endl;
+}
+
+void GameState::render(sf::RenderTarget* target)
 {
 }

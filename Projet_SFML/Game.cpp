@@ -33,18 +33,26 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-	//this->states.push();
+	this->states.push(new GameState(this->window));
 }
 
 //Constructor/Destructor
 Game::Game()
 {
 	this->initWindow();
+	this->initStates();
+	
 }
 
 Game::~Game()
 {
 	delete this->window;
+
+	while (!this->states.empty())
+	{
+		delete this->states.top();
+		this->states.pop();
+	}
 }
 
 
@@ -73,7 +81,7 @@ void Game::update()
 
 	if (!this->states.empty())
 	{
-		this->states.top()->update();
+		this->states.top()->update(this->dt);
 	}
 
 }
@@ -81,11 +89,13 @@ void Game::update()
 void Game::render()
 {
 	this->window->clear();
+
 	//render items
 	if (!this->states.empty())
 	{
-		this->states.top()->render();
+		this->states.top()->render(this->window);
 	}
+
 	this->window->display();
 }
 
