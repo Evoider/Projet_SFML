@@ -1,20 +1,12 @@
-#include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <iostream>
-#include "App.h"
 #include "Pokemon.h"
+#include "Game.h"
 
 int main()
 {
-    App::init(1920,1080,"Pokémon Cynthia");
-    
-    Pokemon tarsa;
+    Game game;
 
-
-    bool quit = false;
-    while (!quit)
-    {
-        App::event();
-    }
+    game.run();
     return 0;
 }
