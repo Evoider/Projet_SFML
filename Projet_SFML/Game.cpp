@@ -24,6 +24,8 @@ void Game::initWindow()
 		ifs >> vertical_sync_enabled; 
 	}
 
+	ifs.close();
+
 	this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Default);
 	this->window->setFramerateLimit(framerate_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
