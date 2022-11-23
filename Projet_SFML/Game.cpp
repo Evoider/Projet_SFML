@@ -58,6 +58,11 @@ Game::~Game()
 
 //Functions
 
+void Game::endApplaction()
+{
+	std::cout << "Ending application !" << "\n";
+}
+
 void Game::updateDt()
 {
 	this->dt = this->dtClock.restart().asSeconds();	
@@ -90,7 +95,12 @@ void Game::update()
 			this->states.pop();
 		}
 	}
-
+	//Application end
+	else
+	{
+		this->endApplaction();
+		this->window->close();
+	}
 }
 
 void Game::render()
