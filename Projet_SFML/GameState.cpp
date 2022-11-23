@@ -13,13 +13,27 @@ GameState::~GameState()
 
 
 //Functions
+
 void GameState::endState()
 {
+	std::cout << "Ending game state" << "\n";
+}
+
+void GameState::updateKeyBinds(const float& dt)
+{
+	this->checkForQuit();
+
+	//Check for key pressed
 }
 
 void GameState::update(const float& dt)
 {
-	std::cout << "Hello from GameStat" << std::endl;
+	this->updateKeyBinds(dt);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		std::cout << "A" << std::endl;
+	}
 }
 
 void GameState::render(sf::RenderTarget* target)
