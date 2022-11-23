@@ -10,10 +10,20 @@ bool down = false;
 bool left = false;
 bool right = false;
 
+int posx = 0;
+int posy = 0;
+
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(500,500), "SFML works!", sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(1000,600), "SFML works!", sf::Style::Default);
+
+    // on crée une vue
+    sf::View view;
+    view.reset(sf::FloatRect(0.f, 0.f, 1000.f, 600.f));
+
+    // on l'active
+    window.setView(view);
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/pika_pika.png");
     sf::Sprite sprite;
@@ -84,25 +94,34 @@ int main()
         if (up == true)
         {
             sprite.move(0.f, -0.1f);
+            view.move(0.f, -0.1f);
+            posy++;
         }
             
         if (down == true)
         {
             sprite.move(0.f, 0.1f);
+            view.move(0.f, 0.1f);
+            posy--;
         }
             
         if (left == true)
         {
             sprite.move(-0.1f, 0.f);
+            view.move(-0.1f, 0.f);
+            posx--;
         }
 
         if (right == true)
         {
             sprite.move(0.1f, 0.f);
+            view.move(0.1f, 0.f);
+            posx++;
         }
 
 
         window.clear();
+        window.setView(view);
         window.draw(character);
         window.draw(sprite);
         window.display();
