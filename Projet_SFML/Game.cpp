@@ -8,6 +8,8 @@
 void Game::initWindow()
 {
 	this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "Pokémon Cynthia", sf::Style::Default);
+	this->window->setFramerateLimit(60);
+	this->window->setVerticalSyncEnabled(false);
 }
 
 //Constructor/Destructor
@@ -26,7 +28,8 @@ Game::~Game()
 
 void Game::updateDt()
 {
-	this->dt = this->dtClock.getElapsedTime().asSeconds();	
+	this->dt = this->dtClock.restart().asSeconds();	
+
 }
 
 void Game::updateSFMLEvents()
@@ -43,6 +46,7 @@ void Game::update()
 	/*Update dt variable with the time elapsed to update and render in one frame*/
 
 	this->updateSFMLEvents();
+
 }
 
 void Game::render()
