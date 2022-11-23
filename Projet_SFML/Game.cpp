@@ -31,15 +31,28 @@ void Game::initWindow()
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+void Game::initKeys()
+{
+	this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
+	this->supportedKeys.emplace("Q", sf::Keyboard::Key::Q);
+	this->supportedKeys.emplace("Z", sf::Keyboard::Key::Z);
+	this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+	this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+
+}
+
 void Game::initStates()
 {
-	this->states.push(new GameState(this->window));
+	this->states.push(new GameState(this->window,&this->supportedKeys));
 }
+
+
 
 //Constructor/Destructor
 Game::Game()
 {
 	this->initWindow();
+	this->initKeys();
 	this->initStates();
 	
 }
