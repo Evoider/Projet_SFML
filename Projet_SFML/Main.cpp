@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <chrono>
 #include "Entity.h"
 #include "Character.h"
 
@@ -25,10 +26,11 @@ int main()
     // on l'active
     window.setView(view);
     sf::Texture texture;
-    texture.loadFromFile("ressources/sprites/pika_pika.png");
-    sf::Sprite sprite;
+    texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
+    sf::IntRect rectSprite(0, 0, 75, 75);
+    sf::Sprite sprite(texture, rectSprite);
     sprite.scale(sf::Vector2f(1, 1)); // facters d'échelle relatifs à l'échelle actuelle
-    sprite.setTexture(texture);
+    //sprite.setTexture(texture);
     sprite.setPosition(500, 300);
 
     sf::Texture texture2;
