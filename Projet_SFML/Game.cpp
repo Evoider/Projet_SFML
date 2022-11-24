@@ -33,19 +33,24 @@ void Game::initWindow()
 
 void Game::initKeys()
 {
-	this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
-	this->supportedKeys.emplace("Q", sf::Keyboard::Key::Q);
-	this->supportedKeys.emplace("Z", sf::Keyboard::Key::Z);
-	this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
-	this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+	std::ifstream ifs("Config/supported_keys.ini");
+	if (ifs.is_open())
+	{
+		std::string key = "";
+		int key_value = 0;
 
+		while (ifs >> key >> key_value)
+		{
+			this->supportedKeys[key] = key_value;
+		}
+	}
+	
 }
 
 void Game::initStates()
 {
 	this->states.push(new GameState(this->window,&this->supportedKeys));
 }
-
 
 
 //Constructor/Destructor
