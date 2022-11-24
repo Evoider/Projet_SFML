@@ -27,8 +27,11 @@ int main()
     window.setView(view);
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
-    sf::IntRect rectSprite(0, 0, 75, 75);
-    sf::Sprite sprite(texture, rectSprite);
+    sf::IntRect rectSpriteUp(0, 225, 75, 75);
+    sf::IntRect rectSpriteDown(0, 0, 75, 75);
+    sf::IntRect rectSpriteLeft(0, 75, 75, 75);
+    sf::IntRect rectSpriteRight(0, 150, 75, 75);
+    sf::Sprite sprite(texture, rectSpriteDown);
     sprite.scale(sf::Vector2f(1, 1)); // facters d'échelle relatifs à l'échelle actuelle
     //sprite.setTexture(texture);
     sprite.setPosition(500, 300);
@@ -38,6 +41,8 @@ int main()
     sf::Sprite character;
     character.scale(sf::Vector2f(2.f, 2.f)); // facters d'échelle relatifs à l'échelle actuelle²²²
     character.setTexture(texture2);
+
+    sf::Clock clock;
 
     while (window.isOpen())
     {
@@ -96,6 +101,7 @@ int main()
         //Action
         if (up == true)
         {
+            sprite.setTextureRect(rectSpriteUp);
             sprite.move(0.f, -0.1f);
             view.move(0.f, -0.1f);
             posy++;
@@ -103,6 +109,7 @@ int main()
             
         if (down == true)
         {
+            sprite.setTextureRect(rectSpriteDown);
             sprite.move(0.f, 0.1f);
             view.move(0.f, 0.1f);
             posy--;
@@ -110,6 +117,7 @@ int main()
             
         if (left == true)
         {
+            sprite.setTextureRect(rectSpriteLeft);
             sprite.move(-0.1f, 0.f);
             view.move(-0.1f, 0.f);
             posx--;
@@ -117,11 +125,13 @@ int main()
 
         if (right == true)
         {
+            sprite.setTextureRect(rectSpriteRight);
             sprite.move(0.1f, 0.f);
             view.move(0.1f, 0.f);
             posx++;
         }
 
+        
 
         window.clear();
         window.setView(view);
