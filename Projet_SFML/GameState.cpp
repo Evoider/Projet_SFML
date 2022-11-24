@@ -33,10 +33,12 @@ void GameState::updateInput(const float& dt)
 	this->checkForQuit();
 
 	//Check for key pressed
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_LEFT"))))
 	{
-		this->player.move(dt, -1.f, 0.f);
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
+		{
+			this->player.move(dt, -1.f, 0.f);
+		}
 	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
 	{
 		this->player.move(dt, 0.f, -1.f);
@@ -45,7 +47,10 @@ void GameState::updateInput(const float& dt)
 		this->player.move(dt, 0.f, 1.f);
 	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
 	{
-		this->player.move(dt, 1.f, 0.f);
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
+		{
+			this->player.move(dt, 1.f, 0.f);
+		}
 	}
 }
 
