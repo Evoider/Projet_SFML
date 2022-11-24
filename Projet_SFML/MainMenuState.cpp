@@ -12,7 +12,7 @@ void MainMenuState::initFonts()
 void MainMenuState::initKeyBinds()
 {
 
-	std::ifstream ifs("Config/gamestate_keybinds.ini");
+	std::ifstream ifs("Config/mainmenustate_keybinds.ini");
 	if (ifs.is_open())
 	{
 		std::string key = "";
@@ -27,10 +27,6 @@ void MainMenuState::initKeyBinds()
 	ifs.close();
 
 	this->keyBinds["CLOSE"] = this->supportedKeys->at("Escape");
-	this->keyBinds["MOVE_LEFT"] = this->supportedKeys->at("Q");
-	this->keyBinds["MOVE_UP"] = this->supportedKeys->at("Z");
-	this->keyBinds["MOVE_DOWN"] = this->supportedKeys->at("S");
-	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
 }
 
 void MainMenuState::initButtons()
@@ -50,8 +46,8 @@ void MainMenuState::initButtons()
 }
 
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
-	:State(window, supportedKeys)
+MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+	:State(window, supportedKeys, states)
 {
 	this->initFonts();
 	this->initKeyBinds();
@@ -98,7 +94,13 @@ void MainMenuState::updateButtons()
 		it.second->update(this->mousePosView);
 	}
 
-	/*Action Button*/
+	/*Action of the Button*/
+
+	//New Game
+	if (this->buttons["GAME_STATE"]->isPressed())
+	{
+		this->states->push(new GameState(this->window, this->supportedKeys,this->states));
+	}
 
 	//Quit the Game
 	if (this->buttons["EXIT_STATE"]->isPressed())
