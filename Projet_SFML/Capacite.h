@@ -5,9 +5,10 @@ class Capacite
 {
 public:
 	Capacite();
-	void capaciteCreation(int numeroPokemon);
+	void capaciteCreation(int numeroPokemon, int numeroCapacite);
 
 	//Get
+	std::string getNom();
 	int getPuissance();
 
 private:

@@ -11,8 +11,8 @@ int main()
     Tiplouf.creationPokemon(393);
     Noctali.creationPokemon(197);
 
-    std::cout << "PV Noctali :" << Noctali.getpv() << std::endl;
-    Tiplouf.attaquer(Noctali);
-    std::cout << "PV Noctali :" << Noctali.getpv() << std::endl;
+    Combat premierCombat(Tiplouf, Noctali);
+    premierCombat.choixCapacite();
+    std::cout <<Noctali.getPv();
     return 0;
 }
