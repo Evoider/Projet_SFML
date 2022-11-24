@@ -12,6 +12,10 @@ protected:
 	std::map<std::string, int>* supportedKeys;
 	std::map<std::string, int> keyBinds;
 	bool quit;
+	
+	sf::Vector2i mousePosScreen;
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
@@ -34,7 +38,6 @@ public:
 	virtual void checkForQuit();
 
 	virtual void endState() = 0;
-
 	virtual void updateMousePosition();
 	virtual void updateInput(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;
