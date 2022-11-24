@@ -2,10 +2,11 @@
 
 
 
-State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
+State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 {
 	this->window = window;
 	this->supportedKeys = supportedKeys;
+	this->states = states;
 	this->quit = false;
 }
 
@@ -26,6 +27,7 @@ void State::checkForQuit()
 		this->quit = true;
 	}
 }
+
 void State::updateMousePosition()
 {
 	this->mousePosScreen = sf::Mouse::getPosition();
