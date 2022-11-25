@@ -102,39 +102,78 @@ int main()
         if (up == true)
         {
             sprite.setTextureRect(rectSpriteUp);
-            sprite.move(0.f, -0.1f);
-            view.move(0.f, -0.1f);
+            sprite.move(0.f, -0.035f);
+            view.move(0.f, -0.035f);
             posy++;
         }
             
         if (down == true)
         {
             sprite.setTextureRect(rectSpriteDown);
-            sprite.move(0.f, 0.1f);
-            view.move(0.f, 0.1f);
+            sprite.move(0.f, 0.035f);
+            view.move(0.f, 0.035f);
             posy--;
         }
             
         if (left == true)
         {
             sprite.setTextureRect(rectSpriteLeft);
-            sprite.move(-0.1f, 0.f);
-            view.move(-0.1f, 0.f);
+            sprite.move(-0.04f, 0.f);
+            view.move(-0.04f, 0.f);
             posx--;
         }
 
         if (right == true)
         {
             sprite.setTextureRect(rectSpriteRight);
-            sprite.move(0.1f, 0.f);
-            view.move(0.1f, 0.f);
+            sprite.move(0.04f, 0.f);
+            view.move(0.04f, 0.f);
             posx++;
         }
 
         //Animataion
-        if (clock.getElapsedTime().asSeconds() > 0.6f)
+        if (clock.getElapsedTime().asSeconds() > 0.3f)
         {
+            if (up == true)
+            {
+                rectSpriteUp.left += 68;
+                if (rectSpriteUp.left > 204)
+                {
+                    rectSpriteUp.left = 0;
+                }
+                sprite.setTextureRect(rectSpriteUp);
+            }
 
+            if (down == true)
+            {
+                rectSpriteDown.left += 68;
+                if (rectSpriteDown.left > 204)
+                {
+                    rectSpriteDown.left = 0;
+                }
+                sprite.setTextureRect(rectSpriteDown);
+            }
+
+            if (left == true)
+            {
+                rectSpriteLeft.left += 68;
+                if (rectSpriteLeft.left > 204)
+                {
+                    rectSpriteLeft.left = 0;
+                }
+                sprite.setTextureRect(rectSpriteLeft);
+            }
+
+            if (right == true)
+            {
+                rectSpriteRight.left += 68;
+                if (rectSpriteRight.left > 204)
+                {
+                    rectSpriteRight.left = 0;
+                }
+                sprite.setTextureRect(rectSpriteRight);
+            }
+            clock.restart();
         }
 
         
