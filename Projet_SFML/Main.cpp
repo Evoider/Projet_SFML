@@ -11,6 +11,8 @@ bool down = false;
 bool left = false;
 bool right = false;
 
+std::string preMove;
+
 int posx = 0;
 int posy = 0;
 
@@ -58,6 +60,7 @@ int main()
                 if (event.key.code == sf::Keyboard::Z)
                 {
                     up = true;
+                    preMove = "Up";
 
                     down = false;
                     left = false;
@@ -66,6 +69,7 @@ int main()
                 if (event.key.code == sf::Keyboard::S)
                 {
                     down = true;
+                    preMove = "Down";
 
                     up = false;
                     left = false;
@@ -74,6 +78,7 @@ int main()
                 if (event.key.code == sf::Keyboard::Q)
                 {
                     left = true;
+                    preMove = "Left";
 
                     up = false;
                     down = false;
@@ -83,6 +88,7 @@ int main()
                 {
 
                     right = true;
+                    preMove = "Right";
 
                     up = false;
                     down = false;
@@ -144,7 +150,7 @@ int main()
                 sprite.setTextureRect(rectSpriteUp);
             }
 
-            if (down == true)
+            else if (down == true)
             {
                 rectSpriteDown.left += 68;
                 if (rectSpriteDown.left > 204)
@@ -154,7 +160,7 @@ int main()
                 sprite.setTextureRect(rectSpriteDown);
             }
 
-            if (left == true)
+            else if (left == true)
             {
                 rectSpriteLeft.left += 68;
                 if (rectSpriteLeft.left > 204)
@@ -164,7 +170,7 @@ int main()
                 sprite.setTextureRect(rectSpriteLeft);
             }
 
-            if (right == true)
+            else if (right == true)
             {
                 rectSpriteRight.left += 68;
                 if (rectSpriteRight.left > 204)
@@ -173,6 +179,30 @@ int main()
                 }
                 sprite.setTextureRect(rectSpriteRight);
             }
+            else
+            {
+                if (preMove == "Up")
+                {
+                    rectSpriteUp.left = 0;
+                    sprite.setTextureRect(rectSpriteUp);
+                }
+                else if (preMove == "Down")
+                {
+                    rectSpriteDown.left = 0;
+                    sprite.setTextureRect(rectSpriteDown);
+                }
+                else if (preMove == "Left")
+                {
+                    rectSpriteLeft.left = 0;
+                    sprite.setTextureRect(rectSpriteLeft);
+                }
+                else if (preMove == "Right")
+                {
+                    rectSpriteRight.left = 0;
+                    sprite.setTextureRect(rectSpriteRight);
+                }
+            }
+
             clock.restart();
         }
 
