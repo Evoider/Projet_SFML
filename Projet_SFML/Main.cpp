@@ -131,6 +131,12 @@ int main()
             posx++;
         }
 
+        //Animataion
+        if (clock.getElapsedTime().asSeconds() > 0.6f)
+        {
+
+        }
+
         
 
         window.clear();
