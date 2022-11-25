@@ -12,6 +12,7 @@ int main()
     Noctali.creationPokemon(197);
 
     Combat premierCombat(Tiplouf, Noctali);
+    Combat fighting();
     premierCombat.choixCapacite();
     std::cout <<Noctali.getPv();
     return 0;

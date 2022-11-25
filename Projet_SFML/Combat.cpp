@@ -18,3 +18,8 @@ void Combat::choixCapacite()
 	m_gentil->attaquer(*m_mechant, choixCapacite);
 }
 
+void Combat::fighting()
+{
+
+}
+
