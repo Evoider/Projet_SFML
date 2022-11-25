@@ -55,8 +55,9 @@ void MainMenuState::initButtons()
 void MainMenuState::initSprite()
 {
 	this->textureBg.loadFromFile("Ressources/Sprites/Bg2.png");
-	this->background.setTexture(textureBg);/*
-	this->background.setScale(2,2);*/
+	std::cout << this->textureBg.getSize().x << "\n";
+	this->background.setTexture(textureBg);
+	this->background.setScale(this->window->getSize().x / (float)(this->textureBg.getSize().x), this->window->getSize().y / (float)(this->textureBg.getSize().y));
 }
 
 
