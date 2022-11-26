@@ -13,8 +13,8 @@ bool right = false;
 
 std::string preMove;
 
-int posx = 0;
-int posy = 0;
+float posx = 0;
+float posy = 0;
 
 
 int main()
@@ -24,9 +24,8 @@ int main()
     // on crée une vue
     sf::View view;
     view.reset(sf::FloatRect(0, 0, 1000, 600));
-
-    // on l'active
     window.setView(view);
+
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
     sf::IntRect rectSpriteUp(0, 221, 75, 75);
@@ -34,10 +33,11 @@ int main()
     sf::IntRect rectSpriteLeft(0, 73, 75, 75);
     sf::IntRect rectSpriteRight(0, 147, 75, 75);
     sf::Sprite sprite(texture, rectSpriteDown);
-    sprite.scale(sf::Vector2f(1, 1)); // facters d'échelle relatifs à l'échelle actuelle
-    //sprite.setTexture(texture);
     sprite.setPosition(500, 300);
-
+    //sprite.scale(sf::Vector2f(1, 1)); facters d'échelle relatifs à l'échelle actuelle
+    
+    //Vitesse
+    float speed=0.045;
     sf::Texture texture2;
     texture2.loadFromFile("ressources/sprites/maps_test.png");
     sf::Sprite character;
@@ -107,35 +107,27 @@ int main()
         //Action
         if (up == true)
         {
-            sprite.setTextureRect(rectSpriteUp);
-            sprite.move(0.f, -0.035f);
-            view.move(0.f, -0.035f);
-            posy++;
+            posy -= speed;
         }
             
-        if (down == true)
+        else if (down == true)
         {
-            sprite.setTextureRect(rectSpriteDown);
-            sprite.move(0.f, 0.035f);
-            view.move(0.f, 0.035f);
-            posy--;
+            posy += speed;
         }
             
-        if (left == true)
+        else if (left == true)
         {
-            sprite.setTextureRect(rectSpriteLeft);
-            sprite.move(-0.04f, 0.f);
-            view.move(-0.04f, 0.f);
-            posx--;
+            posx -= speed;
         }
 
-        if (right == true)
+        else if (right == true)
         {
-            sprite.setTextureRect(rectSpriteRight);
-            sprite.move(0.04f, 0.f);
-            view.move(0.04f, 0.f);
-            posx++;
+            posx += speed;
         }
+
+        
+        sprite.setPosition(posx, posy);
+        view.setCenter(posx, posy);
 
         //Animataion
         if (clock.getElapsedTime().asSeconds() > 0.3f)
