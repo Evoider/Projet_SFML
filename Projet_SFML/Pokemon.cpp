@@ -5,7 +5,8 @@ Pokemon::Pokemon()
 {
 	this->m_numero = 0;
 	this->m_nom = "None";
-	this->m_type = "None";
+	this->m_type1 = "None";
+	this->m_type2 = "None";
 	this->m_pv = 0;
 	this->m_attaque = 0;
 	this->m_attaqueSpe = 0;
@@ -20,20 +21,10 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 {
 	switch (numeroPokemon)
 	{
-	case(197):	//Noctali
-		m_numero = numeroPokemon;
-		m_nom = "Noctali";
-		m_type = "Ténèbre";
-		m_pv = 95;
-		m_attaque = 65;
-		m_defense = 110;
-		m_vitesse = 65;
-		break;
-
 	case(393):	//Tiplouf
 		m_numero = numeroPokemon;
 		m_nom = "Tiplouf";
-		m_type = "Eau";
+		m_type1 = "Eau";
 		m_pv = 53;
 		m_attaque = 51;
 		m_defense = 53;
@@ -41,6 +32,20 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite1->capaciteCreation(numeroPokemon,1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
+
+	case(443):	//Griknot
+		m_numero = numeroPokemon;
+		m_nom = "Griknot";
+		m_type1 = "Sol";
+		m_type2 = "Dragon";
+		m_pv = 53;
+		m_attaque = 70;
+		m_attaqueSpe = 45;
+		m_defense = 40;
+		m_defenseSpe = 45;
+		m_vitesse = 42;
+		break;
+
 	default:
 		break;
 	}
@@ -92,6 +97,11 @@ int Pokemon::getPv()
 int Pokemon::getDefense()
 {
 	return m_defense;
+}
+
+int Pokemon::getVitesse()
+{
+	return m_vitesse;
 }
 
 std::string Pokemon::getCapacite1()

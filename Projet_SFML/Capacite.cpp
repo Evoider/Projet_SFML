@@ -34,6 +34,27 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 		}
 		break;
 
+	case(443):
+		switch (numeroCapacite)
+		{
+		case(1):
+			m_nom = "Charge";
+			m_type = "Normal";
+			m_spe = false;
+			m_puissance = 40;
+			break;
+
+		case(2):
+			m_nom = "Tourbi-sable";
+			m_type = "Sol";
+			m_spe = true;
+			m_puissance = 35;
+			break;
+
+		default:
+			break;
+		}
+		break;
 	default:
 		break;
 	}

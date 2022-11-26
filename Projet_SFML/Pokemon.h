@@ -14,6 +14,7 @@ public:
 	std::string getNom();
 	int getPv();
 	int getDefense();
+	int getVitesse();
 
 	std::string getCapacite1();
 	std::string getCapacite2();
@@ -21,7 +22,8 @@ public:
 private:
 	int m_numero;
 	std::string m_nom;
-	std::string m_type;
+	std::string m_type1;
+	std::string m_type2;
 	int m_pv;
 	int m_vitesse;
 	int m_attaque;

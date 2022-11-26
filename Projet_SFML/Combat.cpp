@@ -3,6 +3,8 @@
 
 Combat::Combat(Pokemon& gentil, Pokemon& mechant)
 {
+	this->m_compteur = 1;
+
 	m_gentil = &gentil;
 	m_mechant = &mechant;
 }
@@ -20,6 +22,25 @@ void Combat::choixCapacite()
 
 void Combat::fighting()
 {
-
+	do
+	{
+		if (m_compteur == 1)
+		{
+			choixCapacite();
+		}
+		else if (m_compteur == 2)
+		{
+			m_mechant->attaquer(*m_gentil, 2);
+		}
+		std::cout << "Vie Tilpouf - " << m_gentil->getPv() << std::endl;
+		std::cout << "Vie Griknot - " << m_mechant->getPv() << std::endl;
+		m_compteur++;
+		if (m_compteur == 2)
+		{
+			m_compteur = 1;
+		}
+		system("pause");
+	} while ((m_gentil->getPv() > 0) and (m_mechant->getPv() > 0));
+	std::cout << "Combat fini" << std::endl;
 }
 

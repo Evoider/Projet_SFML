@@ -9,6 +9,8 @@ public:
 	void fighting();
 
 private:
+	int m_compteur;
+
 	Pokemon* m_gentil;
 	Pokemon* m_mechant;
 

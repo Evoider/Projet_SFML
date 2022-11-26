@@ -7,13 +7,17 @@
 
 int main()
 {
-    Pokemon Tiplouf, Noctali;
+    int choixStarteur;
+    std::cout << "Bonjour jeune dresseur, choisie ton starteur" << std::endl;
+    std::cin >> choixStarteur;
+    std::cout << "Très bien tu as choisie Tiplouf" << std::endl;
+    std::cout << "Voici ton premier combat contre Griknot (Il ne fais que les attaque les plus faibles" << std::endl;
+    Pokemon Tiplouf, Griknot;
     Tiplouf.creationPokemon(393);
-    Noctali.creationPokemon(197);
+    Griknot.creationPokemon(443);
 
-    Combat premierCombat(Tiplouf, Noctali);
-    Combat fighting();
-    premierCombat.choixCapacite();
-    std::cout <<Noctali.getPv();
+    Combat premierCombat(Tiplouf, Griknot);
+    premierCombat.fighting();
+    std::cout << Griknot.getPv();
     return 0;
 }
