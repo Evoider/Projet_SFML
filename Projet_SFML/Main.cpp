@@ -7,16 +7,22 @@
 
 int main()
 {
-    int choixStarteur;
-    std::cout << "Bonjour jeune dresseur, choisie ton starteur" << std::endl;
-    std::cin >> choixStarteur;
-    std::cout << "Très bien tu as choisie Tiplouf" << std::endl;
-    std::cout << "Voici ton premier combat contre Griknot (Il ne fais que les attaque les plus faibles" << std::endl;
-    Pokemon Tiplouf, Griknot;
-    Tiplouf.creationPokemon(393);
+    std::cout << "Bonjour Cynthia, comment va-tu aujourd'hui?" << std::endl;
+    std::cout <<std::endl;
+    std::cout << "[...]" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Mmhhh très bien, vois-tu je suis en train de faire des recherche qui pouront révolutionner notre monde" << std::endl;
+    std::cout << "Ah tu réfléchis à ce que je t'ai proposer?" << std::endl;
+    std::cout << "[ELISPE]" << std::endl;
+    std::cout << "Pour t'aider dans ta quête je te confie ce petit bonhomme, prend en bien soins" << std::endl;
+    std::cout << "[Tu as obtenue Griknot]" << std::endl;
+    std::cout << "Il t'aidera à te defendre contre les pokemon malfesant" << std::endl;
+    std::cout << "[Tu sors et te fais attaquer par un ROZBOUTON]" << std::endl;
+    Pokemon Tiplouf, Griknot, Rozbouton;
     Griknot.creationPokemon(443);
+    Rozbouton.creationPokemon(406);
 
-    Combat premierCombat(Tiplouf, Griknot);
+    Combat premierCombat(Griknot, Rozbouton);
     premierCombat.fighting();
     //delete premierCombat;
 
@@ -25,17 +31,12 @@ int main()
     Tiplouf.healMax();
     system("pause");
     std::cout << Tiplouf.getPv() << std::endl;
-    std::cout << "Voici ton deuxième combat contre RozBouton (Il ne fais que les attaque les plus faibles)" << std::endl;
-    Pokemon Rozbouton;
-    Rozbouton.creationPokemon(406);
-
-    Combat deuxiemeCombat(Tiplouf, Rozbouton);
-    deuxiemeCombat.fighting();
     //delete premierCombat;
 
     
     return 0;
 }
+
 
 //Créer une petit IA qui voit choisir quelle attaque faire
 //Créer les réstance et faiblesse

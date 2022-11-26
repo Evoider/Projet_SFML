@@ -45,8 +45,8 @@ void Combat::fighting()
 		{
 			m_mechant->attaquer(*m_gentil, 2);
 		}
-		std::cout << "Vie Tilpouf - " << m_gentil->getPv() << std::endl;
-		std::cout << "Vie Griknot - " << m_mechant->getPv() << std::endl;
+		std::cout << "Vie " << m_gentil->getNom() << " - " << m_gentil->getPv() << std::endl;
+		std::cout << "Vie " << m_mechant->getNom() << " - " << m_mechant->getPv() << std::endl;
 		m_compteur++;
 		if (m_compteur > 2)
 		{

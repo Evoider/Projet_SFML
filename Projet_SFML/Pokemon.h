@@ -7,6 +7,9 @@ class Pokemon
 public:
 	Pokemon();
 	void creationPokemon(int numeroPokemon);
+	void evolutionPokemon(int numeroPokemon);
+	void expUp();
+	void lvlUp();
 	void attaquer(Pokemon& victime, int numeroCapacite);
 	void recevoirDegats(int degats);
 

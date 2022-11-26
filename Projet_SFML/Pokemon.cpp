@@ -66,6 +66,8 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_defense = 40;
 		m_defenseSpe = 45;
 		m_vitesse = 42;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
 	default:
@@ -73,6 +75,27 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 	}
 }
 
+void Pokemon::evolutionPokemon(int numeroPokemon)
+{
+	switch (numeroPokemon)
+	{
+	case(443):
+		numeroPokemon = 444;
+		break;
+
+	default:
+		break;
+	}
+}
+
+void Pokemon::expUp()
+{
+
+}
+
+void Pokemon::lvlUp()
+{
+}
 
 void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 {
