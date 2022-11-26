@@ -6,6 +6,7 @@ class Combat
 public:
 	Combat(Pokemon& gentil, Pokemon& mechant);
 	void choixCapacite();
+	void choixIA();
 	void fighting();
 
 private:

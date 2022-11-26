@@ -4,9 +4,12 @@
 Pokemon::Pokemon()
 {
 	this->m_numero = 0;
+	this->m_exp = 0;
+	this->m_niveau = 1;
 	this->m_nom = "None";
 	this->m_type1 = "None";
 	this->m_type2 = "None";
+	this->m_pvMax = 0;
 	this->m_pv = 0;
 	this->m_attaque = 0;
 	this->m_attaqueSpe = 0;
@@ -21,24 +24,43 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 {
 	switch (numeroPokemon)
 	{
-	case(393):	//Tiplouf
+	case(393):	//Tiplouf 40 et 40
 		m_numero = numeroPokemon;
 		m_nom = "Tiplouf";
 		m_type1 = "Eau";
+		m_pvMax = 53;
 		m_pv = 53;
 		m_attaque = 51;
+		m_attaqueSpe = 61;
 		m_defense = 53;
+		m_defenseSpe = 56;
 		m_vitesse = 40;
 		m_capacite1->capaciteCreation(numeroPokemon,1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(443):	//Griknot
+	case(406):	//Rozbouton 40 et 40
+		m_numero = numeroPokemon;
+		m_nom = "Rozbouton";
+		m_type1 = "Plante";
+		m_pvMax = 40;
+		m_pv = 40;
+		m_attaque = 30;
+		m_attaqueSpe = 35;
+		m_defense = 50;
+		m_defenseSpe = 70;
+		m_vitesse = 55;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(443):	//Griknot 40 et 35
 		m_numero = numeroPokemon;
 		m_nom = "Griknot";
 		m_type1 = "Sol";
 		m_type2 = "Dragon";
-		m_pv = 53;
+		m_pvMax = 58;
+		m_pv = 58;
 		m_attaque = 70;
 		m_attaqueSpe = 45;
 		m_defense = 40;
@@ -112,4 +134,10 @@ std::string Pokemon::getCapacite1()
 std::string Pokemon::getCapacite2()
 {
 	return m_capacite2->getNom();
+}
+
+//Set
+void Pokemon::healMax()
+{
+	m_pv = m_pvMax;
 }

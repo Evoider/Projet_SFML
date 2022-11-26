@@ -19,11 +19,17 @@ public:
 	std::string getCapacite1();
 	std::string getCapacite2();
 
+	//Set
+	void healMax();
+
 private:
 	int m_numero;
 	std::string m_nom;
+	int m_exp;
+	int m_niveau;
 	std::string m_type1;
 	std::string m_type2;
+	int m_pvMax;
 	int m_pv;
 	int m_vitesse;
 	int m_attaque;

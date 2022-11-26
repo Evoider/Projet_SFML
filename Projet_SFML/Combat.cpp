@@ -35,7 +35,7 @@ void Combat::fighting()
 		std::cout << "Vie Tilpouf - " << m_gentil->getPv() << std::endl;
 		std::cout << "Vie Griknot - " << m_mechant->getPv() << std::endl;
 		m_compteur++;
-		if (m_compteur == 2)
+		if (m_compteur > 2)
 		{
 			m_compteur = 1;
 		}
