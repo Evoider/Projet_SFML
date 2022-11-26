@@ -93,3 +93,8 @@ int Capacite::getPuissance()
 {
 	return m_puissance;
 }
+
+bool Capacite::getSpe()
+{
+	return m_spe;
+}

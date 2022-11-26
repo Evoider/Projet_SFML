@@ -79,11 +79,25 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 	switch (numeroCapacite)
 	{
 	case(1):
-		victime.recevoirDegats(m_attaque + m_capacite1->getPuissance());
+		if (m_capacite1->getSpe() == true)
+		{
+			victime.recevoirDegats(m_attaqueSpe + m_capacite1->getPuissance() - victime.getDefense());
+		}
+		else
+		{
+			victime.recevoirDegats(m_attaque + m_capacite1->getPuissance() - victime.getDefense());
+		}
 		break;
 
 	case(2):
-		victime.recevoirDegats(m_attaque + m_capacite2->getPuissance());
+		if (m_capacite2->getSpe() == true)
+		{
+			victime.recevoirDegats(m_attaqueSpe + m_capacite2->getPuissance() - victime.getDefense());
+		}
+		else
+		{
+			victime.recevoirDegats(m_attaque + m_capacite2->getPuissance() - victime.getDefense());
+		}
 		break;
 
 	default:
@@ -93,14 +107,14 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 
 void Pokemon::recevoirDegats(int degats)
 {
-	if (degats - m_defense < 0)
+	if (degats< 0)
 	{
 		std::cout << "L'attaque est negatif" << std::endl;
 		m_pv--;
 	}
 	else
 	{
-		m_pv -= (degats - m_defense);
+		m_pv -= (degats);
 	}
 }
 

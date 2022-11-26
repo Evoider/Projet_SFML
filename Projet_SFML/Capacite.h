@@ -10,6 +10,7 @@ public:
 	//Get
 	std::string getNom();
 	int getPuissance();
+	bool getSpe();
 
 private:
 	std::string m_nom;

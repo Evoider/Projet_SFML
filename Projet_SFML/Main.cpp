@@ -36,3 +36,6 @@ int main()
     
     return 0;
 }
+
+//Créer une petit IA qui voit choisir quelle attaque faire
+//Créer les réstance et faiblesse
