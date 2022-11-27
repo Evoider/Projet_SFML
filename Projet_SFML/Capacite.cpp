@@ -12,7 +12,7 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 {
 	switch (numeroPokemon)
 	{
-	case(393):
+	case(393):	//Tiplouf
 		switch (numeroCapacite)
 		{
 		case(1):
@@ -34,7 +34,7 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 		}
 		break;
 
-	case(406):
+	case(406):	//Rozbouton
 		switch (numeroCapacite)
 		{
 		case(1):
@@ -56,7 +56,7 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 		}
 		break;
 
-	case(443):
+	case(443):	//Griknot
 		switch (numeroCapacite)
 		{
 		case(1):
@@ -77,6 +77,7 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			break;
 		}
 		break;
+
 	default:
 		break;
 	}

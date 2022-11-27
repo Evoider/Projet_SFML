@@ -5,7 +5,7 @@ Pokemon::Pokemon()
 {
 	this->m_numero = 0;
 	this->m_exp = 0;
-	this->m_niveau = 1;
+	this->m_lvl = 1;
 	this->m_nom = "None";
 	this->m_type1 = "None";
 	this->m_type2 = "None";
@@ -18,6 +18,13 @@ Pokemon::Pokemon()
 	this->m_vitesse = 0;
 	m_capacite1 = new Capacite;
 	m_capacite2 = new Capacite;
+
+	this->m_pvBase = 0;
+	this->m_attaqueBase = 0;
+	this->m_attaqueSpeBase = 0;
+	this->m_defenseBase = 0;
+	this->m_defenseSpeBase = 0;
+	this->m_vitesseBase = 0;
 }
 
 void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défense spé
@@ -28,13 +35,12 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Tiplouf";
 		m_type1 = "Eau";
-		m_pvMax = 53;
-		m_pv = 53;
-		m_attaque = 51;
-		m_attaqueSpe = 61;
-		m_defense = 53;
-		m_defenseSpe = 56;
-		m_vitesse = 40;
+		m_pvBase = m_pvMax = m_pv = 53;
+		m_attaqueBase = m_attaque = 51;
+		m_attaqueBase = m_attaqueSpe = 61;
+		m_defenseBase = m_defense = 53;
+		m_defenseSpeBase = m_defenseSpe = 56;
+		m_vitesseBase = m_vitesse = 40;
 		m_capacite1->capaciteCreation(numeroPokemon,1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
@@ -43,29 +49,27 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Rozbouton";
 		m_type1 = "Plante";
-		m_pvMax = 40;
-		m_pv = 40;
-		m_attaque = 30;
-		m_attaqueSpe = 35;
-		m_defense = 50;
-		m_defenseSpe = 70;
-		m_vitesse = 55;
+		m_pvBase = m_pvMax = m_pv = 40;
+		m_attaqueBase = m_attaque = 30;
+		m_attaqueSpeBase = m_attaqueSpe = 35;
+		m_defenseBase = m_defense = 50;
+		m_defenseSpeBase = m_defenseSpe = 70;
+		m_vitesseBase = m_vitesse = 55;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(443):	//Griknot 40 et 35
+	case(443):	//Griknot 40 et 35 CHECK
 		m_numero = numeroPokemon;
 		m_nom = "Griknot";
 		m_type1 = "Sol";
 		m_type2 = "Dragon";
-		m_pvMax = 58;
-		m_pv = 58;
-		m_attaque = 70;
-		m_attaqueSpe = 45;
-		m_defense = 40;
-		m_defenseSpe = 45;
-		m_vitesse = 42;
+		m_pvBase = m_pvMax = m_pv = 58;
+		m_attaqueBase = m_attaque = 70;
+		m_attaqueSpeBase = m_attaqueSpe = 45;
+		m_defenseBase = m_defense = 40;
+		m_defenseSpeBase = m_defenseSpe = 45;
+		m_vitesseBase = m_vitesse = 42;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
@@ -88,13 +92,26 @@ void Pokemon::evolutionPokemon(int numeroPokemon)
 	}
 }
 
-void Pokemon::expUp()
+void Pokemon::expUp(int exp)
 {
-
+	m_exp += exp;
+	if (m_exp >= m_lvl ^ 3)
+	{
+		m_exp -= m_lvl ^ 3;
+		lvlUp();
+	}
 }
 
 void Pokemon::lvlUp()
 {
+	m_lvl++;
+
+	m_pv += ((2*m_pvBase*m_lvl)/100) + m_lvl + 10;
+	m_attaque += ((2*m_attaqueBase*m_lvl)/100) + 5;
+	m_attaqueSpe += ((2 * m_attaqueSpeBase * m_lvl) / 100) + 5;
+	m_defense += ((2 * m_defenseBase * m_lvl) / 100) + 5;
+	m_defenseSpe += ((2 * m_defenseSpeBase * m_lvl) / 100) + 5;
+	m_vitesse += ((2 * m_vitesseBase * m_lvl) / 100) + 5;
 }
 
 void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
