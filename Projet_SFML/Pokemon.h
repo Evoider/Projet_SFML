@@ -25,6 +25,9 @@ public:
 	//Set
 	void healMax();
 
+	//checkResistance
+	float resistance(Pokemon& victime);
+
 private:
 	int m_numero;
 	std::string m_nom;

@@ -195,3 +195,9 @@ void Pokemon::healMax()
 {
 	m_pv = m_pvMax;
 }
+
+//checkResistance
+float Pokemon::resistance(Pokemon& victime)
+{
+
+}
