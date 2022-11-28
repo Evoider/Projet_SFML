@@ -8,6 +8,7 @@ State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys
 	this->supportedKeys = supportedKeys;
 	this->states = states;
 	this->quit = false;
+	this->pause = false;
 }
 
 State::~State()
@@ -20,13 +21,17 @@ const bool& State::getQuit() const
 	return this->quit;
 }
 
-void State::checkForQuit()
+void State::pauseState()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))))
-	{
-		this->quit = true;
-	}
+	this->pause = true;
 }
+
+void State::unpauseState()
+{
+	this->pause = false;
+}
+
+
 
 void State::updateMousePosition()
 {
