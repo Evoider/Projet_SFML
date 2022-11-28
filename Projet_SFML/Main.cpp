@@ -28,10 +28,10 @@ int main()
 
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
-    sf::IntRect rectSpriteUp(0, 195, 75, 75);
+    sf::IntRect rectSpriteUp(0, 229, 75, 75);
     sf::IntRect rectSpriteDown(0, 0, 75, 75);
-    sf::IntRect rectSpriteLeft(0, 75, 75, 75);
-    sf::IntRect rectSpriteRight(0, 150, 75, 75);
+    sf::IntRect rectSpriteLeft(0, 73, 75, 75);
+    sf::IntRect rectSpriteRight(0, 146, 75, 75);
     sf::Sprite sprite(texture, rectSpriteDown);
     sprite.setPosition(500, 300);
     //sprite.scale(sf::Vector2f(1, 1)); facters d'échelle relatifs à l'échelle actuelle
