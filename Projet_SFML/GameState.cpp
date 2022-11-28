@@ -24,14 +24,17 @@ void GameState::initKeyBinds()
 	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	:State(window,supportedKeys, states), player(68, 73)
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
+	:State(window,supportedKeys, states),pmenu(*window,font,scale), player(68, 73)
+
 {
 	this->initKeyBinds();
+	
 }
 
 GameState::~GameState()
 {
+	
 }
 
 
@@ -46,7 +49,6 @@ void GameState::endState()
 
 void GameState::updateInput(const float& dt)
 {
-	this->checkForQuit();
 
 	//Check for key pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_LEFT"))))
@@ -56,20 +58,36 @@ void GameState::updateInput(const float& dt)
 			this->player.move(dt, -1.f, 0.f);
 			this->player.animationMove("Left");
 		}
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
 	{
 		this->player.move(dt, 0.f, -1.f);
 		this->player.animationMove("Up");
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
+	}
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 	{
 		this->player.move(dt, 0.f, 1.f);
 		this->player.animationMove("Down");
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
+	}
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
+
 	{
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 		{
 			this->player.move(dt, 1.f, 0.f);
 			this->player.animationMove("Right");
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))))
+	{
+		if (!this->pause)
+		{
+			this->pauseState();
+			
+		}
+		else
+		{
+			this->unpauseState();
 		}
 	}
 }
@@ -79,7 +97,14 @@ void GameState::update(const float& dt)
 	this->updateMousePosition();
 	this->updateInput(dt);
 
-	this->player.update(dt);
+	if (!this->pause) 
+	{
+		this->player.update(dt);
+	}
+	else //Pause update
+	{
+		this->pmenu.update();
+	}
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -89,4 +114,9 @@ void GameState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 	this->player.render(target);
+
+	if (this->pause) // Pause menu render
+	{
+		this->pmenu.render(target);
+	}
 }

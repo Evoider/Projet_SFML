@@ -1,18 +1,24 @@
 #pragma once
 #include "State.h"
-
+#include "PauseMenu.h"
 
 class GameState :
     public State
 {
 private:
+
+    float scale;
+    sf::Font font;
+    PauseMenu pmenu;
+
     Player player;
+
 
     //Functions
     void initKeyBinds();
 
 public:
-    GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+    GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale);
      
     virtual ~GameState();
 
