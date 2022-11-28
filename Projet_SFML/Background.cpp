@@ -34,11 +34,11 @@ void Background::initTab()
 
 	
 
-	for (int y = 0; y < 30 ; y++)
+	for (int y = 0; y < 20 ; y++)
 	{
-		for (int x = 0; x < 20; x++)
+		for (int x = 0; x < 30; x++)
 		{
-			if (tabmap[x][y] == 1)
+			if (tabmap[y][x] == 1)
 			{
 				sf::RectangleShape box(sf::Vector2f(offSetX, offSetY));
 				box.setFillColor(sf::Color::Red);
