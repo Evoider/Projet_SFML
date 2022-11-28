@@ -9,7 +9,6 @@ private:
     //Variable
     sf::Sprite background;
     sf::Texture textureBg;
-    float scale;
     sf::Font font;
 
     std::map<std::string, Button*> buttons;
