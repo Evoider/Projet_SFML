@@ -7,13 +7,15 @@ class GameState :
 {
 private:
     Entity player;
+    float scale;
+    sf::Font font;
     PauseMenu pmenu;
 
     //Functions
     void initKeyBinds();
 
 public:
-    GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+    GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale);
      
     virtual ~GameState();
 

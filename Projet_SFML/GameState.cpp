@@ -24,8 +24,8 @@ void GameState::initKeyBinds()
 	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	:State(window,supportedKeys, states),pmenu(*window)
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
+	:State(window,supportedKeys, states),pmenu(*window,font,scale)
 {
 	this->initKeyBinds();
 	
@@ -33,6 +33,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 
 GameState::~GameState()
 {
+	
 }
 
 
@@ -76,21 +77,22 @@ void GameState::updateInput(const float& dt)
 		if (!this->pause)
 		{
 			this->pauseState();
+			
 		}
-		/*else
+		else
 		{
 			this->unpauseState();
-		}*/
+		}
 	}
 }
 
 void GameState::update(const float& dt)
 {
+	this->updateMousePosition();
+	this->updateInput(dt);
+
 	if (!this->pause) 
 	{
-		this->updateMousePosition();
-		this->updateInput(dt);
-
 		this->player.update(dt);
 	}
 	else //Pause update

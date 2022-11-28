@@ -2,7 +2,8 @@
 
 
 
-PauseMenu::PauseMenu(sf::RenderWindow& window)
+PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font &font, float scale)
+	:font(font),scale(scale)
 {
 	this->background.setSize(sf::Vector2f(
 		static_cast<float>(window.getSize().x),
@@ -17,6 +18,12 @@ PauseMenu::PauseMenu(sf::RenderWindow& window)
 	this->container.setFillColor(sf::Color(20, 20, 20, 200));
 
 	this->container.setPosition(static_cast<float>(window.getSize().x) / 2.f - this->container.getSize().x / 2.f, 0.f);
+	this->font = font;
+	this->menuText.setFont(this->font);
+	this->menuText.setFillColor(sf::Color(255, 255, 255, 200));
+	this->menuText.setCharacterSize(30 * this->scale);
+	this->menuText.setString("*************** PAUSE ****************");
+	this->menuText.setPosition(this->container.getPosition());
 }
 
 PauseMenu::~PauseMenu()
@@ -39,8 +46,10 @@ void PauseMenu::render(sf::RenderTarget* target)
 {
 	target->draw(background);
 	target->draw(container);
+	target->draw(this->menuText);
 	for (auto& it : this->buttons)
 	{
 		it.second->render(target);
 	}
+	
 }
