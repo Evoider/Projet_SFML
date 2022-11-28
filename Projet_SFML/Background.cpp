@@ -2,6 +2,8 @@
 
 Background::Background()
 {
+	this->offSetX = 75;
+	this->offSetY = 75;
 	this->vecbox;
 }
 

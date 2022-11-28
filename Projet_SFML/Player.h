@@ -8,6 +8,6 @@ private:
     sf::Clock clock;
 
 public:
-    Player(int height, int width);
+    Player();
     void animationMove(std::string direction);
 };

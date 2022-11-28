@@ -23,14 +23,21 @@ protected:
 
 	sf::Texture texture;
 	sf::Sprite sprite;
+
+	int posX;
+	int posY;
+	int offSetX;
+	int offSetY;
 	float movementSpeed;
 
+	sf::Clock dtclock;
+
 public:
-	Entity(int height, int width);
+	Entity();
 	~Entity();
 
 	//Functions
-	virtual void move(const float& dt,const float x, const float y);
+	virtual void move(std::string direction);
 
 	//Affichage
 	virtual void update(const float& dt);

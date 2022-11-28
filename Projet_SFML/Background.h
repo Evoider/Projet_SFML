@@ -5,8 +5,8 @@
 class Background
 {
 private:
-	int offSetX = 32;
-	int offSetY = 32;
+	int offSetX;
+	int offSetY;
 	std::vector<sf::RectangleShape>vecbox;
 
 public:
