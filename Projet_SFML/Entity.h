@@ -22,10 +22,11 @@ protected:
 	sf::RectangleShape shape;
 	float movementSpeed;
 public:
-	Entity();
+	Entity(int height, int width);
 	~Entity();
 
 	//Functions
+	void initMainCharacter();
 	virtual void move(const float& dt,const float x, const float y);
 
 	//Affichage
