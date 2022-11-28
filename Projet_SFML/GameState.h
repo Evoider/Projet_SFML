@@ -1,12 +1,14 @@
 #pragma once
 #include "State.h"
+#include "Background.h"
 
 
 class GameState :
     public State
 {
 private:
-    Player player;
+    Entity player;
+    Background test;
 
     //Functions
     void initKeyBinds();
