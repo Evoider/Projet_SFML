@@ -5,7 +5,7 @@ class Player :
     public Entity
 {
 private:
-
+    sf::Clock clock;
 
 public:
     Player(int height, int width);
