@@ -20,11 +20,12 @@ int main()
     std::cout << "[Tu sors et te fais attaquer par un ROZBOUTON]" << std::endl;
     system("pause");
     system("cls");
-    Pokemon Tiplouf, Griknot, Rozbouton;
+    Pokemon Tiplouf, Griknot, Rozbouton, Héricendre;
     Griknot.creationPokemon(443);
     Rozbouton.creationPokemon(406);
+    Héricendre.creationPokemon(155);
 
-    Combat premierCombat(Griknot, Rozbouton);
+    Combat premierCombat(Rozbouton, Héricendre);
     premierCombat.fighting();
     //delete premierCombat;
 

@@ -17,8 +17,10 @@ public:
 	std::string getNom();
 	int getPv();
 	int getDefense();
+	int getDefenseSpe();
 	int getVitesse();
-
+	std::string getType1();
+	std::string getType2();
 	std::string getCapacite1();
 	std::string getCapacite2();
 
@@ -26,7 +28,7 @@ public:
 	void healMax();
 
 	//checkResistance
-	float resistance(Pokemon& victime);
+	float resistance(Pokemon& victime, Capacite& Bouledefeuuuh);
 
 private:
 	int m_numero;

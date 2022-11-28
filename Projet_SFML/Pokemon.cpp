@@ -31,10 +31,25 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 {
 	switch (numeroPokemon)
 	{
+
+	case(155): //Héricendre 40 et 30
+		m_numero = numeroPokemon;
+		m_nom = "Héricendre";
+		m_type1 = "Fire";
+		m_pvBase = m_pvMax = m_pv = 39;
+		m_attaqueBase = m_attaque = 52;
+		m_attaqueBase = m_attaqueSpe = 43;
+		m_defenseBase = m_defense = 60;
+		m_defenseSpeBase = m_defenseSpe = 50;
+		m_vitesseBase = m_vitesse = 35;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
 	case(393):	//Tiplouf 40 et 40
 		m_numero = numeroPokemon;
 		m_nom = "Tiplouf";
-		m_type1 = "Eau";
+		m_type1 = "Water";
 		m_pvBase = m_pvMax = m_pv = 53;
 		m_attaqueBase = m_attaque = 51;
 		m_attaqueBase = m_attaqueSpe = 61;
@@ -45,10 +60,10 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(406):	//Rozbouton 40 et 40
+	case(406):	//Rozbouton 25 et 40
 		m_numero = numeroPokemon;
 		m_nom = "Rozbouton";
-		m_type1 = "Plante";
+		m_type1 = "Grass";
 		m_pvBase = m_pvMax = m_pv = 40;
 		m_attaqueBase = m_attaque = 30;
 		m_attaqueSpeBase = m_attaqueSpe = 35;
@@ -62,7 +77,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 	case(443):	//Griknot 40 et 35 CHECK
 		m_numero = numeroPokemon;
 		m_nom = "Griknot";
-		m_type1 = "Sol";
+		m_type1 = "Ground";
 		m_type2 = "Dragon";
 		m_pvBase = m_pvMax = m_pv = 58;
 		m_attaqueBase = m_attaque = 70;
@@ -121,7 +136,7 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 	case(1):
 		if (m_capacite1->getSpe() == true)
 		{
-			victime.recevoirDegats(m_attaqueSpe + m_capacite1->getPuissance() - victime.getDefense());
+			victime.recevoirDegats(resistance(victime, *m_capacite1) * (m_attaqueSpe + m_capacite1->getPuissance() - victime.getDefenseSpe()));
 		}
 		else
 		{
@@ -132,7 +147,7 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 	case(2):
 		if (m_capacite2->getSpe() == true)
 		{
-			victime.recevoirDegats(m_attaqueSpe + m_capacite2->getPuissance() - victime.getDefense());
+			victime.recevoirDegats(resistance(victime, *m_capacite2) * (m_attaqueSpe + m_capacite2->getPuissance() - victime.getDefenseSpe()));
 		}
 		else
 		{
@@ -175,9 +190,23 @@ int Pokemon::getDefense()
 	return m_defense;
 }
 
+int Pokemon::getDefenseSpe()
+{
+	return m_defenseSpe;
+}
+
 int Pokemon::getVitesse()
 {
 	return m_vitesse;
+}
+
+std::string Pokemon::getType1()
+{
+	return m_type1;
+}
+std::string Pokemon::getType2()
+{
+	return m_type2;
 }
 
 std::string Pokemon::getCapacite1()
@@ -197,7 +226,22 @@ void Pokemon::healMax()
 }
 
 //checkResistance
-float Pokemon::resistance(Pokemon& victime)
+float Pokemon::resistance(Pokemon& victime, Capacite& Bouledefeuuuuuh)
 {
+	if (victime.getType1() == "Fire")
+	{
+		if (Bouledefeuuuuuh.getType() == "Water" || Bouledefeuuuuuh.getType() == "Ground" || Bouledefeuuuuuh.getType() == "Rock")
+		{
+			return 2;
+		}
+		else if (Bouledefeuuuuuh.getType() == "Steel" || Bouledefeuuuuuh.getType() == "Fairy" || Bouledefeuuuuuh.getType() == "Fire" || Bouledefeuuuuuh.getType() == "Ice" || Bouledefeuuuuuh.getType() == "Grass" || Bouledefeuuuuuh.getType() == "Bug")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
 
 }

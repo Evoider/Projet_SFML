@@ -11,6 +11,7 @@ public:
 	std::string getNom();
 	int getPuissance();
 	bool getSpe();
+	std::string getType();
 
 private:
 	std::string m_nom;
