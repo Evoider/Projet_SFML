@@ -1,12 +1,13 @@
 #pragma once
 #include "State.h"
-
+#include "PauseMenu.h"
 
 class GameState :
     public State
 {
 private:
     Entity player;
+    PauseMenu pmenu;
 
     //Functions
     void initKeyBinds();

@@ -25,9 +25,10 @@ void GameState::initKeyBinds()
 }
 
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	:State(window,supportedKeys, states)
+	:State(window,supportedKeys, states),pmenu(*window)
 {
 	this->initKeyBinds();
+	
 }
 
 GameState::~GameState()
@@ -46,7 +47,6 @@ void GameState::endState()
 
 void GameState::updateInput(const float& dt)
 {
-	this->checkForQuit();
 
 	//Check for key pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_LEFT"))))
@@ -55,27 +55,48 @@ void GameState::updateInput(const float& dt)
 		{
 			this->player.move(dt, -1.f, 0.f);
 		}
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
 	{
 		this->player.move(dt, 0.f, -1.f);
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 	{
 		this->player.move(dt, 0.f, 1.f);
-	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
 	{
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 		{
 			this->player.move(dt, 1.f, 0.f);
 		}
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))))
+	{
+		if (!this->pause)
+		{
+			this->pauseState();
+		}
+		/*else
+		{
+			this->unpauseState();
+		}*/
+	}
 }
 
 void GameState::update(const float& dt)
 {
-	this->updateMousePosition();
-	this->updateInput(dt);
+	if (!this->pause) 
+	{
+		this->updateMousePosition();
+		this->updateInput(dt);
 
-	this->player.update(dt);
+		this->player.update(dt);
+	}
+	else //Pause update
+	{
+		this->pmenu.update();
+	}
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -85,4 +106,9 @@ void GameState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 	this->player.render(target);
+
+	if (this->pause) // Pause menu render
+	{
+		this->pmenu.render(target);
+	}
 }
