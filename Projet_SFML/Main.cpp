@@ -28,10 +28,10 @@ int main()
 
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
-    sf::IntRect rectSpriteUp(0, 221, 75, 75);
+    sf::IntRect rectSpriteUp(0, 195, 75, 75);
     sf::IntRect rectSpriteDown(0, 0, 75, 75);
-    sf::IntRect rectSpriteLeft(0, 73, 75, 75);
-    sf::IntRect rectSpriteRight(0, 147, 75, 75);
+    sf::IntRect rectSpriteLeft(0, 75, 75, 75);
+    sf::IntRect rectSpriteRight(0, 150, 75, 75);
     sf::Sprite sprite(texture, rectSpriteDown);
     sprite.setPosition(500, 300);
     //sprite.scale(sf::Vector2f(1, 1)); facters d'échelle relatifs à l'échelle actuelle
@@ -134,8 +134,8 @@ int main()
         {
             if (up == true)
             {
-                rectSpriteUp.left += 68;
-                if (rectSpriteUp.left > 204)
+                rectSpriteUp.left += 65;
+                if (rectSpriteUp.left > 195)
                 {
                     rectSpriteUp.left = 0;
                 }
@@ -144,8 +144,8 @@ int main()
 
             else if (down == true)
             {
-                rectSpriteDown.left += 68;
-                if (rectSpriteDown.left > 204)
+                rectSpriteDown.left += 65;
+                if (rectSpriteDown.left > 195)
                 {
                     rectSpriteDown.left = 0;
                 }
@@ -154,8 +154,8 @@ int main()
 
             else if (left == true)
             {
-                rectSpriteLeft.left += 68;
-                if (rectSpriteLeft.left > 204)
+                rectSpriteLeft.left += 65;
+                if (rectSpriteLeft.left > 195)
                 {
                     rectSpriteLeft.left = 0;
                 }
@@ -164,8 +164,8 @@ int main()
 
             else if (right == true)
             {
-                rectSpriteRight.left += 68;
-                if (rectSpriteRight.left > 204)
+                rectSpriteRight.left += 65;
+                if (rectSpriteRight.left > 195)
                 {
                     rectSpriteRight.left = 0;
                 }
