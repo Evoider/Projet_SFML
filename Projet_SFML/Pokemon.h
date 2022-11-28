@@ -28,7 +28,7 @@ public:
 	void healMax();
 
 	//checkResistance
-	float resistance(Pokemon& victime, Capacite& Bouledefeuuuh);
+	float resistance(Pokemon& victime, Capacite& capacity);
 
 private:
 	int m_numero;

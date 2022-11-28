@@ -226,15 +226,15 @@ void Pokemon::healMax()
 }
 
 //checkResistance
-float Pokemon::resistance(Pokemon& victime, Capacite& Bouledefeuuuuuh)
+float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 {
 	if (victime.getType1() == "Fire")
 	{
-		if (Bouledefeuuuuuh.getType() == "Water" || Bouledefeuuuuuh.getType() == "Ground" || Bouledefeuuuuuh.getType() == "Rock")
+		if (Capacity.getType() == "Water" || Capacity.getType() == "Ground" || Capacity.getType() == "Rock")
 		{
 			return 2;
 		}
-		else if (Bouledefeuuuuuh.getType() == "Steel" || Bouledefeuuuuuh.getType() == "Fairy" || Bouledefeuuuuuh.getType() == "Fire" || Bouledefeuuuuuh.getType() == "Ice" || Bouledefeuuuuuh.getType() == "Grass" || Bouledefeuuuuuh.getType() == "Bug")
+		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Fairy" || Capacity.getType() == "Fire" || Capacity.getType() == "Ice" || Capacity.getType() == "Grass" || Capacity.getType() == "Bug")
 		{
 			return 0.5;
 		}
@@ -243,5 +243,286 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Bouledefeuuuuuh)
 			return 1;
 		}
 	}
+	if (victime.getType1() == "Water")
+	{
+		if (Capacity.getType() == "Grass" || Capacity.getType() == "Electric")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Water" || Capacity.getType() == "Fire" || Capacity.getType() == "Ice")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Grass")
+	{
+		if (Capacity.getType() == "Fire" || Capacity.getType() == "Poison" || Capacity.getType() == "Ice" || Capacity.getType() == "Fly" || Capacity.getType() == "Bug")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Grass" || Capacity.getType() == "Water" || Capacity.getType() == "Electric" || Capacity.getType() == "Ground")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Electric")
+	{
+		if (Capacity.getType() == "Ground")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fly" || Capacity.getType() == "Steel" || Capacity.getType() == "Electric")
+			return 0.5;
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Rock")
+	{
+		if (Capacity.getType() == "Water" || Capacity.getType() == "Grass" || Capacity.getType() == "Fighting" || Capacity.getType() == "Ground" || Capacity.getType() == "Steel")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fire" || Capacity.getType() == "Normal" || Capacity.getType() == "Poison" || Capacity.getType() == "Fly")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Ground")
+	{
+		if (Capacity.getType() == "Water" || Capacity.getType() == "Ice" || Capacity.getType() == "Grass")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Poison" || Capacity.getType() == "Rock")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Eletric")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Steel")
+	{
+		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Ground")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice" || Capacity.getType() == "Bug" || Capacity.getType() == "Normal" || Capacity.getType() == "Grass" || Capacity.getType() == "Psy" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Poison")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Steel")
+	{
+		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Ground")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice" || Capacity.getType() == "Bug" || Capacity.getType() == "Normal" || Capacity.getType() == "Grass" || Capacity.getType() == "Psy" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Poison")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Ice")
+	{
+		if (Capacity.getType() == "Steel" || Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Rock")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Ice")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Psy")
+	{
+		if (Capacity.getType() == "Bug" || Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Psy")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Dark")
+	{
+		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fairy" || Capacity.getType() == "Bug")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Psy")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Fairy")
+	{
+		if (Capacity.getType() == "Steel" || Capacity.getType() == "Poison")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Bug" || Capacity.getType() == "Dark")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Dragon")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
 
+	}
+	if (victime.getType1() == "Ghost")
+	{
+		if (Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Bug" || Capacity.getType() == "Poison")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Normal")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Fighting")
+	{
+		if (Capacity.getType() == "Psy" || Capacity.getType() == "Fairy" || Capacity.getType() == "Fly")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Bug" || Capacity.getType() == "Rock" || Capacity.getType() == "Dark")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Dragon")
+	{
+		if (Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Water" || Capacity.getType() == "Fire" || Capacity.getType() == "Grass" || Capacity.getType() == "Electric")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Bug")
+	{
+		if (Capacity.getType() == "Fire" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Grass" || Capacity.getType() == "Ground")
+		{
+			return 0.5;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Normal")
+	{
+		if (Capacity.getType() == "Fighting")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Ghost")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	if (victime.getType1() == "Fly")
+	{
+		if (Capacity.getType() == "Electric" || Capacity.getType() == "Ice" || Capacity.getType() == "Rock")
+		{
+			return 2;
+		}
+		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Bug" || Capacity.getType() == "Grass")
+		{
+			return 0.5;
+		}
+		else if (Capacity.getType() == "Ground")
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
 }
