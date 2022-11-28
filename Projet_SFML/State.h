@@ -13,7 +13,6 @@ protected:
 	std::map<std::string, int>* supportedKeys;
 	std::map<std::string, int> keyBinds;
 	bool quit;
-	bool pause;
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
@@ -31,8 +30,7 @@ public:
 	//Functions
 
 	const bool& getQuit() const;
-	void pauseState();
-	void unpauseState();
+	
 
 
 	virtual void endState() = 0;

@@ -8,7 +8,6 @@ State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys
 	this->supportedKeys = supportedKeys;
 	this->states = states;
 	this->quit = false;
-	this->pause = false;
 }
 
 State::~State()
@@ -21,15 +20,7 @@ const bool& State::getQuit() const
 	return this->quit;
 }
 
-void State::pauseState()
-{
-	this->pause = true;
-}
 
-void State::unpauseState()
-{
-	this->pause = false;
-}
 
 
 
