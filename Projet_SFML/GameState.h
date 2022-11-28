@@ -6,10 +6,13 @@ class GameState :
     public State
 {
 private:
-    Entity player;
+
     float scale;
     sf::Font font;
     PauseMenu pmenu;
+
+    Player player;
+
 
     //Functions
     void initKeyBinds();
