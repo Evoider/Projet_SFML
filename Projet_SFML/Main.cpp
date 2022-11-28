@@ -29,7 +29,7 @@ int main()
     window.setView(view);
     sf::Texture texture;
     texture.loadFromFile("ressources/sprites/cynthia_sprite.png");
-    sf::IntRect rectSpriteUp(0, 229, 75, 75);
+    sf::IntRect rectSpriteUp(0, 219, 75, 75);
     sf::IntRect rectSpriteDown(0, 0, 75, 75);
     sf::IntRect rectSpriteLeft(0, 73, 75, 75);
     sf::IntRect rectSpriteRight(0, 146, 75, 75);
