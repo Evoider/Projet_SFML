@@ -25,6 +25,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{799ed571-02c2-44b8-a47a-8f93ec0768e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu Pause">
+      <UniqueIdentifier>{0a9309a5-ba0e-4455-9568-03eb38b76f2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>States\Game</Filter>
     </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Menu Pause</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>States\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Menu Pause</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

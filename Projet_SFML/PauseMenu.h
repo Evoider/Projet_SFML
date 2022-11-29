@@ -23,7 +23,7 @@ private:
 
 	void initButtons(sf::RenderWindow& window);
 public:
-	PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale, sf::Vector2f mousePosView);
+	PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale);
 	~PauseMenu();
 
 	//Functions
@@ -36,6 +36,6 @@ public:
 	void updateButtons();
 	void renderButtons(sf::RenderTarget* target = nullptr);
 
-	void update();
+	void update( sf::Vector2f mousePosView);
 	void render(sf::RenderTarget* target);
 };

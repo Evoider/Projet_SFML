@@ -1,19 +1,25 @@
 #include "PauseMenu.h"
 void PauseMenu::initButtons(sf::RenderWindow& window)
 {
-	this->buttons["POKEDEX"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) - 100 * this->scale, 300 * this->scale, 50 * this->scale,
+	this->buttons["POKEDEX"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) - 400 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Pokedex", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
-	this->buttons["EXIT_PAUSE"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) , 300 * this->scale, 50 * this->scale,
-		this->font, "Exit", 20 * this->scale,
+	this->buttons["SETTINGS"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) + 300 * this->scale, 300 * this->scale, 50 * this->scale,
+		this->font, "Settings", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
-	this->buttons["QUIT_STATE"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) + 100 * this->scale, 300 * this->scale, 50 * this->scale,
+	this->buttons["EXIT_PAUSE"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) + 200 * this->scale, 300 * this->scale, 50 * this->scale,
+		this->font, "Continue", 20 * this->scale,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(150, 150, 150, 255),
+		sf::Color(20, 20, 20, 200)
+	);
+	this->buttons["QUIT_STATE"] = new Button((window.getSize().x / 2) - 150 * this->scale, (window.getSize().y / 2) + 400 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Quit", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
@@ -21,8 +27,8 @@ void PauseMenu::initButtons(sf::RenderWindow& window)
 	);
 }
 
-PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale, sf::Vector2f mousePosView)
-	:font(font), scale(scale), mousePosView(mousePosView)
+PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale)
+	:font(font), scale(scale)
 {
 	this->background.setSize(sf::Vector2f(
 		static_cast<float>(window.getSize().x),
@@ -35,7 +41,7 @@ PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale
 		static_cast<float>(window.getSize().y) - 100.f * this->scale
 	));
 	this->container.setFillColor(sf::Color(20, 20, 20, 200));
-	this->container.setPosition((static_cast<float>(window.getSize().x) / 2.f - this->container.getSize().x / 4.f)  , 30.f * this->scale);
+	this->container.setPosition((static_cast<float>(window.getSize().x) / 2.f - this->container.getSize().x / 2.f)  , 30.f * this->scale);
 	
 	this->font = font;
 	this->menuText.setFont(this->font);
@@ -95,13 +101,18 @@ void PauseMenu::updateButtons()
 	{
 
 	}
-	if (this->buttons["EXIT_PAUSE"]->isPressed())
+	if (this->buttons["POKEDEX"]->isPressed())
 	{
 
 	}
+	if (this->buttons["EXIT_PAUSE"]->isPressed())
+	{
+		this->unpauseState();
+	}
 	if (this->buttons["QUIT_STATE"]->isPressed())
 	{
-
+		this->quit = true;
+		std::cout << this->quit << " pause menu update button  " <<  "\n";
 	}
 }
 
@@ -113,8 +124,9 @@ void PauseMenu::renderButtons(sf::RenderTarget* target)
 	}
 }
 
-void PauseMenu::update()
+void PauseMenu::update( sf::Vector2f mousePosView)
 {
+	this->mousePosView = mousePosView;
 	this->updateButtons();
 }
 

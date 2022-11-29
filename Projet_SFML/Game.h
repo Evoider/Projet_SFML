@@ -12,8 +12,8 @@ private:
 	sf::ContextSettings windowSettings;
 	bool fullscreen;
 
-	sf::Clock dtClock;
-	float dt;
+	sf::Clock dtClock, clock;
+	float dt, elapsed;
 
 	std::stack<State*> states;
 

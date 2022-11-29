@@ -24,6 +24,7 @@ const bool& State::getQuit() const
 
 
 
+
 void State::updateMousePosition()
 {
 	this->mousePosScreen = sf::Mouse::getPosition();

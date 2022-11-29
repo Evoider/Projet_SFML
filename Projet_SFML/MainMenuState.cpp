@@ -57,10 +57,10 @@ void MainMenuState::initSprite()
 	this->textureBg.loadFromFile("Ressources/Sprites/Bg2.png");
 	std::cout << this->textureBg.getSize().x << "\n";
 
-	this->scale = this->window->getSize().x / (float)(this->textureBg.getSize().x);
-
+	this->scale = this->window->getSize().x / 1920.f;
+	float scalebg = this->window->getSize().x / (float)(this->textureBg.getSize().x);
 	this->background.setTexture(textureBg);
-	this->background.setScale(this->scale, this->scale);
+	this->background.setScale(scalebg,scalebg);
 }
 
 
@@ -72,7 +72,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 	this->initSprite();
 	this->initButtons();
 
-	
+	this->game = new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale);
 
 	
 }
@@ -117,21 +117,30 @@ void MainMenuState::updateButtons()
 	//New Game
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale));
+		this->game = new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale);
+		this->states->push(game);
+	}
+	
+	//Settings
+	if (this->buttons["SETTINGS"]->isPressed())
+	{
+
 	}
 
 	//Quit the Game
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
 		this->quit = true;
+		std::cout << this->quit << " Main menu update button  " << states->size() << "\n";
 	}
 }
 
 void MainMenuState::update(const float& dt)
 {
+	
+	this->quit = false;
 	this->updateMousePosition();
 	this->updateInput(dt);
-
 	this->updateButtons();
 
 	

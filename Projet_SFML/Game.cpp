@@ -107,12 +107,14 @@ void Game::endApplaction()
 
 void Game::updateDt()
 {
+	/*Update dt variable with the time elapsed to update and render in one frame*/
 	this->dt = this->dtClock.restart().asSeconds();	
 
 }
 
 void Game::updateSFMLEvents()
 {
+	
 	while (this->window->pollEvent(this->sfEvent))
 	{
 		if (this->sfEvent.type == sf::Event::Closed)
@@ -121,11 +123,10 @@ void Game::updateSFMLEvents()
 }
 
 void Game::update()
-{
-	/*Update dt variable with the time elapsed to update and render in one frame*/
+{	
+	
 
 	this->updateSFMLEvents();
-
 	if (!this->states.empty())
 	{
 		this->states.top()->update(this->dt);
@@ -133,8 +134,9 @@ void Game::update()
 		if (this->states.top()->getQuit())
 		{
 			this->states.top()->endState();
-			delete this->states.top();
+			auto *to_delete = this->states.top();
 			this->states.pop();
+			delete to_delete;
 		}
 	}
 	//Application end

@@ -17,6 +17,7 @@ protected:
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
 
+
 	//Ressources
 	std::vector<sf::Texture> textures;
 

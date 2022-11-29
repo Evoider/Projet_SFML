@@ -11,8 +11,14 @@ private:
     sf::Texture textureBg;
     float scale;
     sf::Font font;
+    
+    sf::Clock clock;
+    float elapsed;
 
     std::map<std::string, Button*> buttons;
+
+    //Game State
+    GameState*   game;
 
     //Functions
     void initFonts();
@@ -21,6 +27,7 @@ private:
     void initSprite();
 
 public:
+
     MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 
     virtual ~MainMenuState();

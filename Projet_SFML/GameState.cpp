@@ -25,7 +25,7 @@ void GameState::initKeyBinds()
 }
 
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
-	:State(window, supportedKeys, states), pmenu(*window, font, scale, this->mousePosView), player(68, 73)
+	:State(window, supportedKeys, states), pmenu(*window, font, scale), player(68, 73)
 {
 	this->initKeyBinds();
 	this->test.initTab();
@@ -84,15 +84,12 @@ void GameState::updateInput(const float& dt)
 			this->pmenu.pauseState();
 
 		}
-		else
-		{
-			this->pmenu.unpauseState();
-		}
 	}
 }
 
 void GameState::update(const float& dt)
 {
+	
 	this->updateMousePosition();
 	this->updateInput(dt);
 
@@ -102,7 +99,12 @@ void GameState::update(const float& dt)
 	}
 	else //Pause update
 	{
-		this->pmenu.update();
+		this->pmenu.update(this->mousePosView);
+	}
+	if (this->pmenu.getQuit())
+	{
+		this->quit = true;
+		std::cout << this->quit << " GAME state update " << states->size() << "\n";
 	}
 }
 
