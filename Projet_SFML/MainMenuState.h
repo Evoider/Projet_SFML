@@ -12,14 +12,10 @@ private:
     float scale;
     sf::Font font;
     
-    sf::Clock clock;
-    float elapsed;
 
     std::map<std::string, Button*> buttons;
 
-    //Game State
-    GameState*   game;
-
+    
     //Functions
     void initFonts();
     void initKeyBinds();

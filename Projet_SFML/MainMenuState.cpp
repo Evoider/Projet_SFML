@@ -72,8 +72,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 	this->initSprite();
 	this->initButtons();
 
-	this->game = new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale);
-
+	
 	
 }
 
@@ -117,8 +116,7 @@ void MainMenuState::updateButtons()
 	//New Game
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
-		this->game = new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale);
-		this->states->push(game);
+		this->states->push(new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale));
 	}
 	
 	//Settings
