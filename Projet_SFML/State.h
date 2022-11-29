@@ -17,6 +17,8 @@ protected:
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
 
+	//block key spamming
+	float keytime, keytimeMax;
 
 	//Ressources
 	std::vector<sf::Texture> textures;
@@ -31,10 +33,11 @@ public:
 	//Functions
 
 	const bool& getQuit() const;
-	
+	const bool getKeytime() ;
 
 
 	virtual void endState() = 0;
+	virtual void updateKeytime(const float& dt);
 	virtual void updateMousePosition();
 	virtual void updateInput(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;

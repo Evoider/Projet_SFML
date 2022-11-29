@@ -13,7 +13,8 @@ private:
 	bool fullscreen;
 
 	sf::Clock dtClock, clock;
-	float dt, elapsed;
+	float dt;
+	
 
 	std::stack<State*> states;
 

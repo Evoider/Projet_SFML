@@ -1,6 +1,7 @@
 #pragma once
 #include "Button.h"
 
+#include "SettingsState.h"
 
 #include <map>
 
@@ -8,8 +9,8 @@ class PauseMenu
 {
 private:
 	bool pause;
-	bool quit;
-	float scale;
+	bool quit,settings;
+	float scale,wait;
 	sf::Font font;
 	sf::Text menuText;
 
@@ -19,11 +20,12 @@ private:
 	sf::Vector2f mousePosView;
 
 	std::map<std::string, Button*> buttons;
-
+	std::map<std::string, int>* supportedKeys;
+	std::stack<State*>* states;
 
 	void initButtons(sf::RenderWindow& window);
 public:
-	PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale);
+	PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale, std::stack<State*>* states, std::map<std::string, int>* supportedKeys);
 	~PauseMenu();
 
 	//Functions
@@ -36,6 +38,6 @@ public:
 	void updateButtons();
 	void renderButtons(sf::RenderTarget* target = nullptr);
 
-	void update( sf::Vector2f mousePosView);
+	void update( sf::Vector2f mousePosView, const float& dt);
 	void render(sf::RenderTarget* target);
 };

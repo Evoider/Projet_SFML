@@ -43,7 +43,7 @@ void MainMenuState::initButtons()
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
-	this->buttons["EXIT_STATE"] = new Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 100 * this->scale, 300 * this->scale, 50 * this->scale,
+	this->buttons["EXIT_STATE"] = new Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Quit", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
@@ -52,7 +52,7 @@ void MainMenuState::initButtons()
 	
 }
 
-void MainMenuState::initSprite()
+void MainMenuState::initBackground()
 {
 	this->textureBg.loadFromFile("Ressources/Sprites/Bg2.png");
 	std::cout << this->textureBg.getSize().x << "\n";
@@ -69,7 +69,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 {
 	this->initFonts();
 	this->initKeyBinds();
-	this->initSprite();
+	this->initBackground();
 	this->initButtons();
 
 	
@@ -122,7 +122,7 @@ void MainMenuState::updateButtons()
 	//Settings
 	if (this->buttons["SETTINGS"]->isPressed())
 	{
-
+		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states, this->font, this->scale));
 	}
 
 	//Quit the Game

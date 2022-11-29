@@ -27,8 +27,8 @@ void PauseMenu::initButtons(sf::RenderWindow& window)
 	);
 }
 
-PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale)
-	:font(font), scale(scale)
+PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale, std::stack<State*>* states, std::map<std::string, int>* supportedKeys)
+	:font(font), scale(scale), states(states), supportedKeys(supportedKeys)
 {
 	this->background.setSize(sf::Vector2f(
 		static_cast<float>(window.getSize().x),
@@ -54,6 +54,7 @@ PauseMenu::PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale
 	this->initButtons(window);
 	this->pause = false;
 	this->quit = false;
+	this->settings = false;
 }
 
 PauseMenu::~PauseMenu()
@@ -101,15 +102,18 @@ void PauseMenu::updateButtons()
 	{
 
 	}
-	if (this->buttons["POKEDEX"]->isPressed())
+	if (this->buttons["SETTINGS"]->isPressed())
 	{
-
+		this->settings = true;
+		this->wait = 0.f;
+		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states, this->font, this->scale));
+		
 	}
 	if (this->buttons["EXIT_PAUSE"]->isPressed())
 	{
 		this->unpauseState();
 	}
-	if (this->buttons["QUIT_STATE"]->isPressed())
+	if (this->buttons["QUIT_STATE"]->isPressed() && !this->settings)
 	{
 		this->quit = true;
 		std::cout << this->quit << " pause menu update button  " <<  "\n";
@@ -124,10 +128,17 @@ void PauseMenu::renderButtons(sf::RenderTarget* target)
 	}
 }
 
-void PauseMenu::update( sf::Vector2f mousePosView)
+void PauseMenu::update( sf::Vector2f mousePosView, const float& dt)
 {
 	this->mousePosView = mousePosView;
 	this->updateButtons();
+	this->wait += 10 * dt;
+	if (this->wait>=10.f)
+	{
+		this->settings = false; 
+		this->wait = 0.f;
+	}
+	std::cout << "wait" << this->wait << "\n";
 }
 
 void PauseMenu::render(sf::RenderTarget* target)

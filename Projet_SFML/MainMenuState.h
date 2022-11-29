@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+
 #include "Button.h"
 
 class MainMenuState:
@@ -20,7 +21,7 @@ private:
     void initFonts();
     void initKeyBinds();
     void initButtons();
-    void initSprite();
+    void initBackground();
 
 public:
 
