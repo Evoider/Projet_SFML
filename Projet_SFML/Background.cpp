@@ -63,7 +63,7 @@ void Background::initTab()
 	{
 		for (int x = 0; x < 40; x++)
 		{
-            for (int m = 0; m < 1000; m++)
+            for (int m = 0; m < 500; m++)
             {
                 if (tabmap[y][x] - 1 == m)
                 {
@@ -135,75 +135,3 @@ void Background::render(sf::RenderTarget* target)
 		target->draw(this->vecbox[i]);
 	}
 }
-
-
-//if (tabmap[y][x] == 1)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(272 + 16, 0 + 16, 16, 16));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////1-Chemin millieu
-//if (tabmap[y][x] == 2)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(272 + 16, 0, 16, 16));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////2-Chemin haut
-//if (tabmap[y][x] == 3)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(272 + 16, 0 + 16 + 16, 16, 16));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////3-Chemin bas
-//if (tabmap[y][x] == 4)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(272, 0 + 16, 16, 16));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////4-Chemin gauche
-//if (tabmap[y][x] == 5)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(272 + 16 + 16, 0 + 16, 16, 16));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////5-Chemin droite
-//if (tabmap[y][x] == 13)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(160, 0, 96, 96));
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////13- Forêt
-//if (tabmap[y][x] == 14)
-//{
-//	sf::Sprite pass;
-//	pass.setTexture(forest);
-//	pass.setTextureRect(sf::IntRect(160 + 16, 0, 82, 96));  //2 arbres forêt et demi + 2 pixels
-//	pass.scale(4.6875, 4.6875);
-//	pass.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
-//	vecbox.push_back(pass);
-//}
-////14- Forêt fin droite
