@@ -8,7 +8,9 @@ class GameState :
 {
 private:
     Entity player;
-    Background test;
+    Background map;
+
+    sf::View view;
 
     //Functions
     void initKeyBinds();
@@ -25,4 +27,3 @@ public:
     void update(const float& dt);
     void render(sf::RenderTarget* target = nullptr);
 };
-

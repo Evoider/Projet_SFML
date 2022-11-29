@@ -37,7 +37,7 @@ public:
 	~Entity();
 
 	//Functions
-	virtual void move(std::string direction);
+	virtual void move(std::string direction, sf::View& view);
 
 	//Affichage
 	virtual void update(const float& dt);

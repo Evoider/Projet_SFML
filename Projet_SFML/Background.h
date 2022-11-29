@@ -7,7 +7,10 @@ class Background
 private:
 	int offSetX;
 	int offSetY;
-	std::vector<sf::RectangleShape>vecbox;
+	std::vector<sf::Sprite>vecbox;
+
+	sf::Texture forest;
+	sf::IntRect green;
 
 public:
 	Background();
