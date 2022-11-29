@@ -1,6 +1,6 @@
 #include "Gui.h"
 
-
+//Button===================================================================
 
 gui::Button::Button(float x, float y, float width, float height,
 	sf::Font font, std::string text, float text_size,
@@ -41,6 +41,16 @@ const bool gui::Button::isPressed() const
 		return true;
 	}
 	return false;
+}
+
+const std::string& gui::Button::getText() const
+{
+	return this->text.getString();
+}
+
+void gui::Button::setText(const std::string text)
+{
+	this->text.setString(text);
 }
 
 
@@ -88,4 +98,43 @@ void gui::Button::render(sf::RenderTarget* target)
 {
 	target->draw(this->shape);
 	target->draw(this->text);
+}
+//==========================================================
+// 
+//Drop down list============================================
+
+gui::DropDownList::DropDownList(sf::RenderWindow& window, float scale, sf::Font* font, std::string list[], unsigned nrOfElements, unsigned default_index)
+	:font(font)
+{
+
+	for (size_t i = 0; i < nrOfElements; i++)
+	{
+		this->list.push_back(
+			new gui::Button((window.getSize().x / 2) - 150 * scale, (window.getSize().y / 2) - 400 * scale, 300 * scale, 50 * scale,
+				*this->font, list[i], 20 * scale,
+				sf::Color(70, 70, 70, 200),
+				sf::Color(150, 150, 150, 255),
+				sf::Color(20, 20, 20, 200)
+			)
+		);
+	}
+
+	this->Selected = new Button(*this->list[default_index]);
+
+
+}
+
+gui::DropDownList::~DropDownList()
+{
+	delete this->Selected;
+	for (auto& i : this->list)
+		delete i;
+}
+
+void gui::DropDownList::update(const sf::Vector2f mousePos)
+{
+}
+
+void gui::DropDownList::render(sf::RenderTarget* target)
+{
 }
