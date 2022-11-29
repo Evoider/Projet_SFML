@@ -1,5 +1,5 @@
 #pragma once
-#include "Button.h"
+#include "Gui.h"
 
 #include "SettingsState.h"
 
@@ -19,7 +19,7 @@ private:
 	sf::RenderWindow* window;
 	sf::Vector2f mousePosView;
 
-	std::map<std::string, Button*> buttons;
+	std::map<std::string, gui::Button*> buttons;
 	std::map<std::string, int>* supportedKeys;
 	std::stack<State*>* states;
 
