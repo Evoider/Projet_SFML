@@ -347,7 +347,7 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 		}
 		else
 		{
-			victime.recevoirDegats(m_attaque + m_capacite1->getPuissance() - victime.getDefense());
+			victime.recevoirDegats(resistance(victime, *m_capacite1) * (m_attaque + m_capacite1->getPuissance() - victime.getDefense()));
 		}
 		break;
 
@@ -358,7 +358,7 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 		}
 		else
 		{
-			victime.recevoirDegats(m_attaque + m_capacite2->getPuissance() - victime.getDefense());
+			victime.recevoirDegats(resistance(victime, *m_capacite2) * (m_attaque + m_capacite2->getPuissance() - victime.getDefense()));
 		}
 		break;
 
@@ -532,9 +532,9 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
-		else if (Capacity.getType() == "Eletric")
+		else if (Capacity.getType() == "Electric")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl,victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -556,7 +556,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Poison")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -578,7 +578,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Poison")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -634,7 +634,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Psy")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -656,7 +656,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Dragon")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -679,7 +679,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Normal")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -747,7 +747,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Ghost")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
@@ -769,7 +769,7 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		}
 		else if (Capacity.getType() == "Ground")
 		{
-			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
+			std::cout << "Ca n'affecte pas " << victime.getNom() << std::endl;
 			return 0;
 		}
 		else
