@@ -10,7 +10,8 @@ private:
 	std::vector<sf::Sprite>vecbox;
 
 	sf::Texture forest;
-	sf::IntRect green;
+	sf::Texture haute_herbe;
+	sf::Texture batiment;
 
 public:
 	Background();
