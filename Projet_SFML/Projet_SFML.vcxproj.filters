@@ -25,6 +25,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{799ed571-02c2-44b8-a47a-8f93ec0768e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\Menu\Menu Pause">
+      <UniqueIdentifier>{0a9309a5-ba0e-4455-9568-03eb38b76f2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,7 +48,7 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="Gui.cpp">
       <Filter>Fichiers de ressources</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -53,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>States\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>States\Menu\Menu Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsState.cpp">
+      <Filter>States\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +80,7 @@
     <ClInclude Include="Entity.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Gui.h">
       <Filter>Fichiers de ressources</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -79,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>States\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>States\Menu\Menu Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsState.h">
+      <Filter>States\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

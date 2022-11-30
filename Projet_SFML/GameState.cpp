@@ -24,11 +24,12 @@ void GameState::initKeyBinds()
 	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
-	:State(window, supportedKeys, states), pmenu(*window, font, scale), player(68, 73)
+GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
+	:State(window, supportedKeys, states), pmenu(window,graphSettings, font, scale, states, supportedKeys), player(68, 73),graphSettings(graphSettings)
 {
 	this->initKeyBinds();
 	this->test.initTab();
+	
 }
 
 GameState::~GameState()
@@ -42,7 +43,17 @@ GameState::~GameState()
 
 void GameState::endState()
 {
-	std::cout << "Ending game state" << "\n";
+	this->quit = true;
+
+	std::cout << "Ending game state" << states->size() << "\n";
+}
+
+void GameState::updateWindow(sf::RenderWindow* window)
+{
+	this->window = window;
+	this->scale = this->window->getSize().x / 1920.f;
+	this->initKeyBinds();
+	this->pmenu.updateWindow(window,this->scale);
 }
 
 void GameState::updateInput(const float& dt)
@@ -77,32 +88,38 @@ void GameState::updateInput(const float& dt)
 			this->player.animationMove("Right");
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))) && this->getKeytime())
 	{
-		if (!this->pause)
+		if (!this->pmenu.getPauseState())
 		{
-			this->pauseState();
+			this->pmenu.pauseState();
 
 		}
 		else
 		{
-			this->unpauseState();
+			this->pmenu.unpauseState();
 		}
 	}
 }
 
 void GameState::update(const float& dt)
 {
+	this->updateKeytime(dt);
 	this->updateMousePosition();
-	this->updateInput(dt);
 
-	if (!this->pause)
+	if (!this->pmenu.getPauseState())
 	{
+
+		this->updateInput(dt);
 		this->player.update(dt);
 	}
 	else //Pause update
 	{
-		this->pmenu.update();
+		this->pmenu.update(this->mousePosView,dt);
+	}
+	if (this->pmenu.getQuit())
+	{
+		this->endState();
 	}
 }
 
@@ -114,7 +131,7 @@ void GameState::render(sf::RenderTarget* target)
 	}
 	this->player.render(target);
 	this->test.render(target);
-	if (this->pause) // Pause menu render
+	if (this->pmenu.getPauseState()) // Pause menu render
 	{
 		this->pmenu.render(target);
 	}

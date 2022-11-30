@@ -1,33 +1,39 @@
 #pragma once
 #include "GameState.h"
-#include "Button.h"
+#include "Gui.h"
 
 class MainMenuState:
     public State
 {
 private:
     //Variable
+    GraphicsSettings& graphSettings;
     sf::Sprite background;
     sf::Texture textureBg;
     float scale;
     sf::Font font;
+    sf::Text title;
+    sf::RectangleShape titleBox;
 
-    std::map<std::string, Button*> buttons;
+    std::map<std::string, gui::Button*> buttons;
 
+    
     //Functions
     void initFonts();
     void initKeyBinds();
     void initButtons();
-    void initSprite();
+    void initBackground();
 
 public:
-    MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+
+    MainMenuState(sf::RenderWindow* window,GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 
     virtual ~MainMenuState();
 
     //Functions
     void endState();
 
+    void updateWindow(sf::RenderWindow* window);
     void updateInput(const float& dt);
     void updateButtons();
     void update(const float& dt);

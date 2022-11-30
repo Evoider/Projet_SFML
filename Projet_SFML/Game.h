@@ -5,15 +5,17 @@
 class Game
 {
 private:
+	
+	
 	//Variables
+	GraphicsSettings graphSettings;
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
-	std::vector<sf::VideoMode> videoModes;
-	sf::ContextSettings windowSettings;
-	bool fullscreen;
+	
 
-	sf::Clock dtClock;
+	sf::Clock dtClock, clock;
 	float dt;
+	
 
 	std::stack<State*> states;
 
@@ -21,6 +23,7 @@ private:
 
 	//Initialization
 	void initVariables();
+	void initGraphicsSettings();
 	void initWindow();
 	void initKeys();
 	void initStates();

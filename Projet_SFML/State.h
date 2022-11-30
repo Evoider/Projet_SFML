@@ -2,6 +2,7 @@
 
 #include "Player.h"
 
+#include "GraphicsSettings.h"
 
 class State
 {
@@ -13,10 +14,12 @@ protected:
 	std::map<std::string, int>* supportedKeys;
 	std::map<std::string, int> keyBinds;
 	bool quit;
-	bool pause;
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
+
+	//block key spamming
+	float keytime, keytimeMax;
 
 	//Ressources
 	std::vector<sf::Texture> textures;
@@ -31,11 +34,13 @@ public:
 	//Functions
 
 	const bool& getQuit() const;
-	void pauseState();
-	void unpauseState();
+	const bool getKeytime() ;
 
 
 	virtual void endState() = 0;
+
+	virtual void updateWindow(sf::RenderWindow* window) = 0;
+	virtual void updateKeytime(const float& dt);
 	virtual void updateMousePosition();
 	virtual void updateInput(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;
