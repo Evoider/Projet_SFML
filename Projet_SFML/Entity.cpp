@@ -2,8 +2,10 @@
 
 Entity::Entity()
 {
-	this->shape.setSize(sf::Vector2f(75.f, 75.f));
-	this->shape.setFillColor(sf::Color::White);
+	this->texture.loadFromFile("Ressources/Sprites/cynthia_sprites.png");
+	this->sprite.setTexture(texture);
+	this->sprite.setTextureRect(sf::IntRect(0, 0, 75, 75));
+	this->sprite.scale(1.3,1.3);
 	this->movementSpeed = 100.f;
 
 	this->posX = 10;
@@ -12,7 +14,7 @@ Entity::Entity()
 	this->offSetX = 75;
 	this->offSetY = 75;
 
-	this->shape.setPosition(posX * offSetX, posY * offSetY);
+	this->sprite.setPosition(posX * offSetX, posY * offSetY);
 }
 
 Entity::~Entity()
@@ -26,25 +28,25 @@ void Entity::move(std::string direction, sf::View& view)
 		if (direction == "Up")
 		{
 			posY--;
-			shape.setPosition(posX * offSetX, posY * offSetY);
+			sprite.setPosition(posX * offSetX, posY * offSetY);
 			view.setCenter(view.getCenter().x, view.getCenter().y - offSetY);
 		}
 		else if (direction == "Down")
 		{
 			posY++;
-			shape.setPosition(posX * offSetX, posY * offSetY);
+			sprite.setPosition(posX * offSetX, posY * offSetY);
 			view.setCenter(view.getCenter().x, view.getCenter().y + offSetY);
 		}
 		else if (direction == "Left")
 		{
 			posX--;
-			shape.setPosition(posX * offSetX, posY * offSetY);
+			sprite.setPosition(posX * offSetX, posY * offSetY);
 			view.setCenter(view.getCenter().x - offSetX, view.getCenter().y);
 		}
 		else if (direction == "Right")
 		{
 			posX++;
-			shape.setPosition(posX * offSetX, posY * offSetY);
+			sprite.setPosition(posX * offSetX, posY * offSetY);
 			view.setCenter(view.getCenter().x + offSetX, view.getCenter().y);
 		}
 		dtclock.restart();
@@ -58,5 +60,5 @@ void Entity::update(const float& dt)
 
 void Entity::render(sf::RenderTarget* target)
 {
-	target->draw(this->shape);
+	target->draw(this->sprite);
 }

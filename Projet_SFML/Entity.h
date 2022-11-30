@@ -19,8 +19,6 @@ class Entity
 private:
 
 protected:
-	sf::RectangleShape shape;
-
 	sf::Texture texture;
 	sf::Sprite sprite;
 
