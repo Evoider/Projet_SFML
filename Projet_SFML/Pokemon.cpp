@@ -32,9 +32,51 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 	switch (numeroPokemon)
 	{
 
+	case(40): //Fantominus 30 et 30
+		m_numero = numeroPokemon;
+		m_nom = "Fantominus";
+		m_type1 = "Poison";
+		m_pvBase = m_pvMax = m_pv = 30;
+		m_attaqueBase = m_attaque = 35;
+		m_attaqueBase = m_attaqueSpe = 30;
+		m_defenseBase = m_defense = 100;
+		m_defenseSpeBase = m_defenseSpe = 35;
+		m_vitesseBase = m_vitesse = 80;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(63): //Abra 0 et 20
+		m_numero = numeroPokemon;
+		m_nom = "Abra";
+		m_type1 = "Psy";
+		m_pvBase = m_pvMax = m_pv = 25;
+		m_attaqueBase = m_attaque = 20;
+		m_attaqueBase = m_attaqueSpe = 15;
+		m_defenseBase = m_defense = 105;
+		m_defenseSpeBase = m_defenseSpe = 55;
+		m_vitesseBase = m_vitesse = 90;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(147): //Ptéra 50 et 60
+		m_numero = numeroPokemon;
+		m_nom = "Ptera";
+		m_type1 = "Fly";
+		m_pvBase = m_pvMax = m_pv = 80;
+		m_attaqueBase = m_attaque = 105;
+		m_attaqueBase = m_attaqueSpe = 65;
+		m_defenseBase = m_defense = 60;
+		m_defenseSpeBase = m_defenseSpe = 75;
+		m_vitesseBase = m_vitesse = 130;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
 	case(155): //Héricendre 40 et 30
 		m_numero = numeroPokemon;
-		m_nom = "Héricendre";
+		m_nom = "Hericendre";
 		m_type1 = "Fire";
 		m_pvBase = m_pvMax = m_pv = 39;
 		m_attaqueBase = m_attaque = 52;
@@ -42,6 +84,76 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_defenseBase = m_defense = 60;
 		m_defenseSpeBase = m_defenseSpe = 50;
 		m_vitesseBase = m_vitesse = 35;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(174): //Toudoudou 40 et 40
+		m_numero = numeroPokemon;
+		m_nom = "Toudoudou";
+		m_type1 = "Normal";
+		m_pvBase = m_pvMax = m_pv = 90;
+		m_attaqueBase = m_attaque = 30;
+		m_attaqueBase = m_attaqueSpe = 15;
+		m_defenseBase = m_defense = 40;
+		m_defenseSpeBase = m_defenseSpe = 20;
+		m_vitesseBase = m_vitesse = 15;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(175): //Togepi 40 et 40
+		m_numero = numeroPokemon;
+		m_nom = "Togepi";
+		m_type1 = "Fairy";
+		m_pvBase = m_pvMax = m_pv = 35;
+		m_attaqueBase = m_attaque = 20;
+		m_attaqueBase = m_attaqueSpe = 65;
+		m_defenseBase = m_defense = 40;
+		m_defenseSpeBase = m_defenseSpe = 65;
+		m_vitesseBase = m_vitesse = 20;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(238): //Lippouti 40 et 30
+		m_numero = numeroPokemon;
+		m_nom = "Lippouti";
+		m_type1 = "Ice";
+		m_pvBase = m_pvMax = m_pv = 45;
+		m_attaqueBase = m_attaque = 30;
+		m_attaqueBase = m_attaqueSpe = 15;
+		m_defenseBase = m_defense = 85;
+		m_defenseSpeBase = m_defenseSpe = 65;
+		m_vitesseBase = m_vitesse = 65;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(246): //Embrylex 40 et 50
+		m_numero = numeroPokemon;
+		m_nom = "Embrylex";
+		m_type1 = "Rock";
+		m_pvBase = m_pvMax = m_pv = 50;
+		m_attaqueBase = m_attaque = 64;
+		m_attaqueBase = m_attaqueSpe = 50;
+		m_defenseBase = m_defense = 45;
+		m_defenseSpeBase = m_defenseSpe = 50;
+		m_vitesseBase = m_vitesse = 41;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(248): //Embrylex 80 et 100
+		m_numero = numeroPokemon;
+		m_nom = "Tyranocif";
+		m_type1 = "Dark";
+		m_pvBase = m_pvMax = m_pv = 100;
+		m_attaqueBase = m_attaque = 134;
+		m_attaqueBase = m_attaqueSpe = 110;
+		m_defenseBase = m_defense = 95;
+		m_defenseSpeBase = m_defenseSpe = 100;
+		m_vitesseBase = m_vitesse = 61;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
@@ -60,6 +172,20 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
+	case(402):	//Crikzik 20 et 50
+		m_numero = numeroPokemon;
+		m_nom = "Crikzik";
+		m_type1 = "Bug";
+		m_pvBase = m_pvMax = m_pv = 37;
+		m_attaqueBase = m_attaque = 25;
+		m_attaqueSpeBase = m_attaqueSpe = 41;
+		m_defenseBase = m_defense = 25;
+		m_defenseSpeBase = m_defenseSpe = 41;
+		m_vitesseBase = m_vitesse = 25;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
 	case(406):	//Rozbouton 25 et 40
 		m_numero = numeroPokemon;
 		m_nom = "Rozbouton";
@@ -70,6 +196,34 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_defenseBase = m_defense = 50;
 		m_defenseSpeBase = m_defenseSpe = 70;
 		m_vitesseBase = m_vitesse = 55;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(417):	//Pachirisu 20 et 40
+		m_numero = numeroPokemon;
+		m_nom = "Pachirisu";
+		m_type1 = "Electric";
+		m_pvBase = m_pvMax = m_pv = 60;
+		m_attaqueBase = m_attaque = 45;
+		m_attaqueSpeBase = m_attaqueSpe = 70;
+		m_defenseBase = m_defense = 45;
+		m_defenseSpeBase = m_defenseSpe = 90;
+		m_vitesseBase = m_vitesse = 95;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(442): //Spiritomb
+		m_numero = numeroPokemon;
+		m_nom = "Spiritomb";
+		m_type1 = "Ghost";
+		m_pvBase = m_pvMax = m_pv = 50;
+		m_attaqueBase = m_attaque = 92;
+		m_attaqueBase = m_attaqueSpe = 108;
+		m_defenseBase = m_defense = 92;
+		m_defenseSpeBase = m_defenseSpe = 108;
+		m_vitesseBase = m_vitesse = 35;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
@@ -85,6 +239,49 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_defenseBase = m_defense = 40;
 		m_defenseSpeBase = m_defenseSpe = 45;
 		m_vitesseBase = m_vitesse = 42;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(444):	//Carmache 60 et 80
+		m_numero = numeroPokemon;
+		m_nom = "Carmache";
+		m_type1 = "Dragon";
+		m_type2 = "Ground";
+		m_pvBase = m_pvMax = m_pv = 68;
+		m_attaqueBase = m_attaque = 90;
+		m_attaqueSpeBase = m_attaqueSpe = 65;
+		m_defenseBase = m_defense = 50;
+		m_defenseSpeBase = m_defenseSpe = 55;
+		m_vitesseBase = m_vitesse = 82;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(447): //Riolu 40 et 40
+		m_numero = numeroPokemon;
+		m_nom = "Riolu";
+		m_type1 = "Fighting";
+		m_pvBase = m_pvMax = m_pv = 40;
+		m_attaqueBase = m_attaque = 70;
+		m_attaqueBase = m_attaqueSpe = 40;
+		m_defenseBase = m_defense = 35;
+		m_defenseSpeBase = m_defenseSpe = 40;
+		m_vitesseBase = m_vitesse = 60;
+		m_capacite1->capaciteCreation(numeroPokemon, 1);
+		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		break;
+
+	case(448): //Lucario 80 et 120
+		m_numero = numeroPokemon;
+		m_nom = "Lucario";
+		m_type1 = "Steel";
+		m_pvBase = m_pvMax = m_pv = 70;
+		m_attaqueBase = m_attaque = 110;
+		m_attaqueBase = m_attaqueSpe = 70;
+		m_defenseBase = m_defense = 115;
+		m_defenseSpeBase = m_defenseSpe = 70;
+		m_vitesseBase = m_vitesse = 90;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
