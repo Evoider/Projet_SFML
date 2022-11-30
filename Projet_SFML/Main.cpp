@@ -21,6 +21,7 @@ int main()
     system("pause");
     system("cls");
     Pokemon Tiplouf, Griknot, Rozbouton, Héricendre;
+    Tiplouf.creationPokemon(393);
     Griknot.creationPokemon(443);
     Rozbouton.creationPokemon(406);
     Héricendre.creationPokemon(155);

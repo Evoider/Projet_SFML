@@ -439,12 +439,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Water" || Capacity.getType() == "Ground" || Capacity.getType() == "Rock")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl ;
 			return 2;
 		}
 		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Fairy" || Capacity.getType() == "Fire" || Capacity.getType() == "Ice" || Capacity.getType() == "Grass" || Capacity.getType() == "Bug")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl ;
 			return 0.5;
 		}
 		else
@@ -456,12 +456,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Grass" || Capacity.getType() == "Electric")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl ;
 			return 2;
 		}
 		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Water" || Capacity.getType() == "Fire" || Capacity.getType() == "Ice")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl ;
 			return 0.5;
 		}
 		else
@@ -473,12 +473,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fire" || Capacity.getType() == "Poison" || Capacity.getType() == "Ice" || Capacity.getType() == "Fly" || Capacity.getType() == "Bug")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl ;
 			return 2;
 		}
 		else if (Capacity.getType() == "Grass" || Capacity.getType() == "Water" || Capacity.getType() == "Electric" || Capacity.getType() == "Ground")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl ;
 			return 0.5;
 		}
 		else
@@ -490,12 +490,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Ground")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fly" || Capacity.getType() == "Steel" || Capacity.getType() == "Electric")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -507,12 +507,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Water" || Capacity.getType() == "Grass" || Capacity.getType() == "Fighting" || Capacity.getType() == "Ground" || Capacity.getType() == "Steel")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fire" || Capacity.getType() == "Normal" || Capacity.getType() == "Poison" || Capacity.getType() == "Fly")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -524,17 +524,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Water" || Capacity.getType() == "Ice" || Capacity.getType() == "Grass")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Poison" || Capacity.getType() == "Rock")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Eletric")
 		{
-			std::cout << "Ca n'affecte pas %d",victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl,victime.getNom();
 			return 0;
 		}
 		else
@@ -546,17 +546,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Ground")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl ;
 			return 2;
 		}
 		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice" || Capacity.getType() == "Bug" || Capacity.getType() == "Normal" || Capacity.getType() == "Grass" || Capacity.getType() == "Psy" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl ;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Poison")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -568,17 +568,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Ground")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl ;
 			return 2;
 		}
 		else if (Capacity.getType() == "Steel" || Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice" || Capacity.getType() == "Bug" || Capacity.getType() == "Normal" || Capacity.getType() == "Grass" || Capacity.getType() == "Psy" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl ;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Poison")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -590,12 +590,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Steel" || Capacity.getType() == "Fighting" || Capacity.getType() == "Fire" || Capacity.getType() == "Rock")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Ice")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -607,12 +607,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Bug" || Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Psy")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -624,17 +624,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fighting" || Capacity.getType() == "Fairy" || Capacity.getType() == "Bug")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Psy")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -646,17 +646,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Steel" || Capacity.getType() == "Poison")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Bug" || Capacity.getType() == "Dark")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Dragon")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -669,17 +669,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Ghost" || Capacity.getType() == "Dark")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Bug" || Capacity.getType() == "Poison")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Normal")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -691,12 +691,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Psy" || Capacity.getType() == "Fairy" || Capacity.getType() == "Fly")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Bug" || Capacity.getType() == "Rock" || Capacity.getType() == "Dark")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -708,12 +708,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Dragon" || Capacity.getType() == "Fairy" || Capacity.getType() == "Ice")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Water" || Capacity.getType() == "Fire" || Capacity.getType() == "Grass" || Capacity.getType() == "Electric")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -725,12 +725,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fire" || Capacity.getType() == "Rock" || Capacity.getType() == "Fly")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Grass" || Capacity.getType() == "Ground")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else
@@ -742,12 +742,12 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Fighting")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Ghost")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else
@@ -759,17 +759,17 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 	{
 		if (Capacity.getType() == "Electric" || Capacity.getType() == "Ice" || Capacity.getType() == "Rock")
 		{
-			std::cout << "C'est super efficace !";
+			std::cout << "C'est super efficace !" << std::endl;
 			return 2;
 		}
 		else if (Capacity.getType() == "Fighting" || Capacity.getType() == "Bug" || Capacity.getType() == "Grass")
 		{
-			std::cout << "Ce n'est pas tres efficace...";
+			std::cout << "Ce n'est pas tres efficace..." << std::endl;
 			return 0.5;
 		}
 		else if (Capacity.getType() == "Ground")
 		{
-			std::cout << "Ca n'affecte pas %d", victime.getNom();
+			std::cout << "Ca n'affecte pas %d" << std::endl, victime.getNom();
 			return 0;
 		}
 		else

@@ -28,7 +28,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = true;
 			m_puissance = 30;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(60): //Abra
 		switch (numeroCapacite)
@@ -45,7 +49,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = true;
 			m_puissance = 20;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(147): //Ptéra
 		switch (numeroCapacite)
@@ -62,7 +70,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = false;
 			m_puissance = 60;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(155): //Héricendre
 		switch (numeroCapacite)
@@ -79,7 +91,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = true;
 			m_puissance = 40;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(174): //Toudoudou
 		switch (numeroCapacite)
@@ -96,7 +112,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = true;
 			m_puissance = 40;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(175): //Togepi
 		switch (numeroCapacite)
@@ -113,7 +133,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = true;
 			m_puissance = 40;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(238): //Lippouti
 		switch (numeroCapacite)
@@ -130,7 +154,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = false;
 			m_puissance = 30;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(246): //Embrylex
 		switch (numeroCapacite)
@@ -147,8 +175,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = false;
 			m_puissance = 50;
 			break;
-		}
 
+		default:
+			break;
+		}
+		break;
 	case(248): //Tyranocif 80 et 100
 		switch (numeroCapacite)
 		{
@@ -164,7 +195,11 @@ void Capacite::capaciteCreation(int numeroPokemon, int numeroCapacite)
 			m_spe = false;
 			m_puissance = 100;
 			break;
+
+		default:
+			break;
 		}
+		break;
 
 	case(393):	//Tiplouf
 		switch (numeroCapacite)

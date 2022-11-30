@@ -43,7 +43,7 @@ void Combat::fighting()
 		}
 		else if (m_compteur == 2)
 		{
-			std::cout << "L'ennemie t'attaique" << std::endl;
+			std::cout << "L'ennemi t'attaque" << std::endl;
 			m_mechant->attaquer(*m_gentil, 2);
 		}
 		std::cout << "Vie " << m_gentil->getNom() << " - " << m_gentil->getPv() << std::endl;
