@@ -36,6 +36,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Fantominus";
 		m_type1 = "Poison";
+		m_type2 = "Ghost";
 		m_pvBase = m_pvMax = m_pv = 30;
 		m_attaqueBase = m_attaque = 35;
 		m_attaqueBase = m_attaqueSpe = 30;
@@ -64,6 +65,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Ptera";
 		m_type1 = "Fly";
+		m_type2 = "Rock";
 		m_pvBase = m_pvMax = m_pv = 80;
 		m_attaqueBase = m_attaque = 105;
 		m_attaqueBase = m_attaqueSpe = 65;
@@ -92,6 +94,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Toudoudou";
 		m_type1 = "Normal";
+		m_type2 = "Fairy";
 		m_pvBase = m_pvMax = m_pv = 90;
 		m_attaqueBase = m_attaque = 30;
 		m_attaqueBase = m_attaqueSpe = 15;
@@ -120,6 +123,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Lippouti";
 		m_type1 = "Ice";
+		m_type2 = "Psy";
 		m_pvBase = m_pvMax = m_pv = 45;
 		m_attaqueBase = m_attaque = 30;
 		m_attaqueBase = m_attaqueSpe = 15;
@@ -134,6 +138,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Embrylex";
 		m_type1 = "Rock";
+		m_type2 = "Ground";
 		m_pvBase = m_pvMax = m_pv = 50;
 		m_attaqueBase = m_attaque = 64;
 		m_attaqueBase = m_attaqueSpe = 50;
@@ -144,10 +149,11 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(248): //Embrylex 80 et 100
+	case(248): //Tyranocif 80 et 100
 		m_numero = numeroPokemon;
 		m_nom = "Tyranocif";
 		m_type1 = "Dark";
+		m_type2 = "Ground";
 		m_pvBase = m_pvMax = m_pv = 100;
 		m_attaqueBase = m_attaque = 134;
 		m_attaqueBase = m_attaqueSpe = 110;
@@ -162,6 +168,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Tiplouf";
 		m_type1 = "Water";
+		m_type1 = "None";
 		m_pvBase = m_pvMax = m_pv = 53;
 		m_attaqueBase = m_attaque = 51;
 		m_attaqueBase = m_attaqueSpe = 61;
@@ -190,6 +197,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Rozbouton";
 		m_type1 = "Grass";
+		m_type2 = "Poison";
 		m_pvBase = m_pvMax = m_pv = 40;
 		m_attaqueBase = m_attaque = 30;
 		m_attaqueSpeBase = m_attaqueSpe = 35;
@@ -262,6 +270,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Riolu";
 		m_type1 = "Fighting";
+		m_type2 = "Null";
 		m_pvBase = m_pvMax = m_pv = 40;
 		m_attaqueBase = m_attaque = 70;
 		m_attaqueBase = m_attaqueSpe = 40;
@@ -276,6 +285,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_numero = numeroPokemon;
 		m_nom = "Lucario";
 		m_type1 = "Steel";
+		m_type2 = "Fighting";
 		m_pvBase = m_pvMax = m_pv = 70;
 		m_attaqueBase = m_attaque = 110;
 		m_attaqueBase = m_attaqueSpe = 70;
@@ -721,5 +731,9 @@ float Pokemon::resistance(Pokemon& victime, Capacite& Capacity)
 		{
 			return 1;
 		}
+	}
+	else
+	{
+		return 1;
 	}
 }
