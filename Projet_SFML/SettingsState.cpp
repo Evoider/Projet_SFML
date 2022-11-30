@@ -36,6 +36,25 @@ void SettingsState::initGui()
 	this->ddl["RESOLUTIONS"] = new gui::DropDownList("Résolution : ",(this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) - 200 * this->scale, 300 * this->scale, 50 * this->scale,
 		&this->font, resolutions, 20 * this->scale,
 		7,3);
+	//Init Fullscreen settings
+	std::string fullscreen[] = {"Oui","Non"};
+
+	this->ddl["FULLSCREEN"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale, 300 * this->scale, 50 * this->scale,
+		&this->font, fullscreen, 20 * this->scale,
+		2, 1);
+	//Init v-sync settings
+	std::string vsync[] = {"Oui","Non"};
+
+	this->ddl["V-SYNC"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) , 300 * this->scale, 50 * this->scale,
+		&this->font, vsync, 20 * this->scale,
+		2, 1);
+	//Init anti-aliasing settings
+	std::string antialiasing[] = {"Oui","Non"};
+
+	this->ddl["ANTI-ALIASING"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) + 100 * this->scale, 300 * this->scale, 50 * this->scale,
+		&this->font, antialiasing, 20 * this->scale,
+		2, 1);
+
 }
 
 void SettingsState::initBackground()
