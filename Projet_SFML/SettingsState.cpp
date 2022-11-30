@@ -111,7 +111,7 @@ void SettingsState::initGui()
 	this->ddl["FRAMERATELIMIT"] = new gui::DropDownList("Framerate limit : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale,
 		200 * this->scale, 30 * this->scale,
 		&this->font, frameratelimitText, 20 * this->scale,
-		4, 1);
+		4, this->defFrameRateLimit);
 
 	//Init anti-aliasing settings
 	std::string antialiasing[] = { "No","Yes" };
