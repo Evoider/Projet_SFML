@@ -43,7 +43,7 @@ const bool gui::Button::isPressed() const
 	return false;
 }
 
-const std::string& gui::Button::getText() const
+const std::string gui::Button::getText() const
 {
 	return this->text.getString();
 }
@@ -54,7 +54,7 @@ void gui::Button::setText(const std::string text)
 }
 
 
-//Functios
+//Functions
 void gui::Button::update(const sf::Vector2f mousePos)
 {
 	/*Update for hover and pressed*/
@@ -103,23 +103,31 @@ void gui::Button::render(sf::RenderTarget* target)
 // 
 //Drop down list============================================
 
-gui::DropDownList::DropDownList(sf::RenderWindow& window, float scale, sf::Font* font, std::string list[], unsigned nrOfElements, unsigned default_index)
-	:font(font)
+gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float width, float height,
+	sf::Font* font, std::string list[], float text_size,
+	unsigned nrOfElements, unsigned default_index)
+	:titleddl(titleddl), font(font), showList(false), waitMax(1.f), wait(0.f)
 {
-
+	
 	for (size_t i = 0; i < nrOfElements; i++)
 	{
 		this->list.push_back(
-			new gui::Button((window.getSize().x / 2) - 150 * scale, (window.getSize().y / 2) - 400 * scale, 300 * scale, 50 * scale,
-				*this->font, list[i], 20 * scale,
-				sf::Color(70, 70, 70, 200),
+			new gui::Button(x, (y + height * i), width, height,
+				*this->font, list[i], text_size,
+				sf::Color(0, 0, 0, 255),
 				sf::Color(150, 150, 150, 255),
 				sf::Color(20, 20, 20, 200)
 			)
 		);
 	}
 
-	this->Selected = new Button(*this->list[default_index]);
+	this->Selected = new gui::Button(x - width, y, width, height,
+		*this->font,this->titleddl + list[default_index], text_size,
+		sf::Color(0, 0, 0, 255),
+		sf::Color(150, 150, 150, 255),
+		sf::Color(20, 20, 20, 200)
+	);
+
 
 
 }
@@ -131,10 +139,62 @@ gui::DropDownList::~DropDownList()
 		delete i;
 }
 
-void gui::DropDownList::update(const sf::Vector2f mousePos)
+//for blocking spam
+const bool gui::DropDownList::getWait()
 {
+	if (this->wait >= this->waitMax)
+	{
+		this->wait = 0.f;
+		return true;
+	}
+	return false;
+}
+
+void gui::DropDownList::updateWait(const float& dt)
+{
+	if (this->wait <= this->waitMax)
+		this->wait += 10 * dt;
+	
+}
+
+//Show and hide the list
+
+void gui::DropDownList::update(const sf::Vector2f & mousePos, const float& dt)
+{
+	this->updateWait(dt);
+	this->Selected->update(mousePos);
+
+	if (this->Selected->isPressed() && this->getWait())
+	{
+		if (this->showList)
+			this->showList = false;
+		else
+			this->showList = true;
+	}
+	if (this->showList)
+	{
+		for (auto& i : this->list)
+		{
+			i->update(mousePos);
+			if (i->isPressed() && this->getWait())
+			{
+				this->showList = false;
+				this->Selected->setText(this->titleddl + i->getText());
+			}
+		}
+	}
+
+	
 }
 
 void gui::DropDownList::render(sf::RenderTarget* target)
 {
+	this->Selected->render(target);
+	if (this->showList)
+	{
+		for (auto& i : this->list)
+		{
+			i->render(target);
+		}
+	}
 }

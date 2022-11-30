@@ -21,7 +21,7 @@ void SettingsState::initKeyBinds()
 	this->keyBinds["CLOSE"] = this->supportedKeys->at("Escape");
 }
 
-void SettingsState::initButtons()
+void SettingsState::initGui()
 {
 	
 	this->buttons["EXIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 300 * this->scale, 50 * this->scale,
@@ -30,7 +30,12 @@ void SettingsState::initButtons()
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
+	//Init resolution settings
+	std::string resolutions[] = {"1366  x 768","1600 x 900","1920 x 1080","1920 x 1200","2560 x 1440","2560 x 1600","3840 x 2160" };
 
+	this->ddl["RESOLUTIONS"] = new gui::DropDownList("Résolution : ",(this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) - 200 * this->scale, 300 * this->scale, 50 * this->scale,
+		&this->font, resolutions, 20 * this->scale,
+		7,3);
 }
 
 void SettingsState::initBackground()
@@ -48,12 +53,22 @@ SettingsState::SettingsState(sf::RenderWindow* window, std::map<std::string, int
 {
 	this->initKeyBinds();
 	this->initBackground();
-	this->initButtons();
+	this->initGui();
 
 }
 
 SettingsState::~SettingsState()
 {
+	auto it = this->buttons.begin();
+	for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
+	{
+		delete it->second;
+	}
+	auto it2 = this->ddl.begin();
+	for (it2 = this->ddl.begin(); it2 != this->ddl.end(); ++it2)
+	{
+		delete it2->second;
+	}
 }
 
 //Functions
@@ -71,9 +86,9 @@ void SettingsState::updateInput(const float& dt)
 
 }
 
-void SettingsState::updateButtons()
+void SettingsState::updateGui(const float& dt)
 {
-
+	//Update buttons==============
 	for (auto& it : this->buttons)
 	{
 		it.second->update(this->mousePosView);
@@ -87,6 +102,11 @@ void SettingsState::updateButtons()
 		this->quit = true;
 		std::cout << this->quit << " settings menu update button  " << states->size() << "\n";
 	}
+	//update Drop down lists================
+	for (auto& it : this->ddl)
+	{
+		it.second->update(this->mousePosView,dt);
+	}
 }
 
 void SettingsState::update(const float& dt)
@@ -95,15 +115,20 @@ void SettingsState::update(const float& dt)
 	this->quit = false;
 	this->updateMousePosition();
 	this->updateInput(dt);
-	this->updateButtons();
+	this->updateGui(dt);
 
 
 }
 
-void SettingsState::renderButtons(sf::RenderTarget* target)
+void SettingsState::renderGui(sf::RenderTarget* target)
 {
-
+	//Render Buttons============
 	for (auto& it : this->buttons)
+	{
+		it.second->render(target);
+	}
+	//Render Drop down lists=========
+	for (auto& it : this->ddl)
 	{
 		it.second->render(target);
 	}
@@ -116,6 +141,6 @@ void SettingsState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 	target->draw(this->background);
-	this->renderButtons(target);
+	this->renderGui(target);
 }
 

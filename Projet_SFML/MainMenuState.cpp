@@ -72,7 +72,24 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 	this->initBackground();
 	this->initButtons();
 
-	
+	std::ifstream ifs("Config/window.ini");
+	std::string title = "None";
+	if (ifs.is_open())
+	{
+		std::getline(ifs, title);
+	}
+	ifs.close();
+	this->titleBox.setPosition(sf::Vector2f(((this->window->getSize().x / 2) - 400) * this->scale, 100 * this->scale));
+	this->titleBox.setSize(sf::Vector2f(800, 100));
+	this->titleBox.setFillColor(sf::Color(0, 0, 0, 50));
+	this->title.setFont(this->font);
+	this->title.setString(title);
+	this->title.setFillColor(sf::Color::Black);
+	this->title.setCharacterSize(50 * this->scale);
+	this->title.setPosition(
+		this->titleBox.getPosition().x + (this->titleBox.getGlobalBounds().width / 2.f) - this->title.getGlobalBounds().width / 2.f,
+		this->titleBox.getPosition().y + (this->titleBox.getGlobalBounds().height) / 2.f - this->title.getGlobalBounds().height / 2.f
+	);
 	
 }
 
@@ -160,6 +177,8 @@ void MainMenuState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 	target->draw(this->background);
+	target->draw(this->titleBox);
+	target->draw(this->title);
 	this->renderButtons(target);
 }
 

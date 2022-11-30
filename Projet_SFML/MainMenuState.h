@@ -12,7 +12,8 @@ private:
     sf::Texture textureBg;
     float scale;
     sf::Font font;
-    
+    sf::Text title;
+    sf::RectangleShape titleBox;
 
     std::map<std::string, gui::Button*> buttons;
 

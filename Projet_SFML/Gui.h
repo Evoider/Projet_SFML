@@ -37,7 +37,7 @@ namespace gui
 
 		//Accessor
 		const bool isPressed() const;
-		const std::string& getText() const;
+		const std::string getText() const;
 
 		//Modifier
 		void setText(const std::string text);
@@ -55,13 +55,21 @@ namespace gui
 		sf::Font* font;
 		gui::Button* Selected;
 		std::vector<gui::Button*> list;
+		bool showList;
+		float wait;
+		float waitMax;
+		std::string titleddl;
 
 	public:
-		DropDownList(sf::RenderWindow& window, float scale, sf::Font* font, std::string list[], unsigned nrOfElements, unsigned default_index = 0);
+		DropDownList(std::string titleddl, float x, float y, float width, float height,
+			sf::Font* font, std::string list[], float text_size,
+			unsigned nrOfElements, unsigned default_index = 0);
 		~DropDownList();
 
 		//Functions
-		void update(const sf::Vector2f mousePos);
+		const bool getWait();
+		void updateWait(const float& dt);
+		void update(const sf::Vector2f& mousePos, const float& dt);
 		void render(sf::RenderTarget* target);
 
 	};
