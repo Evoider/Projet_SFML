@@ -2,6 +2,7 @@
 
 #include "Player.h"
 
+#include "GraphicsSettings.h"
 
 class State
 {
@@ -37,6 +38,8 @@ public:
 
 
 	virtual void endState() = 0;
+
+	virtual void updateWindow(sf::RenderWindow* window) = 0;
 	virtual void updateKeytime(const float& dt);
 	virtual void updateMousePosition();
 	virtual void updateInput(const float& dt) = 0;

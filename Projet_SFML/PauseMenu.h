@@ -8,6 +8,7 @@
 class PauseMenu
 {
 private:
+	GraphicsSettings& graphSettings;
 	bool pause;
 	bool quit,settings;
 	float scale,wait;
@@ -23,9 +24,9 @@ private:
 	std::map<std::string, int>* supportedKeys;
 	std::stack<State*>* states;
 
-	void initButtons(sf::RenderWindow& window);
+	void initButtons();
 public:
-	PauseMenu(sf::RenderWindow& window, const sf::Font& font, float scale, std::stack<State*>* states, std::map<std::string, int>* supportedKeys);
+	PauseMenu(sf::RenderWindow* window, GraphicsSettings& graphSettings, const sf::Font& font, float scale, std::stack<State*>* states, std::map<std::string, int>* supportedKeys);
 	~PauseMenu();
 
 	//Functions
@@ -35,6 +36,7 @@ public:
 	bool getPauseState();
 	bool getQuit();
 
+	void updateWindow(sf::RenderWindow* window,float scale);
 	void updateButtons();
 	void renderButtons(sf::RenderTarget* target = nullptr);
 

@@ -58,28 +58,23 @@ void MainMenuState::initBackground()
 	std::cout << this->textureBg.getSize().x << "\n";
 
 	this->scale = this->window->getSize().x / 1920.f;
+
 	float scalebg = this->window->getSize().x / (float)(this->textureBg.getSize().x);
 	this->background.setTexture(textureBg);
 	this->background.setScale(scalebg,scalebg);
 }
 
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	:State(window, supportedKeys, states)
+MainMenuState::MainMenuState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+	:State(window, supportedKeys, states),graphSettings(graphSettings)
 {
 	this->initFonts();
 	this->initKeyBinds();
 	this->initBackground();
 	this->initButtons();
 
-	std::ifstream ifs("Config/window.ini");
-	std::string title = "None";
-	if (ifs.is_open())
-	{
-		std::getline(ifs, title);
-	}
-	ifs.close();
-	this->titleBox.setPosition(sf::Vector2f(((this->window->getSize().x / 2) - 400) * this->scale, 100 * this->scale));
+	std::string title = this->graphSettings.title;
+	this->titleBox.setPosition(sf::Vector2f((this->window->getSize().x / 2) - 400 * this->scale, 100 * this->scale));
 	this->titleBox.setSize(sf::Vector2f(800, 100));
 	this->titleBox.setFillColor(sf::Color(0, 0, 0, 50));
 	this->title.setFont(this->font);
@@ -109,7 +104,30 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::endState()
 {
-	std::cout << "Ending menu state" << "\n";
+	this->quit = true;
+	 
+	std::cout << "Ending Mainmenu state" << states->size() << "\n";
+}
+
+void MainMenuState::updateWindow(sf::RenderWindow* window)
+{
+	this->window = window;
+	this->initKeyBinds();
+	this->initBackground();
+	this->initButtons();
+
+	std::string title = this->graphSettings.title;
+	this->titleBox.setPosition(sf::Vector2f((this->window->getSize().x / 2) - 400 * this->scale, 100 * this->scale));
+	this->titleBox.setSize(sf::Vector2f(800, 100));
+	this->titleBox.setFillColor(sf::Color(0, 0, 0, 50));
+	this->title.setFont(this->font);
+	this->title.setString(title);
+	this->title.setFillColor(sf::Color::Black);
+	this->title.setCharacterSize(50 * this->scale);
+	this->title.setPosition(
+		this->titleBox.getPosition().x + (this->titleBox.getGlobalBounds().width / 2.f) - this->title.getGlobalBounds().width / 2.f,
+		this->titleBox.getPosition().y + (this->titleBox.getGlobalBounds().height) / 2.f - this->title.getGlobalBounds().height / 2.f
+	);
 }
 
 void MainMenuState::updateInput(const float& dt)
@@ -133,20 +151,19 @@ void MainMenuState::updateButtons()
 	//New Game
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states, this->font, this->scale));
+		this->states->push(new GameState(this->window,this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
 	}
 	
 	//Settings
 	if (this->buttons["SETTINGS"]->isPressed())
 	{
-		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states, this->font, this->scale));
+		this->states->push(new SettingsState(this->window,this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
 	}
 
 	//Quit the Game
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
-		this->quit = true;
-		std::cout << this->quit << " Main menu update button  " << states->size() << "\n";
+		this->endState();
 	}
 }
 

@@ -8,50 +8,36 @@
 void Game::initVariables()
 {
 	this->window = NULL;
-	this->fullscreen = false;
 	this->dt = 0.f;
+}
+
+void Game::initGraphicsSettings()
+{
+	std::cout << "plop" << "\n";
+	this->graphSettings.loadFromFile("Config/graphics.ini");
 }
 
 void Game::initWindow()
 {
-	/*Create a window using option from a window.ini file*/
 
-	std::ifstream ifs("Config/window.ini");
-	this->videoModes = sf::VideoMode::getFullscreenModes();
-
-	std::string title = "None";
-	sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
-	bool fullscreen = false;
-	unsigned framerate_limit = 60;
-	bool vertical_sync_enabled = false;
-	unsigned antialiasing_level = 0;
-
-	if (ifs.is_open())
+	if (this->graphSettings.fullscreen)
 	{
-		std::getline(ifs, title);
-		ifs >> window_bounds.width >> window_bounds.height;
-		ifs >> fullscreen;
-		ifs >> framerate_limit;
-		ifs >> vertical_sync_enabled; 
-		ifs >> antialiasing_level; 
-	}
-
-	ifs.close();
-
-	this->fullscreen = fullscreen;
-	windowSettings.antialiasingLevel = antialiasing_level;
-
-	if (this->fullscreen)
-	{
-		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Fullscreen, windowSettings);
+		this->window = new sf::RenderWindow(this->graphSettings.resolution,
+			this->graphSettings.title,
+			sf::Style::Fullscreen,
+			this->graphSettings.contextSettings);
 	}
 	else
 	{
-		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar|sf::Style::Close, windowSettings);
+		this->window = new sf::RenderWindow(
+			this->graphSettings.resolution,
+			this->graphSettings.title, 
+			sf::Style::Titlebar|sf::Style::Close,
+			this->graphSettings.contextSettings);
 	}
 	
-	this->window->setFramerateLimit(framerate_limit);
-	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
+	this->window->setFramerateLimit(this->graphSettings.frameRateLimit);
+	this->window->setVerticalSyncEnabled(this->graphSettings.verticaleSync);
 }
 
 void Game::initKeys()
@@ -72,7 +58,7 @@ void Game::initKeys()
 
 void Game::initStates()
 {
-	this->states.push(new MainMenuState(this->window,&this->supportedKeys, &this->states));
+	this->states.push(new MainMenuState(this->window,this->graphSettings,&this->supportedKeys, &this->states));
 }
 
 
@@ -80,6 +66,7 @@ void Game::initStates()
 Game::Game()
 {
 	this->initVariables();
+	this->initGraphicsSettings();
 	this->initWindow();
 	this->initKeys();
 	this->initStates();
@@ -125,18 +112,44 @@ void Game::updateSFMLEvents()
 void Game::update()
 {	
 	
-
+	
 	this->updateSFMLEvents();
 	if (!this->states.empty())
 	{
+		if (this->graphSettings.changed)
+		{
+			if (this->graphSettings.fullscreen)
+			{
+				this->window->create(this->graphSettings.resolution,
+					this->graphSettings.title,
+					sf::Style::Fullscreen,
+					this->graphSettings.contextSettings);
+			}
+			else
+			{
+				this->window->create(
+					this->graphSettings.resolution,
+					this->graphSettings.title,
+					sf::Style::Titlebar | sf::Style::Close,
+					this->graphSettings.contextSettings);
+			}
+
+			this->window->setFramerateLimit(this->graphSettings.frameRateLimit);
+			this->window->setVerticalSyncEnabled(this->graphSettings.verticaleSync);
+
+			this->states.top()->updateWindow(this->window);
+			this->graphSettings.changed = false;
+		}
 		this->states.top()->update(this->dt);
 
 		if (this->states.top()->getQuit())
 		{
-			this->states.top()->endState();
+			
 			auto *to_delete = this->states.top();
 			this->states.pop();
 			delete to_delete;
+			if (!this->states.empty())
+				this->states.top()->updateWindow(this->window);
 		}
 	}
 	//Application end

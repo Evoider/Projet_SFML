@@ -24,8 +24,8 @@ void GameState::initKeyBinds()
 	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
-	:State(window, supportedKeys, states), pmenu(*window, font, scale, states, supportedKeys), player(68, 73)
+GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
+	:State(window, supportedKeys, states), pmenu(window,graphSettings, font, scale, states, supportedKeys), player(68, 73),graphSettings(graphSettings)
 {
 	this->initKeyBinds();
 	this->test.initTab();
@@ -43,7 +43,17 @@ GameState::~GameState()
 
 void GameState::endState()
 {
-	std::cout << "Ending game state" << "\n";
+	this->quit = true;
+
+	std::cout << "Ending game state" << states->size() << "\n";
+}
+
+void GameState::updateWindow(sf::RenderWindow* window)
+{
+	this->window = window;
+	this->scale = this->window->getSize().x / 1920.f;
+	this->initKeyBinds();
+	this->pmenu.updateWindow(window,this->scale);
 }
 
 void GameState::updateInput(const float& dt)
@@ -109,8 +119,7 @@ void GameState::update(const float& dt)
 	}
 	if (this->pmenu.getQuit())
 	{
-		this->quit = true;
-		std::cout << this->quit << " GAME state update " << states->size() << "\n";
+		this->endState();
 	}
 }
 

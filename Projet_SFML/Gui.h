@@ -18,7 +18,7 @@ namespace gui
 	class Button
 	{
 	private:
-		short unsigned buttonState;
+		short unsigned buttonState,id;
 
 		sf::RectangleShape shape;
 		sf::Font font;
@@ -32,15 +32,17 @@ namespace gui
 	public:
 		Button(float x, float y, float width, float height,
 			sf::Font font, std::string text, float text_size,
-			sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+			sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, short unsigned id = 0);
 		~Button();
 
 		//Accessor
 		const bool isPressed() const;
 		const std::string getText() const;
+		const short unsigned& getId() const;
 
 		//Modifier
 		void setText(const std::string text);
+		void setId(const short unsigned id);
 
 		//Functions
 		void update(const sf::Vector2f mousePos);
@@ -66,8 +68,12 @@ namespace gui
 			unsigned nrOfElements, unsigned default_index = 0);
 		~DropDownList();
 
-		//Functions
+		//Accessors
 		const bool getWait();
+		const unsigned short& getSelectedId() const;
+
+		//Functions
+		
 		void updateWait(const float& dt);
 		void update(const sf::Vector2f& mousePos, const float& dt);
 		void render(sf::RenderTarget* target);

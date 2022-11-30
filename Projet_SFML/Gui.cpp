@@ -4,10 +4,11 @@
 
 gui::Button::Button(float x, float y, float width, float height,
 	sf::Font font, std::string text, float text_size,
-	sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
+	sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, 
+	short unsigned id)
 {
 	this->buttonState = BTN_IDLE;
-
+	this->id = id;
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
 	this->font = font;
@@ -48,9 +49,19 @@ const std::string gui::Button::getText() const
 	return this->text.getString();
 }
 
+const short unsigned& gui::Button::getId() const
+{
+	return this->id;
+}
+
 void gui::Button::setText(const std::string text)
 {
 	this->text.setString(text);
+}
+
+void gui::Button::setId(const short unsigned id)
+{
+	this->id = id;
 }
 
 
@@ -116,7 +127,8 @@ gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float wi
 				*this->font, list[i], text_size,
 				sf::Color(0, 0, 0, 255),
 				sf::Color(150, 150, 150, 255),
-				sf::Color(20, 20, 20, 200)
+				sf::Color(20, 20, 20, 200),
+				i
 			)
 		);
 	}
@@ -125,7 +137,8 @@ gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float wi
 		*this->font,this->titleddl + list[default_index], text_size,
 		sf::Color(0, 0, 0, 255),
 		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		sf::Color(20, 20, 20, 200),
+		default_index
 	);
 
 
@@ -139,6 +152,9 @@ gui::DropDownList::~DropDownList()
 		delete i;
 }
 
+
+//Accessors
+
 //for blocking spam
 const bool gui::DropDownList::getWait()
 {
@@ -148,6 +164,11 @@ const bool gui::DropDownList::getWait()
 		return true;
 	}
 	return false;
+}
+
+const unsigned short& gui::DropDownList::getSelectedId() const
+{
+	return this->Selected->getId();
 }
 
 void gui::DropDownList::updateWait(const float& dt)
@@ -180,6 +201,7 @@ void gui::DropDownList::update(const sf::Vector2f & mousePos, const float& dt)
 			{
 				this->showList = false;
 				this->Selected->setText(this->titleddl + i->getText());
+				this->Selected->setId(i->getId());
 			}
 		}
 	}

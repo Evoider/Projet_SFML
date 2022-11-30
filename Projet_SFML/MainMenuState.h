@@ -1,6 +1,5 @@
 #pragma once
 #include "GameState.h"
-
 #include "Gui.h"
 
 class MainMenuState:
@@ -8,6 +7,7 @@ class MainMenuState:
 {
 private:
     //Variable
+    GraphicsSettings& graphSettings;
     sf::Sprite background;
     sf::Texture textureBg;
     float scale;
@@ -26,13 +26,14 @@ private:
 
 public:
 
-    MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+    MainMenuState(sf::RenderWindow* window,GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 
     virtual ~MainMenuState();
 
     //Functions
     void endState();
 
+    void updateWindow(sf::RenderWindow* window);
     void updateInput(const float& dt);
     void updateButtons();
     void update(const float& dt);

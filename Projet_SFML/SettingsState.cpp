@@ -1,6 +1,11 @@
 #include "SettingsState.h"
 
 
+void SettingsState::initVariables()
+{
+	this->modes = sf::VideoMode::getFullscreenModes();
+} 
+
 void SettingsState::initKeyBinds()
 {
 
@@ -24,36 +29,102 @@ void SettingsState::initKeyBinds()
 void SettingsState::initGui()
 {
 	
-	this->buttons["EXIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 300 * this->scale, 50 * this->scale,
-		this->font, "Quit", 20 * this->scale,
+	this->buttons["APPLY"] = new gui::Button((this->window->getSize().x / 2) - 100 * this->scale, (this->window->getSize().y / 2) + 300 * this->scale, 200 * this->scale, 50 * this->scale,
+		this->font, "Apply", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
+	this->buttons["EXIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 100 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 200 * this->scale, 50 * this->scale,
+		this->font, "Back", 20 * this->scale,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(150, 150, 150, 255),
+		sf::Color(20, 20, 20, 200)
+	);
+
+	std::vector<std::string> modes_str;
+	int id = 0;
+	for (auto &i : this->modes)
+	{
+		modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
+		if (i.width == this->window->getSize().x && i.height == this->window->getSize().y)
+		{
+			this->defResolution = id;
+		}
+		id++;
+	}
+
 	//Init resolution settings
-	std::string resolutions[] = {"1366  x 768","1600 x 900","1920 x 1080","1920 x 1200","2560 x 1440","2560 x 1600","3840 x 2160" };
+	
+	std::cout << "modes_str" << modes_str.size() << "\n";
 
-	this->ddl["RESOLUTIONS"] = new gui::DropDownList("Résolution : ",(this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) - 200 * this->scale, 300 * this->scale, 50 * this->scale,
-		&this->font, resolutions, 20 * this->scale,
-		7,3);
+	this->ddl["RESOLUTIONS"] = new gui::DropDownList("Résolution : ",
+		(this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 400 * this->scale,
+		200 * this->scale, 30 * this->scale,
+		&this->font, modes_str.data(), 15 * this->scale,
+		modes_str.size(), this->defResolution);
+
 	//Init Fullscreen settings
-	std::string fullscreen[] = {"Oui","Non"};
+	std::string fullscreen[] = { "No","Yes" };
+	if (this->graphSettings.fullscreen)
+		this->defFullscreen = 1;
+	else
+		this->defFullscreen = 0;
 
-	this->ddl["FULLSCREEN"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale, 300 * this->scale, 50 * this->scale,
+	this->ddl["FULLSCREEN"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 300 * this->scale,
+		200 * this->scale, 30 * this->scale,
 		&this->font, fullscreen, 20 * this->scale,
-		2, 1);
+		2, this->defFullscreen);
+
 	//Init v-sync settings
-	std::string vsync[] = {"Oui","Non"};
+	std::string vsync[] = { "No","Yes" };
+	if (this->graphSettings.verticaleSync)
+		this->defVsync = 1;
+	else
+		this->defVsync = 0;
 
-	this->ddl["V-SYNC"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) , 300 * this->scale, 50 * this->scale,
+	this->ddl["V-SYNC"] = new gui::DropDownList("V-sync : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 200 * this->scale,
+		200 * this->scale, 30 * this->scale,
 		&this->font, vsync, 20 * this->scale,
-		2, 1);
-	//Init anti-aliasing settings
-	std::string antialiasing[] = {"Oui","Non"};
+		2, this->defVsync);
 
-	this->ddl["ANTI-ALIASING"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 150 * this->scale, (this->window->getSize().y / 2) + 100 * this->scale, 300 * this->scale, 50 * this->scale,
+	//Init framerate settings
+	std::string frameratelimitText[] = { "30","60","120","144" };
+	switch (this->graphSettings.frameRateLimit)
+	{
+	case 30 :
+		this->defFrameRateLimit = 0;
+		break;
+	case 60:
+		this->defFrameRateLimit = 1;
+		break;
+	case 120:
+		this->defFrameRateLimit = 2;
+		break;
+	case 144:
+		this->defFrameRateLimit = 3;
+		break;
+	default:
+		break;
+	}
+
+	this->ddl["FRAMERATELIMIT"] = new gui::DropDownList("Framerate limit : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale,
+		200 * this->scale, 30 * this->scale,
+		&this->font, frameratelimitText, 20 * this->scale,
+		4, 1);
+
+	//Init anti-aliasing settings
+	std::string antialiasing[] = { "No","Yes" };
+	if (this->graphSettings.contextSettings.antialiasingLevel)
+		this->defAntiAlias = 1;
+	else
+		this->defAntiAlias = 0;
+
+	this->ddl["ANTI-ALIASING"] = new gui::DropDownList("Antialiasing : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 0 * this->scale,
+		200 * this->scale, 30 * this->scale,
 		&this->font, antialiasing, 20 * this->scale,
-		2, 1);
+		2, this->defAntiAlias);
+
 
 }
 
@@ -67,13 +138,15 @@ void SettingsState::initBackground()
 	this->background.setScale(scalebg, scalebg);
 }
 
-SettingsState::SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
-	:State(window, supportedKeys, states),scale(scale),font(font)
+
+
+SettingsState::SettingsState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
+	:State(window, supportedKeys, states),scale(scale),font(font),graphSettings(graphSettings)
 {
+	this->initVariables();
 	this->initKeyBinds();
 	this->initBackground();
 	this->initGui();
-
 }
 
 SettingsState::~SettingsState()
@@ -94,7 +167,19 @@ SettingsState::~SettingsState()
 
 void SettingsState::endState()
 {
-	std::cout << "Ending settings state" << "\n";
+	this->quit = true;
+	
+	std::cout << "Ending settings state" << states->size() << "\n";
+}
+
+void SettingsState::updateWindow(sf::RenderWindow* window)
+{
+	this->window = window;
+	this->scale = this->window->getSize().x / 1920.f;
+	this->initVariables();
+	this->initKeyBinds();
+	this->initBackground();
+	this->initGui();
 }
 
 void SettingsState::updateInput(const float& dt)
@@ -115,12 +200,46 @@ void SettingsState::updateGui(const float& dt)
 
 	/*Action of the Button*/
 
+	//Apply the settings
+	if (this->buttons["APPLY"]->isPressed())
+	{
+		this->graphSettings.resolution = this->modes[this->ddl["RESOLUTIONS"]->getSelectedId()];
+
+		this->graphSettings.fullscreen = this->ddl["FULLSCREEN"]->getSelectedId();
+
+		this->graphSettings.verticaleSync = this->ddl["V-SYNC"]->getSelectedId();
+
+		switch (this->ddl["FRAMERATELIMIT"]->getSelectedId())
+		{
+		case 0:
+			this->graphSettings.frameRateLimit = 30;
+			break;
+		case 1:
+			this->graphSettings.frameRateLimit = 60;
+			break;
+		case 2:
+			this->graphSettings.frameRateLimit = 120;
+			break;
+		case 3:
+			this->graphSettings.frameRateLimit = 144;
+			break;
+		default:
+			break;
+		}
+
+		this->graphSettings.contextSettings.antialiasingLevel =this->ddl["ANTI-ALIASING"]->getSelectedId();
+
+		this->graphSettings.saveToFile("Config/graphics.ini");
+		this->graphSettings.changed = true;
+		/*this->window->create(this->graphSettings.resolution, this->graphSettings.title, sf::Style::Default);*/
+	}
+	
 	//Exit the settings
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
-		this->quit = true;
-		std::cout << this->quit << " settings menu update button  " << states->size() << "\n";
+		this->endState();
 	}
+
 	//update Drop down lists================
 	for (auto& it : this->ddl)
 	{

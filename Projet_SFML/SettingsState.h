@@ -7,6 +7,8 @@ class SettingsState :
 {
 private:
     //Variable
+    unsigned int defResolution, defFullscreen, defVsync, defFrameRateLimit, defAntiAlias;
+    GraphicsSettings& graphSettings;
     sf::Sprite background;
     sf::Texture textureBg;
     float scale;
@@ -16,18 +18,23 @@ private:
     std::map<std::string, gui::Button*> buttons;
     std::map<std::string, gui::DropDownList*> ddl;
 
+    std::vector<sf::VideoMode> modes;
     //Functions
+    void initVariables();
     void initKeyBinds();
     void initGui();
     void initBackground();
 public:
-    SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale);
+    SettingsState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale );
 
     ~SettingsState();
+
+
 
     //Functions
     void endState();
 
+    void updateWindow(sf::RenderWindow* window);
     void updateInput(const float& dt);
     void updateGui(const float& dt);
     void update(const float& dt);
