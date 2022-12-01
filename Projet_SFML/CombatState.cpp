@@ -36,11 +36,25 @@ void CombatState::initButtons()
 
 void CombatState::initKeyBinds()
 {
+	std::ifstream ifs("Config/gamestate_keybinds.ini");
+	if (ifs.is_open())
+	{
+		std::string key = "";
+		std::string key_name = "";
 
+		while (ifs >> key >> key_name)
+		{
+			this->keyBinds[key] = this->supportedKeys->at(key_name);
+		}
+	}
+
+	ifs.close();
+
+	this->keyBinds["CLOSE"] = this->supportedKeys->at("Escape");
 }
 
 CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale)
-	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font)
+	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font), pmenu(window, graphSettings, font, scale, states, supportedKeys)
 {
 	this->initFonts();
 	this->initButtons();
@@ -51,7 +65,9 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 
 void CombatState::endState()
 {
-	std::cout << "Ending fight state" << "\n";
+	this->quit = true;
+
+	std::cout << "Ending Combat state" << states->size() << "\n";
 }
 
 void CombatState::updateWindow(sf::RenderWindow* window)
@@ -66,7 +82,18 @@ void CombatState::updateWindow(sf::RenderWindow* window)
 
 void CombatState::updateInput(const float& dt)
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))) && this->getKeytime())
+	{
+		if (!this->pmenu.getPauseState())
+		{
+			this->pmenu.pauseState();
 
+		}
+		else
+		{
+			this->pmenu.unpauseState();
+		}
+	}
 }
 
 
@@ -82,7 +109,19 @@ void CombatState::update(const float& dt)
 {
 	this->updateButtons();
 	this->updateMousePosition();
-	this->updateInput(dt);
+	if (!this->pmenu.getPauseState())
+	{
+
+		this->updateInput(dt);
+	}
+	else //Pause update
+	{
+		this->pmenu.update(this->mousePosView, dt);
+	}
+	if (this->pmenu.getQuit())
+	{
+		this->endState();
+	}
 
 }
 

@@ -1,11 +1,13 @@
 #pragma once
 #include "SettingsState.h"
+#include "PauseMenu.h"
 #include "Gui.h"
 
 class CombatState : public State
 {
 private:
 	GraphicsSettings& graphSettings;
+	PauseMenu pmenu;
 	float scale;
 
 	//Pokemon AllyPokemon;
