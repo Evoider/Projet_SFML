@@ -16,6 +16,7 @@ public:
 	//Get
 	std::string getNom();
 	int getPv();
+	int getLvl();
 	int getDefense();
 	int getDefenseSpe();
 	int getVitesse();
