@@ -11,7 +11,7 @@ void CombatState::initFonts()
 
 void CombatState::initButtons()
 {
-	this->buttons["ATTACK"] = new  gui::Button(this->window->getSize().x - 600, this->window->getSize().y - 200, 600, 100,
+	this->buttons["ATTACK"] = new  gui::Button(this->window->getSize().x - 600 * this->scale, this->window->getSize().y - 200, 600, 100,
 		this->font, "Attack", 30,
 		sf::Color(255, 0, 0, 150),
 		sf::Color(240, 0, 0, 255),
@@ -20,19 +20,30 @@ void CombatState::initButtons()
 
 	this->buttons["POKEMON"] = new  gui::Button(this->window->getSize().x - 600, this->window->getSize().y - 100, 300, 100,
 		this->font, "Pokemon", 30,
-		sf::Color(255, 0, 0, 150),
-		sf::Color(240, 0, 0, 255),
-		sf::Color(235, 0, 0, 200)
+		sf::Color(0, 255, 0, 150),
+		sf::Color(0, 240, 0, 255),
+		sf::Color(0, 235, 0, 200)
 	);
 
 	this->buttons["FUITE"] = new  gui::Button(this->window->getSize().x - 300, this->window->getSize().y - 100, 300, 100,
 		this->font, "Fuite", 30,
-		sf::Color(255, 0, 0, 150),
-		sf::Color(0, 240, 0, 255),
+		sf::Color(0, 0, 255, 150),
+		sf::Color(0, 0, 240, 255),
 		sf::Color(0, 0, 235, 200)
 	);
 
 }
+
+void  CombatState::initBackground()
+{
+	this->texturebg.loadFromFile("Ressources/Sprites/battlegroundgrass.png");
+
+	float scalebg = this->window->getSize().x / (float)(this->texturebg.getSize().x);
+	this->backgound.setTexture(texturebg);
+	this->backgound.setPosition(this->backgound.getPosition().x, this->backgound.getPosition().y - 200 * this->scale);
+	this->backgound.setScale(scalebg, scalebg);
+}
+
 
 void CombatState::initKeyBinds()
 {
@@ -43,10 +54,8 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font)
 {
 	this->initFonts();
+	this->initBackground();
 	this->initButtons();
-	this->rectBlack.setSize(sf::Vector2f(600 * this->scale, 200 * this->scale));
-	this->rectBlack.setPosition(this->window->getSize().x - 610 * this->scale, this->window->getSize().y - 210 * this->scale);
-	this->rectBlack.setFillColor(sf::Color::Blue);
 }
 
 void CombatState::endState()
@@ -58,9 +67,8 @@ void CombatState::updateWindow(sf::RenderWindow* window)
 {
 	this->window = window;
 	this->scale = this->window->getSize().x / 1920.f;
+	this->initBackground();
 	this->initButtons();
-	this->rectBlack.setSize(sf::Vector2f(600 * this->scale, 200 * this->scale));
-	this->rectBlack.setPosition(this->window->getSize().x - 610 * this->scale, this->window->getSize().y - 210 * this->scale);
 	
 }
 
@@ -92,7 +100,7 @@ void CombatState::render(sf::RenderTarget* target)
 	{
 		target = this->window;
 	}
-	this->window->draw(rectBlack);
+	target->draw(this->backgound);
 	this->renderButtons(target);
 }
 
