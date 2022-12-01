@@ -27,12 +27,14 @@ namespace gui
 		sf::Color idleColor;
 		sf::Color hoverColor;
 		sf::Color activeColor;
+		sf::Color outlineColor;
+		float outlineThick;
 
 
 	public:
 		Button(float x, float y, float width, float height,
 			sf::Font font, std::string text, float text_size,
-			sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, short unsigned id = 0);
+			sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, sf::Color outlineColor, float outlineThick, short unsigned id = 0);
 		~Button();
 
 		//Accessor
@@ -64,7 +66,7 @@ namespace gui
 
 	public:
 		DropDownList(std::string titleddl, float x, float y, float width, float height,
-			sf::Font* font, std::string list[], float text_size,
+			sf::Font* font, std::string list[], float text_size, sf::Color outlineColor, float outlineThick,
 			unsigned nrOfElements, unsigned default_index = 0);
 		~DropDownList();
 
@@ -83,26 +85,30 @@ namespace gui
 	class LifeBarBox
 	{
 	private:
-		sf::RectangleShape shape;
+		sf::RectangleShape backBox, LifeBarContainer, LifeBar;
 		sf::Font font;
-		sf::Text text;
-		std::string nom;
-		int level;
-		int life;
+		sf::Text nom, life,textLife, level;
+		int lvl;
+		int pvMax;
+		sf::Color backBoxColor;
+		sf::Color lifeColor;
+		sf::Color outlineColor;
+		float outlineThick;
+		
+		bool showPV;
 
 	public:
 		LifeBarBox(float x, float y, float width, float height,
-			sf::Font font, std::string nom, int level,int life, float text_size,
-			sf::Color backBox, sf::Color lifeColor, sf::Color outlineColor);
+			sf::Font font, std::string nom, int level,int pv, float text_size,
+			sf::Color backBoxColor, sf::Color lifeColor, sf::Color outlineColor, float outlineThick);
 
 		~LifeBarBox();
 
 		//Accessor
-		const bool isPressed() const;
-		const std::string getText() const;
+		
 
 		//Modifier
-		void setText(const std::string text);
+		void setLife(int pv);
 
 		//Functions
 		void showTextLife();
