@@ -12,8 +12,10 @@ private:
     sf::Font font;
     PauseMenu pmenu;
 
-    Player player;
-    Background test;
+    Entity player;
+    Background map;
+    sf::View view;
+
 
     //Functions
     void initKeyBinds();
