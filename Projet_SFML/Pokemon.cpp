@@ -527,8 +527,8 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_vitesseBase = m_vitesse = 95;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
-		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/face/pachirisu.png");
-		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/dos/pachirisu.png");
+		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/dos/pachirisu.png");
+		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/face/pachirisu.png");
 		break;
 
 	case(442): //Spiritomb
@@ -558,8 +558,8 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_vitesseBase = m_vitesse = 42;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
-		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/face/griknot.png");
-		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/dos/griknot.png");
+		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/dos/griknot.png");
+		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/face/griknot.png");
 		break;
 
 	case(444):	//Carmache 60 et 80

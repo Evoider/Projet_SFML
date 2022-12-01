@@ -10,10 +10,15 @@ void CombatState::initFonts()
 
 void CombatState::initSprite(Pokemon gentil, Pokemon mechant)
 {
-	this->ally.setTexture(gentil.getBackTexture());
-	this->ennemy.setTexture(mechant.getFrontTexture());
+	this->texture_ally.loadFromFile("Ressources/Sprites/pokemon/dos/pachirisu.png");
+	this->texture_ennemy.loadFromFile("Ressources/Sprites/pokemon/face/griknot.png");
+	this->ally.setTexture(texture_ally);
+	this->ennemy.setTexture(texture_ennemy);
 
-	this->ally.setPosition(this->window->getSize().x - 1500 * this->scale, this->window->getSize().y - 250 * this->scale);
+	this->ally.scale(5,5);
+	this->ennemy.scale(5,5);
+	this->ally.setPosition(this->window->getSize().x - 1700 * this->scale, this->window->getSize().y - 601 * this->scale);
+	this->ennemy.setPosition(this->window->getSize().x - 650 * this->scale, this->window->getSize().y - 900 * this->scale);
 }
 
 
@@ -64,9 +69,9 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 {
 	this->gentil.creationPokemon(numero_gentil);
 	this->mechant.creationPokemon(numero_mechant);
+	this->initBackground();
 	this->initSprite(this->gentil,this->mechant);
 	this->initFonts();
-	this->initBackground();
 	this->initButtons();
 
 	Combat fight(gentil, mechant);
@@ -75,6 +80,7 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 
 void CombatState::endState()
 {
+	this->quit = true;
 	std::cout << "Ending fight state" << "\n";
 }
 
@@ -90,7 +96,6 @@ void CombatState::updateWindow(sf::RenderWindow* window)
 
 void CombatState::updateInput(const float& dt)
 {
-
 }
 
 
@@ -100,6 +105,11 @@ void CombatState::updateButtons()
 	{
 		it.second->update(this->mousePosView);
 	}
+	if (this->buttons["FUITE"]->isPressed())
+	{
+		this->endState();
+	}
+	
 }
 
 void CombatState::update(const float& dt)
@@ -117,6 +127,8 @@ void CombatState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 	target->draw(this->backgound);
+	target->draw(this->ally);
+	target->draw(this->ennemy);
 	this->renderButtons(target);
 }
 

@@ -8,6 +8,8 @@ class CombatState : public State
 {
 private:
 	GraphicsSettings& graphSettings;
+	sf::Texture texture_ally;
+	sf::Texture texture_ennemy;
 	sf::Sprite ally;
 	sf::Sprite ennemy;
 	sf::Sprite backgound;
