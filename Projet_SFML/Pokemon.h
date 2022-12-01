@@ -1,5 +1,6 @@
 #pragma once
 #include "Capacite.h"
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class Pokemon
@@ -55,5 +56,8 @@ private:
 	int m_attaqueSpeBase;
 	int m_defenseBase;
 	int m_defenseSpeBase;
+
+	sf::Texture m_backtexture;
+	sf::Texture m_fronttexture;
 
 };

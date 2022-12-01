@@ -2,6 +2,7 @@
 #include "SettingsState.h"
 #include "Pokemon.h"
 #include "Gui.h"
+#include "Combat.h"
 
 class CombatState : public State
 {
@@ -15,6 +16,9 @@ private:
 
 	std::map<std::string, gui::Button*> buttons;
 
+	Pokemon gentil;
+	Pokemon mechant;
+
 	void initFonts();
 	void initButtons();
 	void initBackground();
@@ -24,7 +28,7 @@ private:
 
 
 public:
-	CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale);
+	CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale, int numero_gentil, int numero_mechant);
 
 	virtual ~CombatState() = default;
 

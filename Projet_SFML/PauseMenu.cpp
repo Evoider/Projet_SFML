@@ -122,7 +122,7 @@ void PauseMenu::updateButtons()
 	
 	if (this->buttons["POKEDEX"]->isPressed())
 	{
-		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
+		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale, 417, 446));
 	}
 	if (this->buttons["SETTINGS"]->isPressed())
 	{

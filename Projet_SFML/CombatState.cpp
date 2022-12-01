@@ -50,12 +50,19 @@ void CombatState::initKeyBinds()
 
 }
 
-CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale)
+CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,
+	sf::Font font, float scale, int numero_gentil, int numero_mechant)
 	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font)
 {
 	this->initFonts();
 	this->initBackground();
 	this->initButtons();
+
+	this->gentil.creationPokemon(numero_gentil);
+	this->mechant.creationPokemon(numero_mechant);
+
+	Combat fight(gentil, mechant);
+
 }
 
 void CombatState::endState()
