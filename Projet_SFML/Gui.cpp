@@ -117,7 +117,7 @@ void gui::Button::render(sf::RenderTarget* target)
 gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float width, float height,
 	sf::Font* font, std::string list[], float text_size,
 	unsigned nrOfElements, unsigned default_index)
-	:titleddl(titleddl), font(font), showList(false), waitMax(1.f), wait(0.f)
+	:titleddl(titleddl), font(font), showList(false), waitMax(2.f), wait(0.f)
 {
 	
 	for (size_t i = 0; i < nrOfElements; i++)
@@ -221,9 +221,73 @@ void gui::DropDownList::render(sf::RenderTarget* target)
 	}
 }
 
+//===========================================================================================
 
+//Life Bar Box===============================================================================
+
+gui::LifeBarBox::LifeBarBox(float x, float y, float width, float height,
+	sf::Font font, std::string nom,	int level, int life, float text_size,
+	sf::Color backBoxColor, sf::Color lifeColor, sf::Color outlineColor, float outlineThick)
+{
+	this->backBox.setPosition(sf::Vector2f(x, y));
+	this->backBox.setSize(sf::Vector2f(width, height));
+
+	this->LifeBarContainer.setPosition(
+		this->backBox.getPosition().x + this->backBox.getGlobalBounds().width / 2.f,
+		this->backBox.getPosition().y + this->backBox.getGlobalBounds().height / 2.f
+	);
+	this->LifeBarContainer.setSize(sf::Vector2f(width / 2 - 20, height / 10));
+
+	this->LifeBar.setPosition(
+		this->backBox.getPosition().x + this->backBox.getGlobalBounds().width / 2.f,
+		this->backBox.getPosition().y + this->backBox.getGlobalBounds().height / 2.f
+	);
+	this->LifeBar.setSize(sf::Vector2f(width / 2 - 20, height / 10));
+
+	this->font = font;
+	this->nom.setFont(this->font);
+	this->nom.setString(nom);
+	this->nom.setFillColor(sf::Color::Black);
+	this->nom.setCharacterSize(text_size);
+	this->nom.setPosition(
+		this->backBox.getPosition().x + (this->backBox.getGlobalBounds().width / 2.f) - this->backBox.getGlobalBounds().width / 2.f,
+		this->backBox.getPosition().y + (this->backBox.getGlobalBounds().height) / 2.f - this->backBox.getGlobalBounds().height / 2.f
+	);
+
+	this->backBoxColor = backBoxColor;
+	this->lifeColor = lifeColor;
+	this->outlineColor = outlineColor;
+	this->outlineThick = outlineThick;
+
+	this->backBox.setFillColor(this->backBoxColor);
+	this->LifeBar.setFillColor(this->lifeColor);
+	this->LifeBarContainer.setFillColor(sf::Color(0, 0, 0, 0));
+	this->LifeBarContainer.setOutlineColor(this->outlineColor);
+	this->LifeBarContainer.setOutlineThickness(this->outlineThick);
+
+}
 
 gui::LifeBarBox::~LifeBarBox()
 {
 
+}
+
+void gui::LifeBarBox::setLife(const std::string text)
+{
+}
+
+void gui::LifeBarBox::showTextLife()
+{
+}
+
+void gui::LifeBarBox::update(const sf::Vector2f mousePos)
+{
+
+}
+
+void gui::LifeBarBox::render(sf::RenderTarget* target)
+{
+	target->draw(this->backBox);
+	target->draw(this->LifeBar);
+	target->draw(this->LifeBarContainer);
 }

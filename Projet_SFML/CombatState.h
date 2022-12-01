@@ -18,9 +18,10 @@ private:
 	sf::RectangleShape rectBlack;
 
 	std::map<std::string, gui::Button*> buttons;
+	std::map < std::string, gui::LifeBarBox*> lifeBar;
 
 	void initFonts();
-	void initButtons();
+	void initGui();
 
 
 	virtual void initKeyBinds();
@@ -35,9 +36,10 @@ public:
 
 	virtual void updateWindow(sf::RenderWindow* window);
 	virtual void updateInput(const float& dt);
-	void updateButtons();
+	void updateGui();
+
 	void update(const float& dt);
-	void renderButtons(sf::RenderTarget* target = nullptr);
+	void renderGui(sf::RenderTarget* target = nullptr);
 	void render(sf::RenderTarget* target = nullptr);
 
 
