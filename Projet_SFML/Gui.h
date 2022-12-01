@@ -80,6 +80,37 @@ namespace gui
 
 	};
 
+	class LifeBarBox
+	{
+	private:
+		sf::RectangleShape shape;
+		sf::Font font;
+		sf::Text text;
+		std::string nom;
+		int level;
+		int life;
+
+	public:
+		LifeBarBox(float x, float y, float width, float height,
+			sf::Font font, std::string nom, int level,int life, float text_size,
+			sf::Color backBox, sf::Color lifeColor, sf::Color outlineColor);
+
+		~LifeBarBox();
+
+		//Accessor
+		const bool isPressed() const;
+		const std::string getText() const;
+
+		//Modifier
+		void setText(const std::string text);
+
+		//Functions
+		void showTextLife();
+		void update(const sf::Vector2f mousePos);
+		void render(sf::RenderTarget* target);
+
+	};
+
 	
 
 }

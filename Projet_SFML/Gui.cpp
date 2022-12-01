@@ -220,3 +220,10 @@ void gui::DropDownList::render(sf::RenderTarget* target)
 		}
 	}
 }
+
+
+
+gui::LifeBarBox::~LifeBarBox()
+{
+
+}
