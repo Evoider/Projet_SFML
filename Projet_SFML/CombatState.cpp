@@ -11,7 +11,7 @@ void CombatState::initGui()
 		sf::Color(255, 0, 0, 150),
 		sf::Color(240, 0, 0, 255),
 		sf::Color(235, 0, 0, 200),
-		sf::Color(0, 0, 235, 255), 5 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->buttons["POKEMON"] = new  gui::Button(this->window->getSize().x - 600 * this->scale, this->window->getSize().y - 100 * this->scale,
@@ -20,7 +20,7 @@ void CombatState::initGui()
 		sf::Color(255, 0, 0, 150),
 		sf::Color(240, 0, 0, 255),
 		sf::Color(235, 0, 0, 200),
-		sf::Color(0, 0, 235, 255), 5 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->buttons["FUITE"] = new  gui::Button(this->window->getSize().x - 300 * this->scale, this->window->getSize().y - 100 * this->scale,
@@ -29,7 +29,7 @@ void CombatState::initGui()
 		sf::Color(255, 0, 0, 150),
 		sf::Color(0, 240, 0, 255),
 		sf::Color(0, 0, 235, 200),
-		sf::Color(0, 0, 235, 255), 5 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->lifeBar["GENTIL"] = new gui::LifeBarBox(this->window->getSize().x - 625 * this->scale, this->window->getSize().y - 450 * this->scale,
@@ -37,7 +37,7 @@ void CombatState::initGui()
 		this->font, "Trouduc", 1, 200, 50 * this->scale,
 		sf::Color(255, 0, 0, 150),
 		sf::Color(0, 240, 0, 255),
-		sf::Color(0, 0, 235, 255), 5 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->lifeBar["GENTIL"]->showTextLife();
 
@@ -46,7 +46,7 @@ void CombatState::initGui()
 		this->font, "Grofion", 1, 200, 50 * this->scale,
 		sf::Color(255, 0, 0, 150),
 		sf::Color(0, 240, 0, 255),
-		sf::Color(0, 0, 235, 255), 5 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 }
 
@@ -67,7 +67,6 @@ void CombatState::initKeyBinds()
 	ifs.close();
 
 	this->keyBinds["CLOSE"] = this->supportedKeys->at("Escape");
-	this->keyBinds["LIFE"] = this->supportedKeys->at("L");
 }
 
 CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale)
@@ -125,10 +124,7 @@ void CombatState::updateInput(const float& dt)
 			this->pmenu.unpauseState();
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("LIFE"))) && this->getKeytime())
-	{
-		this->lifeBar["GENTIL"]->setLife(150);
-	}
+	
 }
 
 
@@ -141,6 +137,13 @@ void CombatState::updateGui()
 	for (auto& it : this->lifeBar)
 	{
 		it.second->update(this->mousePosView);
+	}
+	if (this->buttons["FUITE"]->isPressed())
+	{
+		this->endState();
+	}if (this->buttons["ATTACK"]->isPressed())
+	{
+		this->lifeBar["MECHANT"]->setLife(150);
 	}
 }
 
