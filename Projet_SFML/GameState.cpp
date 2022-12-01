@@ -29,8 +29,10 @@ GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, 
 	:State(window, supportedKeys, states), graphSettings(graphSettings), scale(scale),font(font), pmenu(window,graphSettings, font, scale, states, supportedKeys), map(),player()
 {
 	this->initKeyBinds();
-	this->view.reset(sf::FloatRect(1 * 64 * this->scale, 2 * 64 * this->scale , (window->getSize().x), (window->getSize().y)));
-
+	this->view.reset(sf::FloatRect(0, 0 , (window->getSize().x), (window->getSize().y)));
+	this->view.setCenter(this->player.getPositionX() * 64, 1.2 * this->player.getPositionY() * 64);
+	std::cout << this->player.getPositionX() << " " << this->player.getPositionY();
+	this->view.zoom(0.5f);
 	this->map.initTab();
 	
 }
@@ -56,7 +58,9 @@ void GameState::updateWindow(sf::RenderWindow* window)
 	this->window = window;
 	this->scale = this->window->getSize().x / 1920.f;
 	this->initKeyBinds();
-	this->view.reset(sf::FloatRect(1 * 64 * this->scale, 2 * 64 * this->scale, (window->getSize().x), (window->getSize().y)));
+	this->view.reset(sf::FloatRect(0, 0, (window->getSize().x), (window->getSize().y)));
+	this->view.setCenter(this->player.getPositionX() * 64, 1.2 * this->player.getPositionY() * 64);
+	this->view.zoom(0.5f);
 	this->pmenu.updateWindow(window,this->scale);
 }
 
@@ -103,6 +107,7 @@ void GameState::updateInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("COMBAT"))))
 
 	{
+		this->window->setView(this->window->getDefaultView());
 		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))) && this->getKeytime())
@@ -122,17 +127,20 @@ void GameState::updateInput(const float& dt)
 void GameState::update(const float& dt)
 {
 	this->updateKeytime(dt);
-	this->updateMousePosition();
+	
 
 	if (!this->pmenu.getPauseState())
 	{
-
+		this->updateMousePosition();
 		this->updateInput(dt);
 		this->player.update(dt);
 	}
 	else //Pause update
 	{
+
+		this->window->setView(this->window->getDefaultView());
 		this->pmenu.update(this->mousePosView,dt);
+		
 	}
 	if (this->pmenu.getQuit())
 	{
@@ -146,11 +154,17 @@ void GameState::render(sf::RenderTarget* target)
 	{
 		target = this->window;
 	}
-	this->player.render(target);
 	target->setView(this->view);
 	this->map.render(target);
+
+	this->player.render(target);
 	if (this->pmenu.getPauseState()) // Pause menu render
 	{
+		target->setView(target->getDefaultView());
+		this->updateMousePosition();
 		this->pmenu.render(target);
+
+		
 	}
+	
 }
