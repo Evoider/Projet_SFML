@@ -802,6 +802,16 @@ std::string Pokemon::getCapacite2()
 	return m_capacite2->getNom();
 }
 
+sf::Texture Pokemon::getBackTexture()
+{
+	return m_backtexture;
+}
+
+sf::Texture Pokemon::getFrontTexture()
+{
+	return m_fronttexture;
+}
+
 //Set
 void Pokemon::healMax()
 {

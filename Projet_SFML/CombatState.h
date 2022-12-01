@@ -8,6 +8,8 @@ class CombatState : public State
 {
 private:
 	GraphicsSettings& graphSettings;
+	sf::Sprite ally;
+	sf::Sprite ennemy;
 	sf::Sprite backgound;
 	sf::Texture texturebg;
 	float scale;
@@ -19,6 +21,7 @@ private:
 	Pokemon gentil;
 	Pokemon mechant;
 
+	void initSprite(Pokemon ally, Pokemon ennemy);
 	void initFonts();
 	void initButtons();
 	void initBackground();

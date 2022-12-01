@@ -8,6 +8,14 @@ void CombatState::initFonts()
 	}
 }
 
+void CombatState::initSprite(Pokemon gentil, Pokemon mechant)
+{
+	this->ally.setTexture(gentil.getBackTexture());
+	this->ennemy.setTexture(mechant.getFrontTexture());
+
+	this->ally.setPosition(this->window->getSize().x - 1500 * this->scale, this->window->getSize().y - 250 * this->scale);
+}
+
 
 void CombatState::initButtons()
 {
@@ -54,12 +62,12 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 	sf::Font font, float scale, int numero_gentil, int numero_mechant)
 	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font)
 {
+	this->gentil.creationPokemon(numero_gentil);
+	this->mechant.creationPokemon(numero_mechant);
+	this->initSprite(this->gentil,this->mechant);
 	this->initFonts();
 	this->initBackground();
 	this->initButtons();
-
-	this->gentil.creationPokemon(numero_gentil);
-	this->mechant.creationPokemon(numero_mechant);
 
 	Combat fight(gentil, mechant);
 
@@ -75,6 +83,7 @@ void CombatState::updateWindow(sf::RenderWindow* window)
 	this->window = window;
 	this->scale = this->window->getSize().x / 1920.f;
 	this->initBackground();
+	this->initSprite(this->gentil,this->mechant);
 	this->initButtons();
 	
 }

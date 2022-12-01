@@ -25,6 +25,8 @@ public:
 	std::string getType2();
 	std::string getCapacite1();
 	std::string getCapacite2();
+	sf::Texture getBackTexture();
+	sf::Texture getFrontTexture();
 
 	//Set
 	void healMax();
