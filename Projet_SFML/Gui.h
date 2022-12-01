@@ -83,26 +83,29 @@ namespace gui
 	class LifeBarBox
 	{
 	private:
-		sf::RectangleShape shape;
+		sf::RectangleShape backBox, LifeBarContainer, LifeBar;
 		sf::Font font;
-		sf::Text text;
-		std::string nom;
+		sf::Text nom;
 		int level;
 		int life;
+		sf::Color backBoxColor;
+		sf::Color lifeColor;
+		sf::Color outlineColor;
+		float outlineThick;
+		
 
 	public:
 		LifeBarBox(float x, float y, float width, float height,
 			sf::Font font, std::string nom, int level,int life, float text_size,
-			sf::Color backBox, sf::Color lifeColor, sf::Color outlineColor);
+			sf::Color backBoxColor, sf::Color lifeColor, sf::Color outlineColor, float outlineThick);
 
 		~LifeBarBox();
 
 		//Accessor
-		const bool isPressed() const;
-		const std::string getText() const;
+		
 
 		//Modifier
-		void setText(const std::string text);
+		void setLife(const std::string text);
 
 		//Functions
 		void showTextLife();
