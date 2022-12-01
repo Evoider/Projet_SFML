@@ -28,10 +28,23 @@ protected:
 	int offSetY;
 	float movementSpeed;
 
-	sf::IntRect devant;
-	sf::IntRect derriere;
-	sf::IntRect gauche;
-	sf::IntRect droite;
+	int compteurAnimUp;
+	int compteurAnimDown;
+	int compteurAnimLeft;
+	int compteurAnimRight;
+
+	sf::IntRect Up;
+	sf::IntRect Up1;
+	sf::IntRect Up2;
+	sf::IntRect Down;
+	sf::IntRect Down1;
+	sf::IntRect Down2;
+	sf::IntRect Left;
+	sf::IntRect Left1;
+	sf::IntRect Left2;
+	sf::IntRect Right;
+	sf::IntRect Right1;
+	sf::IntRect Right2;
 
 	int commtpeurAnimation;
 	sf::Clock dtclock;

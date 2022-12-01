@@ -954,3 +954,6 @@ int Background::checkcollision(int x, int y)
 {
     return collision[y][x];
 }
+
+//Animation 100% finie
+//Combat 100%

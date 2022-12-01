@@ -28,7 +28,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	:State(window,supportedKeys, states), player(), map()
 {
 	this->initKeyBinds();
-	this->view.reset(sf::FloatRect(3,3,(window->getSize().x),(window->getSize().y)));
+	this->view.reset(sf::FloatRect(1*64,2 * 64,(window->getSize().x),(window->getSize().y)));
 
 	this->map.initTab();
 }
