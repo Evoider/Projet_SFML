@@ -28,6 +28,9 @@
     <Filter Include="States\Menu\Menu Pause">
       <UniqueIdentifier>{0a9309a5-ba0e-4455-9568-03eb38b76f2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\pokemon">
+      <UniqueIdentifier>{82533abb-c8e5-44aa-9a0b-ea006cad1e19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,14 +69,14 @@
     <ClCompile Include="GraphicsSettings.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Pokemon.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Capacite.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Entities\pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>Entities\pokemon</Filter>
     </ClCompile>
     <ClCompile Include="CombatState.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>States\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,14 +113,14 @@
     <ClInclude Include="GraphicsSettings.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Pokemon.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Capacite.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Entities\pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Entities\pokemon</Filter>
     </ClInclude>
     <ClInclude Include="CombatState.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>States\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
