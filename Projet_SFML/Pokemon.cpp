@@ -669,8 +669,101 @@ void Pokemon::evolutionPokemon(int numeroPokemon)
 {
 	switch (numeroPokemon)
 	{
+
+	case(39):
+		numeroPokemon = 40;
+		break;
+
+	case(63):
+		numeroPokemon = 64;
+		break;
+
+	case(64):
+		numeroPokemon = 65;
+		break;
+
+	case(81):
+		numeroPokemon = 82;
+		break;
+
+	case(82):
+		numeroPokemon = 462;
+		break;
+
+	case(92):
+		numeroPokemon = 93;
+		break;
+
+	case(93):
+		numeroPokemon = 94;
+		break;
+
+	case(118):
+		numeroPokemon = 119;
+		break;
+
+	case(155):
+		numeroPokemon = 156;
+		break;
+
+	case(156):
+		numeroPokemon = 157;
+		break;
+
+	case(174):
+		numeroPokemon = 39;
+		break;
+
+	case(175):
+		numeroPokemon = 176;
+		break;
+
+	case(176):
+		numeroPokemon = 468;
+		break;
+
+	case(215):
+		numeroPokemon = 461;
+		break;
+
+	case(238):
+		numeroPokemon = 124;
+		break;
+
+	case(246):
+		numeroPokemon = 247;
+		break;
+
+	case(247):
+		numeroPokemon = 248;
+		break;
+
+	case(315):
+		numeroPokemon = 407;
+		break;
+
+	case(402):
+		numeroPokemon = 403;
+		break;
+
+	case(406):
+		numeroPokemon = 315;
+		break;
+
 	case(443):
 		numeroPokemon = 444;
+		break;
+
+	case(444):
+		numeroPokemon = 445;
+		break;
+
+	case(447):
+		numeroPokemon = 448;
+		break;
+
+	case(349):
+		numeroPokemon = 350;
 		break;
 
 	default:
