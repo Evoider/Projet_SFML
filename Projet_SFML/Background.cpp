@@ -2,9 +2,11 @@
 
 Background::Background()
 {
-	this->offSetX = 75;
-	this->offSetY = 75;
+	this->offSetX = 64;
+	this->offSetY = 64;
 	this->vecbox;
+
+    this->collision;
 
 	this->forest.loadFromFile("Ressources/Sprites/green_forest_new.png");
     this->haute_herbe.loadFromFile("Ressources/Sprites/green_forest_old.png");
@@ -287,6 +289,7 @@ void Background::initTab()
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
 
+    //map
 	for (int y = 0; y < 50 ; y++)
 	{
 		for (int x = 0; x < 50; x++)
@@ -300,7 +303,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 0, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -309,7 +312,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -318,7 +321,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 2 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -327,7 +330,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 3 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -336,7 +339,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 4 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -345,7 +348,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 5 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -354,7 +357,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 6 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -363,7 +366,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 7 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -372,7 +375,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 8 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -381,7 +384,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 9 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -396,7 +399,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 0, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -405,7 +408,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -414,7 +417,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 2*16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -423,7 +426,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 3*16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -432,7 +435,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 4*16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -441,7 +444,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 5*16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -450,7 +453,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 6 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -459,7 +462,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 7 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -468,7 +471,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 8 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -477,7 +480,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 9 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -492,7 +495,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 0, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -501,7 +504,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -510,7 +513,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 2 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -519,7 +522,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 3 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -528,7 +531,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 4 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -537,7 +540,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 5 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -546,7 +549,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 6 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -555,7 +558,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 7 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -564,7 +567,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 8 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -573,7 +576,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(forest);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 9 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -588,7 +591,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 10) * 16, 0, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -597,7 +600,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -606,7 +609,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 2 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -615,7 +618,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 3 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -624,7 +627,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 4 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -633,7 +636,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 5 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -642,7 +645,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 6 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -651,7 +654,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(haute_herbe);
                         box.setTextureRect(sf::IntRect((m % 21) * 16, 7 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -666,7 +669,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 0, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -675,7 +678,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -684,7 +687,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 2 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -693,7 +696,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 3 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -702,7 +705,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 4 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -711,7 +714,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 5 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -720,7 +723,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 6 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -729,7 +732,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 7 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -738,7 +741,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 8 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -747,7 +750,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 9 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -756,7 +759,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 10 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -765,7 +768,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 11 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -774,7 +777,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 12 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -783,7 +786,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 13 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -792,7 +795,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 14 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -801,7 +804,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 15 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -810,7 +813,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 16 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -819,7 +822,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 17 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -828,7 +831,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 18 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -837,7 +840,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 19 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -846,7 +849,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 20 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -855,7 +858,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 21 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -864,7 +867,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 22 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -873,7 +876,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 23 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -882,7 +885,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 24 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -891,7 +894,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 25 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -900,7 +903,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 26 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -909,7 +912,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 27 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -918,7 +921,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 28 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -927,7 +930,7 @@ void Background::initTab()
                         sf::Sprite box;
                         box.setTexture(batiment);
                         box.setTextureRect(sf::IntRect((m % 30) * 16, 29 * 16, 16, 16));
-                        box.scale(4.6875, 4.6875);
+                        box.scale(4, 4);
                         box.setPosition(sf::Vector2f(x * offSetX, y * offSetY));
                         vecbox.push_back(box);
                     }
@@ -936,6 +939,7 @@ void Background::initTab()
 		}
 	}
 
+    //collision
 }
 
 void Background::render(sf::RenderTarget* target)
@@ -944,4 +948,9 @@ void Background::render(sf::RenderTarget* target)
 	{
 		target->draw(this->vecbox[i]);
 	}
+}
+
+int Background::checkcollision(int x, int y)
+{
+    return collision[y][x];
 }

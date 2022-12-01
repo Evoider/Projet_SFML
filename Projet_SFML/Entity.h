@@ -22,12 +22,18 @@ protected:
 	sf::Texture texture;
 	sf::Sprite sprite;
 
-	int posX;
-	int posY;
+	float posX;
+	float posY;
 	int offSetX;
 	int offSetY;
 	float movementSpeed;
 
+	sf::IntRect devant;
+	sf::IntRect derriere;
+	sf::IntRect gauche;
+	sf::IntRect droite;
+
+	int commtpeurAnimation;
 	sf::Clock dtclock;
 
 public:
@@ -40,5 +46,7 @@ public:
 	//Affichage
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);
-};
 
+	int getPositionX();
+	int getPositionY();
+};

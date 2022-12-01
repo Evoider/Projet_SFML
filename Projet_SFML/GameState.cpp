@@ -28,7 +28,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	:State(window,supportedKeys, states), player(), map()
 {
 	this->initKeyBinds();
-	this->view.reset(sf::FloatRect(0,0,(window->getSize().x),(window->getSize().y)));
+	this->view.reset(sf::FloatRect(3,3,(window->getSize().x),(window->getSize().y)));
 
 	this->map.initTab();
 }
@@ -56,19 +56,32 @@ void GameState::updateInput(const float& dt)
 	{
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 		{
-			this->player.move("Left", view);
+			if (map.checkcollision(player.getPositionX(), player.getPositionY() + 1) == 0)
+			{
+				this->player.move("Left", view);
+			}
+			
 		}
 	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))))
 	{
-		this->player.move("Up", view);
+		if (map.checkcollision(player.getPositionX() + 1, player.getPositionY()) == 0)
+		{
+			this->player.move("Up", view);
+		}
 	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 	{
-		this->player.move("Down", view);
+		if (map.checkcollision(player.getPositionX() + 1, player.getPositionY() + 2) == 0)
+		{
+			this->player.move("Down", view);
+		}
 	}if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_RIGHT"))))
 	{
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("MOVE_DOWN"))))
 		{
-			this->player.move("Right", view);
+			if (map.checkcollision(player.getPositionX() + 2, player.getPositionY() + 1) == 0)
+			{
+				this->player.move("Right", view);
+			}
 		}
 	}
 }
