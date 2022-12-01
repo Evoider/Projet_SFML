@@ -1,7 +1,7 @@
 #pragma once
 #include "Gui.h"
 
-#include "CombatState.h"
+#include "SettingsState.h"
 
 #include <map>
 

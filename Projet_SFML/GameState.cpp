@@ -22,10 +22,11 @@ void GameState::initKeyBinds()
 	this->keyBinds["MOVE_UP"] = this->supportedKeys->at("Z");
 	this->keyBinds["MOVE_DOWN"] = this->supportedKeys->at("S");
 	this->keyBinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
+	this->keyBinds["COMBAT"] = this->supportedKeys->at("C");
 }
 
 GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
-	:State(window, supportedKeys, states), pmenu(window,graphSettings, font, scale, states, supportedKeys), player(68, 73),graphSettings(graphSettings)
+	:State(window, supportedKeys, states), graphSettings(graphSettings), scale(scale),font(font), pmenu(window,graphSettings, font, scale, states, supportedKeys), player(68, 73)
 {
 	this->initKeyBinds();
 	this->test.initTab();
@@ -87,6 +88,11 @@ void GameState::updateInput(const float& dt)
 			this->player.move(dt, 1.f, 0.f);
 			this->player.animationMove("Right");
 		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("COMBAT"))))
+
+	{
+		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))) && this->getKeytime())
 	{

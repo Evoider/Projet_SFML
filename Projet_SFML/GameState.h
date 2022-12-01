@@ -1,5 +1,5 @@
 #pragma once
-#include "SettingsState.h"
+#include "CombatState.h"
 #include "Background.h"
 #include "PauseMenu.h"
 

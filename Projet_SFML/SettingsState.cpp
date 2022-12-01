@@ -33,13 +33,15 @@ void SettingsState::initGui()
 		this->font, "Apply", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		sf::Color(20, 20, 20, 200),
+		sf::Color(0, 0, 235, 255), 10 * this->scale
 	);
 	this->buttons["EXIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 100 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 200 * this->scale, 50 * this->scale,
 		this->font, "Back", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		sf::Color(20, 20, 20, 200),
+		sf::Color(0, 0, 235, 255), 10 * this->scale
 	);
 
 	std::vector<std::string> modes_str;
@@ -62,6 +64,7 @@ void SettingsState::initGui()
 		(this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 400 * this->scale,
 		200 * this->scale, 30 * this->scale,
 		&this->font, modes_str.data(), 15 * this->scale,
+		sf::Color(0, 0, 235, 255), 10 * this->scale,
 		modes_str.size(), this->defResolution);
 
 	//Init Fullscreen settings
@@ -73,7 +76,8 @@ void SettingsState::initGui()
 
 	this->ddl["FULLSCREEN"] = new gui::DropDownList("FullScreen : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 300 * this->scale,
 		200 * this->scale, 30 * this->scale,
-		&this->font, fullscreen, 20 * this->scale,
+		&this->font, fullscreen, 20 * this->scale, 
+		sf::Color(0, 0, 235, 255), 10 * this->scale,
 		2, this->defFullscreen);
 
 	//Init v-sync settings
@@ -86,6 +90,7 @@ void SettingsState::initGui()
 	this->ddl["V-SYNC"] = new gui::DropDownList("V-sync : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 200 * this->scale,
 		200 * this->scale, 30 * this->scale,
 		&this->font, vsync, 20 * this->scale,
+		sf::Color(0, 0, 235, 255), 10 * this->scale,
 		2, this->defVsync);
 
 	//Init framerate settings
@@ -111,6 +116,7 @@ void SettingsState::initGui()
 	this->ddl["FRAMERATELIMIT"] = new gui::DropDownList("Framerate limit : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale,
 		200 * this->scale, 30 * this->scale,
 		&this->font, frameratelimitText, 20 * this->scale,
+		sf::Color(0, 0, 235, 255), 10 * this->scale,
 		4, this->defFrameRateLimit);
 
 	//Init anti-aliasing settings
@@ -123,6 +129,7 @@ void SettingsState::initGui()
 	this->ddl["ANTI-ALIASING"] = new gui::DropDownList("Antialiasing : ", (this->window->getSize().x / 2) + 100 * this->scale, (this->window->getSize().y / 2) - 0 * this->scale,
 		200 * this->scale, 30 * this->scale,
 		&this->font, antialiasing, 20 * this->scale,
+		sf::Color(0, 0, 235, 255), 10 * this->scale,
 		2, this->defAntiAlias);
 
 
