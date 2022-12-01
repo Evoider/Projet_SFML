@@ -108,7 +108,7 @@ void GameState::updateInput(const float& dt)
 
 	{
 		this->window->setView(this->window->getDefaultView());
-		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale));
+		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale, 417,443));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("CLOSE"))) && this->getKeytime())
 	{

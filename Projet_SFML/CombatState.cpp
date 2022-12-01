@@ -1,7 +1,18 @@
 #include "CombatState.h"
 
 
+void CombatState::initSprite(Pokemon gentil, Pokemon mechant)
+{
+	this->texture_ally.loadFromFile("Ressources/Sprites/pokemon/dos/pachirisu.png");
+	this->texture_ennemy.loadFromFile("Ressources/Sprites/pokemon/face/griknot.png");
+	this->ally.setTexture(texture_ally);
+	this->ennemy.setTexture(texture_ennemy);
 
+	this->ally.scale(5, 5);
+	this->ennemy.scale(5, 5);
+	this->ally.setPosition(this->window->getSize().x - 1700 * this->scale, this->window->getSize().y - 601 * this->scale);
+	this->ennemy.setPosition(this->window->getSize().x - 650 * this->scale, this->window->getSize().y - 900 * this->scale);
+}
 
 void CombatState::initGui()
 {
@@ -50,6 +61,16 @@ void CombatState::initGui()
 	);
 }
 
+void  CombatState::initBackground()
+{
+	this->texturebg.loadFromFile("Ressources/Sprites/battlegroundgrass.png");
+
+	float scalebg = this->window->getSize().x / (float)(this->texturebg.getSize().x);
+	this->backgound.setTexture(texturebg);
+	this->backgound.setPosition(this->backgound.getPosition().x, this->backgound.getPosition().y - 200 * this->scale);
+	this->backgound.setScale(scalebg, scalebg);
+}
+
 void CombatState::initKeyBinds()
 {
 	std::ifstream ifs("Config/gamestate_keybinds.ini");
@@ -69,12 +90,18 @@ void CombatState::initKeyBinds()
 	this->keyBinds["CLOSE"] = this->supportedKeys->at("Escape");
 }
 
-CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale)
+CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,
+	sf::Font font, float scale,int numero_gentil, int numero_mechant)
 	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font), pmenu(window, graphSettings, font, scale, states, supportedKeys)
 {
+	this->gentil.creationPokemon(numero_gentil);
+	this->mechant.creationPokemon(numero_mechant);
+	this->initBackground();
+	this->initSprite(this->gentil, this->mechant);
 	this->initKeyBinds();
 	this->initGui();
 	
+	Combat fight(gentil, mechant);
 }
 
 CombatState::~CombatState()
@@ -104,6 +131,8 @@ void CombatState::updateWindow(sf::RenderWindow* window)
 {
 	this->window = window;
 	this->scale = this->window->getSize().x / 1920.f;
+	this->initBackground();
+	this->initSprite(this->gentil, this->mechant);
 	this->initGui();
 	
 	this->pmenu.updateWindow(window, this->scale);
@@ -138,10 +167,13 @@ void CombatState::updateGui()
 	{
 		it.second->update(this->mousePosView);
 	}
+
 	if (this->buttons["FUITE"]->isPressed())
 	{
 		this->endState();
-	}if (this->buttons["ATTACK"]->isPressed())
+	}
+	
+	if (this->buttons["ATTACK"]->isPressed())
 	{
 		this->lifeBar["MECHANT"]->setLife(150);
 	}
@@ -174,6 +206,9 @@ void CombatState::render(sf::RenderTarget* target)
 	{
 		target = this->window;
 	}
+	target->draw(this->backgound);
+	target->draw(this->ally);
+	target->draw(this->ennemy);
 	this->renderGui(target);
 	if (this->pmenu.getPauseState()) // Pause menu render
 	{
