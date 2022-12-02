@@ -60,6 +60,6 @@ public:
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);
 
-	int getPositionX();
-	int getPositionY();
+	float getPositionX();
+	float getPositionY();
 };
