@@ -1,7 +1,8 @@
 #pragma once
-#include "State.h"
-#include "PauseMenu.h"
+#include "Pokemon.h"
 #include "Gui.h"
+#include "Combat.h"
+#include "PauseMenu.h"
 
 class CombatState : public State
 {
@@ -12,6 +13,15 @@ private:
 
 	//Pokemon AllyPokemon;
 	//Pokemon EnnemyPokemon; 
+	sf::Texture texture_ally;
+	sf::Texture texture_ennemy;
+	sf::Sprite ally;
+	sf::Sprite ennemy;
+	sf::Sprite backgound;
+	sf::Texture texturebg;
+
+	Pokemon gentil;
+	Pokemon mechant;
 
 	sf::Font font;
 
@@ -20,13 +30,16 @@ private:
 	std::map < std::string, gui::LifeBarBox*> lifeBar;
 
 	void initGui();
+	void initSprite(Pokemon ally, Pokemon ennemy);
+	void initBackground();
 
 
 	void initKeyBinds();
 
 
 public:
-	CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,sf::Font font, float scale);
+	CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states,
+		sf::Font font, float scale, int numero_gentil, int numero_mechant);
 
 	~CombatState();
 

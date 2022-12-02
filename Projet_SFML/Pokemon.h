@@ -1,5 +1,6 @@
 #pragma once
 #include "Capacite.h"
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class Pokemon
@@ -24,6 +25,8 @@ public:
 	std::string getType2();
 	std::string getCapacite1();
 	std::string getCapacite2();
+	sf::Texture getBackTexture();
+	sf::Texture getFrontTexture();
 
 	//Set
 	void healMax();
@@ -55,5 +58,8 @@ private:
 	int m_attaqueSpeBase;
 	int m_defenseBase;
 	int m_defenseSpeBase;
+
+	sf::Texture m_backtexture;
+	sf::Texture m_fronttexture;
 
 };

@@ -6,28 +6,28 @@ void PauseMenu::initButtons()
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
-		sf::Color(0, 0, 235, 255), 10 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->buttons["SETTINGS"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 300 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Settings", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
-		sf::Color(0, 0, 235, 255), 10 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->buttons["EXIT_PAUSE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 200 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Continue", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
-		sf::Color(0, 0, 235, 255), 10 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->buttons["QUIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 400 * this->scale, 300 * this->scale, 50 * this->scale,
 		this->font, "Quit", 20 * this->scale,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
-		sf::Color(0, 0, 235, 255), 10 * this->scale
+		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 }
 

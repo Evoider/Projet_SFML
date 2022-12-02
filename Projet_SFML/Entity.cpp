@@ -26,7 +26,7 @@ Entity::Entity()
 
 	this->sprite.setTextureRect(Up);
 	this->sprite.scale(3, 3);
-	this->movementSpeed = 100.f;
+	this->movementSpeed = 0.2f;
 
 	this->posX = 12.75;
 	this->posY = 8.5;
@@ -44,7 +44,7 @@ Entity::~Entity()
 
 void Entity::move(std::string direction, sf::View& view)
 {
-	if (dtclock.getElapsedTime().asSeconds() > 0.25f) {
+	if (dtclock.getElapsedTime().asSeconds() > this->movementSpeed) {
 		if (direction == "Up")
 		{
 			//Mouvement

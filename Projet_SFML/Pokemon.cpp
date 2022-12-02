@@ -1,4 +1,4 @@
-#include "Pokemon.h"
+ï»¿#include "Pokemon.h"
 #include <iostream>
 
 Pokemon::Pokemon()
@@ -25,9 +25,12 @@ Pokemon::Pokemon()
 	this->m_defenseBase = 0;
 	this->m_defenseSpeBase = 0;
 	this->m_vitesseBase = 0;
+
+	this->m_backtexture;
+	this->m_fronttexture;
 }
 
-void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défense spé
+void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spï¿½ et dï¿½fense spï¿½
 {
 	switch (numeroPokemon)
 	{
@@ -107,9 +110,9 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(91): //Magnéti 40 et 40
+	case(91): //Magnï¿½ti 40 et 40
 		m_numero = numeroPokemon;
-		m_nom = "Magnéti";
+		m_nom = "Magnï¿½ti";
 		m_type1 = "Steel";
 		m_type2 = "Electric";
 		m_pvBase = m_pvMax = m_pv = 25;
@@ -212,7 +215,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(147): //Ptéra 50 et 60
+	case(147): //Ptï¿½ra 50 et 60
 		m_numero = numeroPokemon;
 		m_nom = "Ptera";
 		m_type1 = "Fly";
@@ -227,7 +230,7 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(155): //Héricendre 40 et 30
+	case(155): //Hï¿½ricendre 40 et 30
 		m_numero = numeroPokemon;
 		m_nom = "Hericendre";
 		m_type1 = "Fire";
@@ -524,6 +527,8 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_vitesseBase = m_vitesse = 95;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/dos/pachirisu.png");
+		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/face/pachirisu.png");
 		break;
 
 	case(442): //Spiritomb
@@ -553,6 +558,8 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_vitesseBase = m_vitesse = 42;
 		m_capacite1->capaciteCreation(numeroPokemon, 1);
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
+		m_backtexture.loadFromFile("Ressources/Sprites/pokemon/dos/griknot.png");
+		m_fronttexture.loadFromFile("Ressources/Sprites/pokemon/face/griknot.png");
 		break;
 
 	case(444):	//Carmache 60 et 80
@@ -630,9 +637,9 @@ void Pokemon::creationPokemon(int numeroPokemon) //Inclure attaque spé et défens
 		m_capacite2->capaciteCreation(numeroPokemon, 2);
 		break;
 
-	case(462): //Magnézone 90 et 80
+	case(462): //Magnï¿½zone 90 et 80
 		m_numero = numeroPokemon;
-		m_nom = "Magnézone";
+		m_nom = "Magnï¿½zone";
 		m_type1 = "Steel";
 		m_type2 = "Electric";
 		m_pvBase = m_pvMax = m_pv = 70;
@@ -793,6 +800,16 @@ std::string Pokemon::getCapacite1()
 std::string Pokemon::getCapacite2()
 {
 	return m_capacite2->getNom();
+}
+
+sf::Texture Pokemon::getBackTexture()
+{
+	return m_backtexture;
+}
+
+sf::Texture Pokemon::getFrontTexture()
+{
+	return m_fronttexture;
 }
 
 //Set
