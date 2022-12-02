@@ -31,7 +31,6 @@ GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, 
 	this->initKeyBinds();
 	this->view.reset(sf::FloatRect(0, 0 , (window->getSize().x), (window->getSize().y)));
 	this->view.setCenter(this->player.getPositionX() * 64 + 64, 1.2 * this->player.getPositionY() * 64);
-
 	std::cout << this->player.getPositionX() << " " << this->player.getPositionY() << "\n";
 	this->view.zoom(0.5f);
 	this->map.initTab();

@@ -96,6 +96,9 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 	sf::Font font, float scale,int numero_gentil, int numero_mechant)
 	: State(window, supportedKeys, states),graphSettings(graphSettings),scale(scale),font(font), pmenu(window, graphSettings, font, scale, states, supportedKeys)
 {
+	if (!this->battle_Music.openFromFile("Resssources/music/Cynthia_Battle.wav"))
+		std::cout << "Unable to load";
+	this->battle_Music.play();
 	this->gentil.creationPokemon(numero_gentil);
 	this->mechant.creationPokemon(numero_mechant);
 	this->initBackground();
@@ -183,6 +186,7 @@ void CombatState::updateGui()
 
 void CombatState::update(const float& dt)
 {
+	this->battle_Music.play();
 	this->updateGui();
 	this->updateKeytime(dt);
 	this->updateMousePosition();

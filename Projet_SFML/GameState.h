@@ -2,6 +2,7 @@
 #include "CombatState.h"
 #include "Background.h"
 #include "PauseMenu.h"
+#include <SFML/Audio.hpp>
 
 class GameState :
     public State
