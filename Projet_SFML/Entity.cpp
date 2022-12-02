@@ -178,6 +178,8 @@ void Entity::move(std::string direction, sf::View& view)
 			//view.setCenter(view.getCenter().x + (0.5 * offSetX), view.getCenter().y);
 		}
 		view.setCenter(posX * 64 + 32, posY * 64 + 64);
+
+		
 		dtclock.restart();
 	}
 }
@@ -195,12 +197,12 @@ void Entity::render(sf::RenderTarget* target)
 }
 
 
-int Entity::getPositionX()
+float Entity::getPositionX()
 {
 	return posX;
 }
 
-int Entity::getPositionY()
+float Entity::getPositionY()
 {
 	return posY;
 }

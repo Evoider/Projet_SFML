@@ -32,7 +32,6 @@ GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, 
 	this->view.reset(sf::FloatRect(0, 0 , (window->getSize().x), (window->getSize().y)));
 	this->view.setCenter(this->player.getPositionX() * 64 + 32, this->player.getPositionY() * 64 + 64);
 
-
 	this->view.zoom(0.5f);
 	this->map.initTab();
 	
@@ -60,7 +59,7 @@ void GameState::updateWindow(sf::RenderWindow* window)
 	this->scale = this->window->getSize().x / 1920.f;
 	this->initKeyBinds();
 	this->view.reset(sf::FloatRect(0, 0, (window->getSize().x), (window->getSize().y)));
-
+	this->view.setCenter(this->player.getPositionX() * 64 + 32, this->player.getPositionY() * 64 + 64);
 	this->view.zoom(0.5f);
 	this->pmenu.updateWindow(window,this->scale);
 }
