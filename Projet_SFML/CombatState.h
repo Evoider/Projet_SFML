@@ -3,6 +3,7 @@
 #include "Gui.h"
 #include "Combat.h"
 #include "PauseMenu.h"
+#include <SFML/Audio.hpp>
 
 class CombatState : public State
 {
@@ -11,14 +12,13 @@ private:
 	PauseMenu pmenu;
 	float scale;
 
-	//Pokemon AllyPokemon;
-	//Pokemon EnnemyPokemon; 
 	sf::Texture texture_ally;
 	sf::Texture texture_ennemy;
 	sf::Sprite ally;
 	sf::Sprite ennemy;
 	sf::Sprite backgound;
 	sf::Texture texturebg;
+	sf::Music battle_Music;
 
 	Pokemon gentil;
 	Pokemon mechant;

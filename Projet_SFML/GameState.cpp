@@ -28,10 +28,13 @@ void GameState::initKeyBinds()
 GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, sf::Font font, float scale)
 	:State(window, supportedKeys, states), graphSettings(graphSettings), scale(scale),font(font), pmenu(window,graphSettings, font, scale, states, supportedKeys), map(),player()
 {
+	this->Celestia.openFromFile("Ressources/music/Celestia.ogg");
+	this->Celestia.setVolume(10);
+	this->Celestia.play();
+	this->Celestia.setLoop(true);
 	this->initKeyBinds();
 	this->view.reset(sf::FloatRect(0, 0 , (window->getSize().x), (window->getSize().y)));
 	this->view.setCenter(this->player.getPositionX() * 64 + 32, this->player.getPositionY() * 64 + 64);
-
 	this->view.zoom(0.5f);
 	this->map.initTab();
 	
@@ -48,6 +51,8 @@ GameState::~GameState()
 
 void GameState::endState()
 {
+	this->Celestia.stop();
+
 	this->quit = true;
 
 	std::cout << "Ending game state" << states->size() << "\n";
@@ -62,6 +67,10 @@ void GameState::updateWindow(sf::RenderWindow* window)
 	this->view.setCenter(this->player.getPositionX() * 64 + 32, this->player.getPositionY() * 64 + 64);
 	this->view.zoom(0.5f);
 	this->pmenu.updateWindow(window,this->scale);
+	if (this->Celestia.Paused)
+	{
+		this->Celestia.play();
+	}
 }
 
 void GameState::updateInput(const float& dt)
@@ -109,6 +118,7 @@ void GameState::updateInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds.at("COMBAT"))))
 
 	{
+		this->Celestia.pause();
 		this->window->setView(this->window->getDefaultView());
 		this->states->push(new CombatState(this->window, this->graphSettings, this->supportedKeys, this->states, this->font, this->scale, 417,443));
 	}
@@ -129,7 +139,6 @@ void GameState::updateInput(const float& dt)
 void GameState::update(const float& dt)
 {
 	this->updateKeytime(dt);
-	
 
 	if (!this->pmenu.getPauseState())
 	{
@@ -139,7 +148,6 @@ void GameState::update(const float& dt)
 	}
 	else //Pause update
 	{
-
 		this->window->setView(this->window->getDefaultView());
 		this->pmenu.update(this->mousePosView,dt);
 		
