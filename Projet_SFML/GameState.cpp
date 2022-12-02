@@ -30,8 +30,9 @@ GameState::GameState(sf::RenderWindow* window, GraphicsSettings& graphSettings, 
 {
 	this->initKeyBinds();
 	this->view.reset(sf::FloatRect(0, 0 , (window->getSize().x), (window->getSize().y)));
-	this->view.setCenter(this->player.getPositionX() * 64, 1.2 * this->player.getPositionY() * 64);
-	std::cout << this->player.getPositionX() << " " << this->player.getPositionY();
+	this->view.setCenter(this->player.getPositionX() * 64 + 64, 1.2 * this->player.getPositionY() * 64);
+
+	std::cout << this->player.getPositionX() << " " << this->player.getPositionY() << "\n";
 	this->view.zoom(0.5f);
 	this->map.initTab();
 	
@@ -59,7 +60,7 @@ void GameState::updateWindow(sf::RenderWindow* window)
 	this->scale = this->window->getSize().x / 1920.f;
 	this->initKeyBinds();
 	this->view.reset(sf::FloatRect(0, 0, (window->getSize().x), (window->getSize().y)));
-	this->view.setCenter(this->player.getPositionX() * 64, 1.2 * this->player.getPositionY() * 64);
+	this->view.setCenter(this->player.getPositionX() * 64 + 64, 1.2 * this->player.getPositionY() * 64);
 	this->view.zoom(0.5f);
 	this->pmenu.updateWindow(window,this->scale);
 }

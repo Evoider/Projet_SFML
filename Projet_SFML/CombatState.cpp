@@ -8,10 +8,12 @@ void CombatState::initSprite(Pokemon gentil, Pokemon mechant)
 	this->ally.setTexture(texture_ally);
 	this->ennemy.setTexture(texture_ennemy);
 
-	this->ally.scale(5, 5);
-	this->ennemy.scale(5, 5);
-	this->ally.setPosition(this->window->getSize().x - 1700 * this->scale, this->window->getSize().y - 601 * this->scale);
-	this->ennemy.setPosition(this->window->getSize().x - 650 * this->scale, this->window->getSize().y - 900 * this->scale);
+	this->ally.setScale(5 * this->scale, 5 * this->scale);
+	this->ennemy.setScale(5 * this->scale, 5 * this->scale);
+	this->ally.setPosition(220 * this->scale, 479 * this->scale);
+	this->ennemy.setPosition(1270 * this->scale, 180 * this->scale);
+
+	std::cout << 220 * this->scale << " " << 479 * this->scale << "\n";
 }
 
 void CombatState::initGui()
@@ -67,7 +69,7 @@ void  CombatState::initBackground()
 
 	float scalebg = this->window->getSize().x / (float)(this->texturebg.getSize().x);
 	this->backgound.setTexture(texturebg);
-	this->backgound.setPosition(this->backgound.getPosition().x, this->backgound.getPosition().y - 200 * this->scale);
+	this->backgound.setPosition(0, - 200 * this->scale);
 	this->backgound.setScale(scalebg, scalebg);
 }
 
@@ -168,12 +170,12 @@ void CombatState::updateGui()
 		it.second->update(this->mousePosView);
 	}
 
-	if (this->buttons["FUITE"]->isPressed())
+	if (this->buttons["FUITE"]->isPressed() && this->getKeytime())
 	{
 		this->endState();
 	}
 	
-	if (this->buttons["ATTACK"]->isPressed())
+	if (this->buttons["ATTACK"]->isPressed() && this->getKeytime())
 	{
 		this->lifeBar["MECHANT"]->setLife(150);
 	}
