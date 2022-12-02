@@ -12,6 +12,7 @@ private:
     float scale;
     sf::Font font;
     PauseMenu pmenu;
+    sf::Music Celestia;
 
     Entity player;
     Background map;
