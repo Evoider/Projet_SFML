@@ -76,7 +76,7 @@ void Entity::move(std::string direction, sf::View& view)
 			}
 
 			//Vue
-			view.setCenter(view.getCenter().x, view.getCenter().y - (0.5 * offSetY));
+			/*view.setCenter(view.getCenter().x, view.getCenter().y - (0.5 * offSetY));*/
 		}
 		else if (direction == "Down")
 		{
@@ -108,8 +108,8 @@ void Entity::move(std::string direction, sf::View& view)
 				compteurAnimDown = 0;
 			}
 
-			//Vue
-			view.setCenter(view.getCenter().x, view.getCenter().y + (0.5 * offSetY));
+			////Vue
+			//view.setCenter(view.getCenter().x, view.getCenter().y + (0.5 * offSetY));
 		}
 		else if (direction == "Left")
 		{
@@ -141,8 +141,8 @@ void Entity::move(std::string direction, sf::View& view)
 				compteurAnimLeft = 0;
 			}
 
-			//Vue
-			view.setCenter(view.getCenter().x - (0.5 * offSetX), view.getCenter().y);
+			////Vue
+			//view.setCenter(view.getCenter().x - (0.5 * offSetX), view.getCenter().y);
 		}
 		else if (direction == "Right")
 		{
@@ -174,9 +174,10 @@ void Entity::move(std::string direction, sf::View& view)
 				compteurAnimRight = 0;
 			}
 
-			//Vue
-			view.setCenter(view.getCenter().x + (0.5 * offSetX), view.getCenter().y);
+			////Vue
+			//view.setCenter(view.getCenter().x + (0.5 * offSetX), view.getCenter().y);
 		}
+		view.setCenter(posX * 64 + 32, posY * 64 + 64);
 		dtclock.restart();
 	}
 }
