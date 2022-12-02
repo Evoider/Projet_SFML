@@ -20,15 +20,15 @@ void Combat::choixCapacite()
 	m_gentil->attaquer(*m_mechant, choixCapacite);
 }
 
-void Combat::checkBeginer()
+bool Combat::checkBeginer()
 {
 	if (m_gentil->getVitesse() >= m_mechant->getVitesse())
 	{
-		m_compteur = 1;	//Donc gentil commence
+		return false;	//Donc gentil commence
 	}
 	else if (m_gentil->getVitesse() < m_mechant->getVitesse())
 	{
-		m_compteur = 2;	//Donc m�chant commence
+		return true;	//Donc m�chant commence
 	}
 }
 

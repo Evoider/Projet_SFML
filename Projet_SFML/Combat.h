@@ -7,7 +7,7 @@ public:
 	Combat(Pokemon& gentil, Pokemon& mechant);
 	void choixCapacite();
 	void choixIA();
-	void checkBeginer();
+	bool checkBeginer();
 	void fighting();
 
 private:

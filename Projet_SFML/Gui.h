@@ -23,6 +23,7 @@ namespace gui
 		sf::RectangleShape shape;
 		sf::Font font;
 		sf::Text text;
+		sf::Color textColor;
 
 		sf::Color idleColor;
 		sf::Color hoverColor;
@@ -33,7 +34,7 @@ namespace gui
 
 	public:
 		Button(float x, float y, float width, float height,
-			sf::Font font, std::string text, float text_size,
+			sf::Font font, std::string text, float text_size, sf::Color textColor,
 			sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, sf::Color outlineColor, float outlineThick, short unsigned id = 0);
 		~Button();
 
@@ -66,7 +67,8 @@ namespace gui
 
 	public:
 		DropDownList(std::string titleddl, float x, float y, float width, float height,
-			sf::Font* font, std::string list[], float text_size, sf::Color outlineColor, float outlineThick,
+			sf::Font* font, std::string list[], float text_size, sf::Color textColor,
+			sf::Color outlineColor, float outlineThick,
 			unsigned nrOfElements, unsigned default_index = 0);
 		~DropDownList();
 

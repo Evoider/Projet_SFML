@@ -13,7 +13,6 @@ void Game::initVariables()
 
 void Game::initGraphicsSettings()
 {
-	std::cout << "plop" << "\n";
 	this->graphSettings.loadFromFile("Config/graphics.ini");
 }
 

@@ -22,6 +22,7 @@ private:
 
 	Pokemon gentil;
 	Pokemon mechant;
+	bool attacked;
 
 	sf::Font font;
 

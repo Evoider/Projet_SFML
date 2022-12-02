@@ -740,10 +740,9 @@ void Pokemon::attaquer(Pokemon& victime, int numeroCapacite)
 
 void Pokemon::recevoirDegats(int degats)
 {
-	if (degats < 0)
+	if (degats <= 0)
 	{
 		std::cout << "L'attaque est negatif" << std::endl;
-		m_pv--;
 	}
 	else
 	{

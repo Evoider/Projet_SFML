@@ -13,42 +13,49 @@ void CombatState::initSprite(Pokemon gentil, Pokemon mechant)
 	this->ally.setPosition(220 * this->scale, 479 * this->scale);
 	this->ennemy.setPosition(1270 * this->scale, 180 * this->scale);
 
-	std::cout << 220 * this->scale << " " << 479 * this->scale << "\n";
 }
 
 void CombatState::initGui()
 {
-	this->buttons["ATTACK"] = new  gui::Button(this->window->getSize().x - 600 * this->scale, this->window->getSize().y - 200 * this->scale,
-		600 * this->scale, 100 * this->scale,
-		this->font, "Attack", 30,
-		sf::Color(255, 0, 0, 150),
-		sf::Color(240, 0, 0, 255),
-		sf::Color(235, 0, 0, 200),
+	this->buttons["ATTACK 1"] = new  gui::Button(this->window->getSize().x - 600 * this->scale, this->window->getSize().y - 200 * this->scale,
+		300 * this->scale, 100 * this->scale,
+		this->font, "Capacite 1", 30, sf::Color::Black,
+		sf::Color(255, 240, 230, 255),
+		sf::Color(200, 200, 200, 255),
+		sf::Color(100, 100, 100, 200),
+		sf::Color(0, 0, 235, 255), 2 * this->scale
+	);
+	this->buttons["ATTACK 2"] = new  gui::Button(this->window->getSize().x - 300 * this->scale, this->window->getSize().y - 200 * this->scale,
+		300 * this->scale, 100 * this->scale,
+		this->font, "Capacite 2", 30, sf::Color::Black,
+		sf::Color(255, 240, 230, 255),
+		sf::Color(200, 200, 200, 255),
+		sf::Color(100, 100, 100, 200),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->buttons["POKEMON"] = new  gui::Button(this->window->getSize().x - 600 * this->scale, this->window->getSize().y - 100 * this->scale,
 		300 * this->scale, 100 * this->scale,
-		this->font, "Pokemon", 30,
-		sf::Color(255, 0, 0, 150),
-		sf::Color(240, 0, 0, 255),
-		sf::Color(235, 0, 0, 200),
+		this->font, "Pokemon", 30, sf::Color::Black,
+		sf::Color(255, 240, 230, 255),
+		sf::Color(200, 200, 200, 255),
+		sf::Color(100, 100, 100, 200),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->buttons["FUITE"] = new  gui::Button(this->window->getSize().x - 300 * this->scale, this->window->getSize().y - 100 * this->scale,
 		300 * this->scale, 100 * this->scale,
-		this->font, "Fuite", 30,
-		sf::Color(255, 0, 0, 150),
-		sf::Color(0, 240, 0, 255),
-		sf::Color(0, 0, 235, 200),
+		this->font, "Fuite", 30, sf::Color::Black,
+		sf::Color(255, 240, 230, 255),
+		sf::Color(200, 200, 200, 255),
+		sf::Color(100, 100, 100, 200),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 
 	this->lifeBar["GENTIL"] = new gui::LifeBarBox(this->window->getSize().x - 625 * this->scale, this->window->getSize().y - 450 * this->scale,
 		600 * this->scale, 200 * this->scale,
-		this->font, "Trouduc", 1, 200, 50 * this->scale,
-		sf::Color(255, 0, 0, 150),
+		this->font, this->gentil.getNom(), this->gentil.getLvl(), this->gentil.getPv(), 50 * this->scale,
+		sf::Color(255, 240, 230, 255),
 		sf::Color(0, 240, 0, 255),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
@@ -56,8 +63,8 @@ void CombatState::initGui()
 
 	this->lifeBar["MECHANT"] = new gui::LifeBarBox(25 * this->scale, 25 * this->scale,
 		600 * this->scale, 200 * this->scale,
-		this->font, "Grofion", 1, 200, 50 * this->scale,
-		sf::Color(255, 0, 0, 150),
+		this->font, this->mechant.getNom(), this->mechant.getLvl(), this->mechant.getPv(), 50 * this->scale,
+		sf::Color(255, 240, 230, 255),
 		sf::Color(0, 240, 0, 255),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
@@ -109,6 +116,7 @@ CombatState::CombatState(sf::RenderWindow* window, GraphicsSettings& graphSettin
 	this->initGui();
 	
 	Combat fight(gentil, mechant);
+	this->attacked = fight.checkBeginer();
 }
 
 CombatState::~CombatState()
@@ -123,6 +131,7 @@ CombatState::~CombatState()
 	{
 		delete it2->second;
 	}
+	
 }
 
 
@@ -180,10 +189,26 @@ void CombatState::updateGui()
 	{
 		this->endState();
 	}
-	
-	if (this->buttons["ATTACK"]->isPressed() && this->getKeytime())
+	if (this->buttons["POKEMON"]->isPressed() && this->getKeytime())
 	{
-		this->lifeBar["MECHANT"]->setLife(150);
+		std::cout << "gentil : " << this->gentil.getPv() << "\n";
+		std::cout << "mechant " << this->mechant.getPv() << "\n";
+	}
+	
+	if (this->buttons["ATTACK 1"]->isPressed() && this->getKeytime())
+	{
+		this->gentil.attaquer(this->mechant, 1);
+		this->lifeBar["MECHANT"]->setLife(this->mechant.getPv());
+		this->attacked = true;
+
+	}
+
+	if (this->buttons["ATTACK 2"]->isPressed() && this->getKeytime())
+	{
+		this->gentil.attaquer(this->mechant, 2);
+		this->lifeBar["MECHANT"]->setLife(this->mechant.getPv());
+		this->attacked = true;
+
 	}
 }
 
@@ -205,6 +230,17 @@ void CombatState::update(const float& dt)
 	{
 		this->endState();
 	}
+
+	if (this->attacked)
+	{
+		int random = std::rand() % 2 + 1;
+		this->mechant.attaquer(this->gentil, random);
+		this->lifeBar["GENTIL"]->setLife(this->gentil.getPv());
+		this->attacked = false;
+	}
+
+	if (this->gentil.getPv() <= 0 || this->mechant.getPv() <= 0)
+		this->endState();
 
 }
 

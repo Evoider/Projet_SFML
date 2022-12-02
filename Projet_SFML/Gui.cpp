@@ -3,7 +3,7 @@
 //Button===================================================================
 
 gui::Button::Button(float x, float y, float width, float height,
-	sf::Font font, std::string text, float text_size,
+	sf::Font font, std::string text, float text_size, sf::Color textColor,
 	sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, sf::Color outlineColor, float outlineThick,
 	short unsigned id)
 {
@@ -14,7 +14,7 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->font = font;
 	this->text.setFont(this->font);
 	this->text.setString(text);
-	this->text.setFillColor(sf::Color::White);
+	this->text.setFillColor(textColor);
 	this->text.setCharacterSize(text_size);
 	this->text.setPosition(
 		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
@@ -119,7 +119,7 @@ void gui::Button::render(sf::RenderTarget* target)
 //Drop down list============================================
 
 gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float width, float height,
-	sf::Font* font, std::string list[], float text_size, sf::Color outlineColor, float outlineThick,
+	sf::Font* font, std::string list[], float text_size, sf::Color textColor, sf::Color outlineColor, float outlineThick,
 	unsigned nrOfElements, unsigned default_index)
 	:titleddl(titleddl), font(font), showList(false), waitMax(2.f), wait(0.f)
 {
@@ -128,7 +128,7 @@ gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float wi
 	{
 		this->list.push_back(
 			new gui::Button(x, (y + height * i), width, height,
-				*this->font, list[i], text_size,
+				*this->font, list[i], text_size, textColor,
 				sf::Color(0, 0, 0, 255),
 				sf::Color(150, 150, 150, 255),
 				sf::Color(20, 20, 20, 200),
@@ -139,7 +139,7 @@ gui::DropDownList::DropDownList(std::string titleddl, float x, float y, float wi
 	}
 
 	this->Selected = new gui::Button(x - width, y, width, height,
-		*this->font,this->titleddl + list[default_index], text_size,
+		*this->font,this->titleddl + list[default_index], text_size, textColor,
 		sf::Color(0, 0, 0, 255),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
@@ -290,7 +290,7 @@ gui::LifeBarBox::LifeBarBox(float x, float y, float width, float height,
 
 	this->level.setFont(this->font);
 	this->level.setString("Lv : " + std::to_string(lvl));
-	this->level.setFillColor(sf::Color::White);
+	this->level.setFillColor(sf::Color::Magenta);
 	this->level.setCharacterSize(text_size/2);
 	this->level.setPosition(
 		this->backBox.getPosition().x + 6 * (this->backBox.getGlobalBounds().width / 10.f),
@@ -322,10 +322,17 @@ void gui::LifeBarBox::setLife(int pv)
 {
 	this->textLife.setString(std::to_string(pv) + "/" + std::to_string(this->pvMax));
 	float width = this->LifeBarContainer.getSize().x - 0.5 * (this->backBox.getGlobalBounds().width / 10.f);
-	std::cout << width << '\n';
-	std::cout << width * (static_cast<float>(pv) / this->pvMax) << '\n';
+
 	float height = this->LifeBarContainer.getSize().y;
-	this->LifeBar.setSize(sf::Vector2f(width * (static_cast<float>(pv) / this->pvMax), height));
+	if (pv > 0)
+	{
+		this->LifeBar.setSize(sf::Vector2f(width * (static_cast<float>(pv) / this->pvMax), height));
+	}
+	else if (pv <= 0)
+	{
+		this->LifeBar.setSize(sf::Vector2f(0, height));
+	}
+	
 }
 
 void gui::LifeBarBox::showTextLife()

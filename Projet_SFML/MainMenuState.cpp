@@ -32,21 +32,21 @@ void MainMenuState::initKeyBinds()
 void MainMenuState::initButtons()
 {
 	this->buttons["GAME_STATE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) - 100 * this->scale, 300 * this->scale, 50 * this->scale,
-		this->font, "New Game", 20 * this->scale,
+		this->font, "New Game", 20 * this->scale, sf::Color::White,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->buttons["SETTINGS"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2), 300 * this->scale, 50 * this->scale,
-		this->font, "Settings", 20 * this->scale,
+		this->font, "Settings", 20 * this->scale, sf::Color::White,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
 		sf::Color(0, 0, 235, 255), 2 * this->scale
 	);
 	this->buttons["EXIT_STATE"] = new gui::Button((this->window->getSize().x / 2) - 150 * this->scale, (this->window->getSize().y / 2) + 100 * this->scale, 300 * this->scale, 50 * this->scale,
-		this->font, "Quit", 20 * this->scale,
+		this->font, "Quit", 20 * this->scale, sf::Color::White,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200),
@@ -58,7 +58,6 @@ void MainMenuState::initButtons()
 void MainMenuState::initBackground()
 {
 	this->textureBg.loadFromFile("Ressources/Sprites/Bg2.png");
-	std::cout << this->textureBg.getSize().x << "\n";
 
 	this->scale = this->window->getSize().x / 1920.f;
 
